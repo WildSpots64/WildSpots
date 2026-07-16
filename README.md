@@ -44,6 +44,7 @@ create table validations (
   spot_index int not null,
   spot_name text,
   section_key text not null,
+  is_ambassador boolean default false,
   created_at timestamptz default now()
 );
 
@@ -56,6 +57,25 @@ create policy "Public insert comments" on comments for insert with check (true);
 create policy "Public read validations" on validations for select using (true);
 create policy "Public insert validations" on validations for insert with check (true);
 ```
+
+**Si tu as déjà créé les tables avant cette mise à jour**, lance juste cette ligne en plus dans le SQL Editor (pas besoin de tout recréer) :
+```sql
+alter table validations add column is_ambassador boolean default false;
+```
+
+## Le système de confiance à 3 niveaux
+
+Chaque section d'une fiche (Fiche technique, Transport, École, Hébergement) affiche un badge qui monte de niveau :
+
+1. **IA** (défaut) — info générée automatiquement, personne ne l'a encore confirmée
+2. **✓ Communauté · N** — dès qu'un premier rider clique "Je confirme", le compteur s'affiche et grimpe avec chaque nouvelle confirmation
+3. **🛡️ Validé ambassadeur** — quand une personne désignée comme ambassadeur WildSpots valide la section avec un code, ce badge prend le dessus sur les deux autres
+
+Le code ambassadeur est actuellement codé en dur dans `index.html` :
+```js
+const AMBASSADOR_CODE = "WILDSPOTS-AMBASSADEUR";
+```
+Change cette valeur (cherche `AMBASSADOR_CODE` dans le fichier) pour un code que toi seul connais, puis partage-le uniquement avec les personnes que tu désignes comme ambassadeurs. **Attention** : ce n'est pas un vrai système d'authentification — n'importe qui qui voit ce code dans le code source du site (ou à qui tu l'as donné) peut valider en tant qu'ambassadeur. Pour un vrai programme d'ambassadeurs à l'échelle, il faudra un vrai compte utilisateur avec un rôle attribué côté base de données plutôt qu'un code partagé.
 
 3. Va dans **Settings → API** (menu de gauche). Copie deux valeurs :
    - **Project URL** (ex. `https://xxxxx.supabase.co`)

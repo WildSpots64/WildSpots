@@ -477,6 +477,30 @@
     font-size:0.75rem; color:#8a8a8a; margin-top:10px; line-height:1.4;
   }
 
+  .suggestion-form{ display:flex; flex-direction:column; gap:10px; }
+  .suggestion-form select, .suggestion-form input, .suggestion-form textarea{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.95rem;
+    border:1px solid #d8d0ba;
+    border-radius:6px;
+    padding:10px 12px;
+    resize:vertical;
+    background:#fff;
+  }
+  .suggestion-form textarea{ min-height:56px; }
+  .suggestion-form button{
+    align-self:flex-start;
+    background:var(--teal);
+    color:#fff;
+    border:none;
+    border-radius:100px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem;
+    padding:10px 22px;
+    cursor:pointer;
+  }
+  .suggestion-form button:hover{ opacity:0.9; }
+
   .map-legend{
     display:flex; gap:18px; flex-wrap:wrap; margin-top:18px;
     font-family:'JetBrains Mono', monospace; font-size:0.7rem;
@@ -1020,9 +1044,47 @@
           <button type="button" onclick="addComment(${idx})">Publier</button>
         </div>
         <p class="comment-note">${supabaseClient ? "Vos avis et validations sont enregistrés et visibles par tous les visiteurs." : "Supabase non configuré : avis conservés le temps de la session uniquement (voir README.md)."}</p>
+
+        <div class="section-label"><b>Vous connaissez mieux ?</b><span class="badge badge-communaute">Communauté</span></div>
+        <div id="suggestion-zone-${idx}">${buildSuggestionForm(idx)}</div>
       </div>
     `;
   }
+
+  function buildSuggestionForm(idx){
+    return `
+      <div class="suggestion-form">
+        <select id="sugg-cat-${idx}">
+          <option value="hebergement">Hébergement</option>
+          <option value="ecole">École / location de matériel</option>
+        </select>
+        <input type="text" id="sugg-name-${idx}" placeholder="Nom de l'établissement" maxlength="80">
+        <input type="text" id="sugg-url-${idx}" placeholder="Lien (site officiel, optionnel)" maxlength="200">
+        <textarea id="sugg-note-${idx}" placeholder="Pourquoi tu le recommandes (optionnel)" maxlength="200"></textarea>
+        <input type="text" id="sugg-author-${idx}" placeholder="Votre prénom (optionnel)" maxlength="40">
+        <button type="button" onclick="addSuggestion(${idx})">Proposer</button>
+      </div>`;
+  }
+
+  window.addSuggestion = async function(idx){
+    const nameEl = document.getElementById(`sugg-name-${idx}`);
+    const name = nameEl.value.trim();
+    if (!name) { nameEl.style.borderColor = "var(--coral)"; nameEl.placeholder = "Nom requis"; return; }
+    const category = document.getElementById(`sugg-cat-${idx}`).value;
+    const url = document.getElementById(`sugg-url-${idx}`).value.trim();
+    const note = document.getElementById(`sugg-note-${idx}`).value.trim();
+    const author = document.getElementById(`sugg-author-${idx}`).value.trim() || "Anonyme";
+
+    const zone = document.getElementById(`suggestion-zone-${idx}`);
+    zone.innerHTML = `<p class="no-comments">Merci ${escapeHTML(author)} ! Ta proposition a été transmise${supabaseClient ? "" : " (mode démo, non sauvegardée)"}.</p>`;
+
+    if (supabaseClient) {
+      const { error } = await supabaseClient.from('suggestions').insert({
+        spot_index: idx, spot_name: spots[idx].name, category, name, url, note, author
+      });
+      if (error) console.warn("Supabase (suggestion) :", error.message);
+    }
+  };
 
   const panelEl = document.getElementById('spot-panel');
 

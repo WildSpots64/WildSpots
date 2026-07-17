@@ -614,11 +614,11 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow" id="hero-eyebrow">Landes · Pays Basque — 25 spots</div>
-      <h1 id="hero-title">Un spot,<br>toutes ses <em>conditions.</em></h1>
-      <p class="lede" id="hero-lede">Surf, kite, wind, wingfoil : au lieu de croiser Windguru, les groupes Facebook et les forums, WildSpots réunit chaque spot sur une seule carte, avec sa fiche.</p>
+      <div class="eyebrow" id="hero-eyebrow">Landes · Pays Basque — prépare ton trip</div>
+      <h1 id="hero-title">Un trip prêt,<br>pas juste un <em>spot.</em></h1>
+      <p class="lede" id="hero-lede">Tu pars surfer, kiter, faire du wind ou du wingfoil dans les Landes ou au Pays Basque ? WildSpots réunit le spot, l'école, l'hébergement et le trajet — pour préparer ton séjour sans jongler entre dix onglets.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#carte" id="hero-cta-primary">Explorer la carte demo ↓</a>
+        <a class="btn-primary" href="#carte" id="hero-cta-primary">Préparer mon trip ↓</a>
         <a class="btn-ghost" href="#comment" id="hero-cta-ghost">Comment ça marche</a>
       </div>
       <div class="stat-row">
@@ -778,10 +778,10 @@
   const UI = {
     fr: {
       navTagline: "// démo", navCta: "Voir la carte →",
-      heroEyebrow: "Landes · Pays Basque — 25 spots",
-      heroTitle: 'Un spot,<br>toutes ses <em>conditions.</em>',
-      heroLede: "Surf, kite, wind, wingfoil : au lieu de croiser Windguru, les groupes Facebook et les forums, WildSpots réunit chaque spot sur une seule carte, avec sa fiche.",
-      heroCtaPrimary: "Explorer la carte demo ↓", heroCtaGhost: "Comment ça marche",
+      heroEyebrow: "Landes · Pays Basque — prépare ton trip",
+      heroTitle: 'Un trip prêt,<br>pas juste un <em>spot.</em>',
+      heroLede: "Tu pars surfer, kiter, faire du wind ou du wingfoil dans les Landes ou au Pays Basque ? WildSpots réunit le spot, l'école, l'hébergement et le trajet — pour préparer ton séjour sans jongler entre dix onglets.",
+      heroCtaPrimary: "Préparer mon trip ↓", heroCtaGhost: "Comment ça marche",
       stat1: "Spots référencés", stat2: "Sports couverts", stat3: "Territoires",
       problemEyebrow: "Le problème",
       problemTitle: "L'info existe déjà.<br>Elle est juste éparpillée.",
@@ -830,10 +830,10 @@
     },
     en: {
       navTagline: "// demo", navCta: "View map →",
-      heroEyebrow: "Landes · Basque Country — 25 spots",
-      heroTitle: 'One spot,<br>every <em>condition.</em>',
-      heroLede: "Surf, kite, wind, wingfoil: instead of juggling Windguru, Facebook groups and forums, WildSpots brings every spot together on one map, with a full profile.",
-      heroCtaPrimary: "Explore the demo map ↓", heroCtaGhost: "How it works",
+      heroEyebrow: "Landes · Basque Country — plan your trip",
+      heroTitle: 'A trip ready to go,<br>not just a <em>spot.</em>',
+      heroLede: "Heading out to surf, kite, wind or wingfoil in the Landes or Basque Country? WildSpots brings together the spot, the school, the accommodation and how to get there — so you can plan your trip without juggling ten tabs.",
+      heroCtaPrimary: "Plan my trip ↓", heroCtaGhost: "How it works",
       stat1: "Spots listed", stat2: "Sports covered", stat3: "Regions",
       problemEyebrow: "The problem",
       problemTitle: "The info already exists.<br>It's just scattered.",
@@ -1192,23 +1192,20 @@
         <div class="popup-tags">${tags}</div>
         <p class="popup-desc">${d.desc}</p>
 
-        ${sectionHeader(t('secTechnique'), "technique")}
-        <div class="panel-grid">
-          <div class="popup-row"><span>${t('rowNiveau')}</span><span>${d.level}</span></div>
-          <div class="popup-row"><span>${t('rowSaison')}</span><span>${d.season}</span></div>
-          <div class="popup-row"><span>${t('rowConditions')}</span><span>${d.conditions}</span></div>
-          <div class="popup-row"><span>${t('rowAmbiance')}</span><span>${d.ambiance}</span></div>
-          <div class="popup-row"><span>${t('rowScore')}</span><span>${spot.score.toFixed(1)} / 10</span></div>
-          <div class="popup-row"><span>${t('rowAcces')}</span><span>${d.access}</span></div>
-        </div>
-        <div class="popup-around"><span>${t('rowAutour')}</span>${d.around}</div>
-
         ${sectionHeader(t('secTransport'), "transport")}
         <p class="popup-transport">${d.transport || "—"}</p>
 
-        ${spot.tip ? `
-        <div class="section-label"><b>${t('secBonPlan')}</b><span class="badge badge-ia">${t('badgeIA')}</span></div>
-        <p class="popup-tip">💡 ${d.tip}</p>` : ""}
+        ${spot.stay ? `
+        ${sectionHeader(t('secHebergement'), "hebergement")}
+        <div class="popup-links">
+          <a class="link-card" href="${spot.stay.url}" target="_blank" rel="noopener">
+            <span class="link-kind">${t('linkVerifie')}</span>
+            <span class="link-name">${spot.stay.name}</span>
+            <span class="link-type">${KIND_LABELS[lang][inferKind(spot.stay.name)]}</span>
+            <span class="link-price">${inferPrice(inferKind(spot.stay.name))} <i>${t('estimationIA')}</i></span>
+            <span class="link-cta">${t('linkTarifs')}</span>
+          </a>
+        </div>` : ""}
 
         ${spot.school ? `
         ${sectionHeader(t('secEcole'), "ecole")}
@@ -1222,17 +1219,20 @@
           </a>
         </div>` : ""}
 
-        ${spot.stay ? `
-        ${sectionHeader(t('secHebergement'), "hebergement")}
-        <div class="popup-links">
-          <a class="link-card" href="${spot.stay.url}" target="_blank" rel="noopener">
-            <span class="link-kind">${t('linkVerifie')}</span>
-            <span class="link-name">${spot.stay.name}</span>
-            <span class="link-type">${KIND_LABELS[lang][inferKind(spot.stay.name)]}</span>
-            <span class="link-price">${inferPrice(inferKind(spot.stay.name))} <i>${t('estimationIA')}</i></span>
-            <span class="link-cta">${t('linkTarifs')}</span>
-          </a>
-        </div>` : ""}
+        ${sectionHeader(t('secTechnique'), "technique")}
+        <div class="panel-grid">
+          <div class="popup-row"><span>${t('rowNiveau')}</span><span>${d.level}</span></div>
+          <div class="popup-row"><span>${t('rowSaison')}</span><span>${d.season}</span></div>
+          <div class="popup-row"><span>${t('rowConditions')}</span><span>${d.conditions}</span></div>
+          <div class="popup-row"><span>${t('rowAmbiance')}</span><span>${d.ambiance}</span></div>
+          <div class="popup-row"><span>${t('rowScore')}</span><span>${spot.score.toFixed(1)} / 10</span></div>
+          <div class="popup-row"><span>${t('rowAcces')}</span><span>${d.access}</span></div>
+        </div>
+        <div class="popup-around"><span>${t('rowAutour')}</span>${d.around}</div>
+
+        ${spot.tip ? `
+        <div class="section-label"><b>${t('secBonPlan')}</b><span class="badge badge-ia">${t('badgeIA')}</span></div>
+        <p class="popup-tip">💡 ${d.tip}</p>` : ""}
 
         <div class="section-label"><b>${t('secAvis')}</b><span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span></div>
         <div id="comments-list-${idx}">${renderComments(idx)}</div>

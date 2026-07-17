@@ -329,6 +329,55 @@
     transition:all .15s ease;
   }
   .filter-pill.active .dot{ background:var(--foam); border-color:var(--foam); transform:scale(1.08); color:var(--navy) !important; }
+
+  .zone-search-wrap{ position:relative; margin-bottom:36px; z-index:500; isolation:isolate; }
+  .zone-search-wrap .app-search{ margin-bottom:0; cursor:pointer; }
+  .zone-search-hero{
+    padding:20px 26px;
+    border:2px solid var(--coral);
+    border-radius:16px;
+    background:rgba(227,87,42,0.08);
+    box-shadow:0 10px 30px -10px rgba(227,87,42,0.35);
+  }
+  .zone-search-hero .app-search-icon{ font-size:1.3rem; opacity:1; }
+  .zone-search-hero input{ font-size:1.1rem; font-weight:600; }
+  .zone-search-hero input::placeholder{ color:rgba(247,244,236,0.65); }
+  .zone-search-hero .app-search-caret{ font-size:1.1rem; opacity:0.9; }
+  .app-search-caret{ opacity:0.6; font-size:0.8rem; }
+  .zone-dropdown{
+    display:none;
+    position:absolute; top:calc(100% + 10px); left:0; right:0;
+    background:var(--foam);
+    max-height:360px;
+    overflow-y:auto;
+    border-radius:10px;
+    box-shadow:0 12px 32px -8px rgba(0,0,0,0.35);
+    padding:10px 0;
+    z-index:9999;
+    max-width:420px;
+  }
+  .zone-dropdown.open{ display:block; }
+  .zone-dropdown-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.64rem; text-transform:uppercase; letter-spacing:0.05em;
+    color:#8a8a8a; padding:8px 18px 4px;
+  }
+  .zone-option{
+    display:flex; align-items:center; gap:10px;
+    padding:10px 18px;
+    font-size:0.92rem; color:var(--navy); font-weight:600;
+    cursor:pointer;
+  }
+  .zone-option:hover:not(.disabled){ background:#F3EFDD; }
+  .zone-option.disabled{ color:#b3aea0; cursor:default; font-weight:500; }
+  .soon-tag{
+    margin-left:auto;
+    font-style:normal;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.6rem; text-transform:uppercase; letter-spacing:0.03em;
+    background:#e6dfc9; color:#8a7a5c;
+    padding:2px 8px; border-radius:100px;
+  }
   .filter-pill span:last-child{ color:rgba(247,244,236,0.75); }
   .filter-pill.active span:last-child{ color:var(--foam); }
 
@@ -341,6 +390,8 @@
     min-width:0;
     border-radius:4px;
     border:1px solid var(--line);
+    position:relative;
+    z-index:1;
   }
   .spot-panel{
     flex:1;
@@ -754,6 +805,22 @@
   </div>
 </nav>
 
+<section class="section" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" id="problem-eyebrow">Le problème</div>
+      <h2 id="problem-title">L'info existe déjà.<br>Elle est juste éparpillée.</h2>
+      <p id="problem-desc">Pour choisir un spot et préparer un séjour, un rider ouvre en moyenne cinq ou six sources différentes — sans jamais avoir la vue d'ensemble.</p>
+    </div>
+    <div class="scatter-grid">
+      <div class="scatter-item" id="scatter-1"><b>Windguru / Windy</b>conditions du jour, sans contexte local</div>
+      <div class="scatter-item" id="scatter-2"><b>Groupes Facebook</b>bons plans noyés dans le fil</div>
+      <div class="scatter-item" id="scatter-3"><b>Forums &amp; blogs</b>avis épars, souvent datés</div>
+      <div class="scatter-item" id="scatter-4"><b>Booking / Google Maps</b>logement seul, sans lien avec le spot</div>
+    </div>
+  </div>
+</section>
+
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
@@ -763,6 +830,33 @@
     </div>
     <div class="filters-label" id="filters-label">Choisis ton sport</div>
     <div class="filters" id="filters"></div>
+    <div class="filters-label" id="filters-label-zone">Choisis ta zone</div>
+    <div class="zone-search-wrap">
+      <div class="app-search zone-search-hero" id="zone-search-trigger">
+        <span class="app-search-icon">🔍</span>
+        <input type="text" id="zone-search" placeholder="Où veux-tu partir ?" readonly>
+        <span class="app-search-caret">▾</span>
+      </div>
+      <div class="zone-dropdown" id="zone-dropdown">
+        <div class="zone-dropdown-label" id="zone-dropdown-label-active">Disponible maintenant</div>
+        <div class="zone-option active" data-zone="all">🏄 <span>Landes · Pays Basque</span></div>
+        <div class="zone-dropdown-label" id="zone-dropdown-label-soon">Bientôt disponible</div>
+        <div class="zone-option disabled">🌴 <span>Hawaii — Oahu</span><i class="soon-tag" id="soon-tag-1">Bientôt</i></div>
+        <div class="zone-option disabled">🏝️ <span>Bali — Uluwatu</span><i class="soon-tag" id="soon-tag-2">Bientôt</i></div>
+        <div class="zone-option disabled">🌊 <span>Maroc — Essaouira</span><i class="soon-tag" id="soon-tag-3">Bientôt</i></div>
+        <div class="zone-option disabled">🇵🇹 <span>Portugal — Peniche</span><i class="soon-tag" id="soon-tag-4">Bientôt</i></div>
+        <div class="zone-option disabled">🇦🇺 <span>Australie — Gold Coast</span><i class="soon-tag" id="soon-tag-5">Bientôt</i></div>
+        <div class="zone-option disabled">🇿🇦 <span>Afrique du Sud — Jeffreys Bay</span><i class="soon-tag" id="soon-tag-6">Bientôt</i></div>
+        <div class="zone-option disabled">🇧🇷 <span>Brésil — Jericoacoara</span><i class="soon-tag" id="soon-tag-7">Bientôt</i></div>
+        <div class="zone-option disabled">🇵🇭 <span>Philippines — Siargao</span><i class="soon-tag" id="soon-tag-8">Bientôt</i></div>
+        <div class="zone-option disabled">🇬🇷 <span>Grèce — Cyclades</span><i class="soon-tag" id="soon-tag-9">Bientôt</i></div>
+        <div class="zone-option disabled">🇪🇬 <span>Égypte — Dahab</span><i class="soon-tag" id="soon-tag-10">Bientôt</i></div>
+        <div class="zone-option disabled">🇪🇸 <span>Canaries — Fuerteventura</span><i class="soon-tag" id="soon-tag-11">Bientôt</i></div>
+        <div class="zone-option disabled">🇺🇸 <span>Californie — Santa Cruz</span><i class="soon-tag" id="soon-tag-12">Bientôt</i></div>
+        <div class="zone-option disabled">🇲🇽 <span>Mexique — Baja California</span><i class="soon-tag" id="soon-tag-13">Bientôt</i></div>
+        <div class="zone-option disabled">🇱🇰 <span>Sri Lanka — Arugam Bay</span><i class="soon-tag" id="soon-tag-14">Bientôt</i></div>
+      </div>
+    </div>
     <div class="map-layout">
       <div id="map"></div>
       <aside id="spot-panel" class="spot-panel">
@@ -777,22 +871,6 @@
       <span style="color:#2A7F8A;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M12 2.5 17 9 12 15 7 9Z" fill="currentColor"/><path d="M12 15 9.3 20.5M12 15l2.7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="7.3" y="20.3" width="9.4" height="1.7" rx="0.85" fill="currentColor"/></svg>Kite</span>
       <span style="color:#C98A2C;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M12.2 2.8c-4 1.4-4.6 8-.2 10.6z" fill="currentColor"/><line x1="12.2" y1="2.5" x2="12.2" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="12.2" cy="20.3" rx="7.6" ry="1.6" fill="currentColor"/></svg>Wind</span>
       <span style="color:#8C7FD1;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M3 9.5c3.6-4.4 13.4-4.4 18 0-3.6 2.8-14.4 2.8-18 0Z" fill="currentColor"/><line x1="12" y1="10.5" x2="12" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.2 17.5h7.6L12 21.8Z" fill="currentColor"/></svg>Wingfoil</span>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow" id="problem-eyebrow">Le problème</div>
-      <h2 id="problem-title">L'info existe déjà.<br>Elle est juste éparpillée.</h2>
-      <p id="problem-desc">Pour choisir un spot et préparer un séjour, un rider ouvre en moyenne cinq ou six sources différentes — sans jamais avoir la vue d'ensemble.</p>
-    </div>
-    <div class="scatter-grid">
-      <div class="scatter-item" id="scatter-1"><b>Windguru / Windy</b>conditions du jour, sans contexte local</div>
-      <div class="scatter-item" id="scatter-2"><b>Groupes Facebook</b>bons plans noyés dans le fil</div>
-      <div class="scatter-item" id="scatter-3"><b>Forums &amp; blogs</b>avis épars, souvent datés</div>
-      <div class="scatter-item" id="scatter-4"><b>Booking / Google Maps</b>logement seul, sans lien avec le spot</div>
     </div>
   </div>
 </section>
@@ -893,7 +971,8 @@
       mapEyebrow: "Prépare ton voyage", mapTitle: "Ton trip prêt en 5 minutes",
       mapIntro: "Sport, spot, hébergement, école, transport : les infos clés pour partir maintenant, vérifiées quand c'est possible. Clique un point, tout est là — pas besoin d'ouvrir dix autres onglets.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
-      filterAll: "Tous", filtersLabel: "Choisis ton sport",
+      filterAll: "Tous", filtersLabel: "Choisis ton sport", filtersLabelZone: "Choisis ta zone", zoneAll: "Toutes les zones",
+      zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt disponible", soonTag: "Bientôt",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
       step1Title: "Explorer", step1Desc: "Filtrer les spots par sport, niveau et saison sur une carte unique du littoral.",
       step2Title: "Comparer", step2Desc: "Ouvrir une fiche par spot : conditions types, ambiance, accès, ce qu'il y a autour.",
@@ -952,7 +1031,8 @@
       mapEyebrow: "Plan your trip", mapTitle: "Your trip, ready in 5 minutes",
       mapIntro: "Sport, spot, accommodation, school, transport: the key info to leave right now, verified when possible. Click a point, it's all there — no need to open ten other tabs.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
-      filterAll: "All", filtersLabel: "Choose your sport",
+      filterAll: "All", filtersLabel: "Choose your sport", filtersLabelZone: "Choose your area", zoneAll: "All areas",
+      zoneActiveLabel: "Landes · Basque Country", zoneAvailableNow: "Available now", zoneComingSoon: "Coming soon", soonTag: "Soon",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
       step1Title: "Explore", step1Desc: "Filter spots by sport, level and season on a single coastal map.",
       step2Title: "Compare", step2Desc: "Open each spot's profile: typical conditions, vibe, access, what's around.",
@@ -1039,6 +1119,18 @@
     const filterAllLabel = document.getElementById('filter-label-all');
     if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
     document.getElementById('filters-label').textContent = t('filtersLabel');
+    const filtersLabelZoneEl = document.getElementById('filters-label-zone');
+    if (filtersLabelZoneEl) filtersLabelZoneEl.textContent = t('filtersLabelZone');
+    const zoneActiveLabelEl = document.getElementById('zone-dropdown-label-active');
+    if (zoneActiveLabelEl) zoneActiveLabelEl.textContent = t('zoneAvailableNow');
+    const zoneSoonLabelEl = document.getElementById('zone-dropdown-label-soon');
+    if (zoneSoonLabelEl) zoneSoonLabelEl.textContent = t('zoneComingSoon');
+    ['soon-tag-1','soon-tag-2','soon-tag-3','soon-tag-4','soon-tag-5','soon-tag-6','soon-tag-7','soon-tag-8','soon-tag-9','soon-tag-10','soon-tag-11','soon-tag-12','soon-tag-13','soon-tag-14'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = t('soonTag');
+    });
+    const zoneSearchEl = document.getElementById('zone-search');
+    if (zoneSearchEl && !zoneSearchEl.dataset.touched) zoneSearchEl.value = t('zoneActiveLabel');
   }
 
   window.toggleLang = function(){
@@ -1486,6 +1578,23 @@
       updateMarkerVisibility();
     });
     filtersEl.appendChild(btn);
+  });
+
+  // ── Barre de recherche destination façon Booking : une seule zone active pour l'instant ──
+  const zoneSearchInput = document.getElementById('zone-search');
+  const zoneDropdown = document.getElementById('zone-dropdown');
+  zoneSearchInput.value = t('zoneActiveLabel');
+
+  document.getElementById('zone-search-trigger').addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoneDropdown.classList.toggle('open');
+  });
+  document.querySelector('.zone-option[data-zone="all"]').addEventListener('click', () => {
+    zoneSearchInput.value = t('zoneActiveLabel');
+    zoneDropdown.classList.remove('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.zone-search-wrap')) zoneDropdown.classList.remove('open');
   });
 
   // ── Recherche rapide, en haut de la carte ──

@@ -102,8 +102,82 @@
     background:radial-gradient(120% 90% at 15% -10%, #16374c 0%, var(--navy) 55%, #081925 100%);
     color:var(--foam);
     overflow:hidden;
-    padding:96px 0 0;
+    padding:40px 0 0;
   }
+
+  .app-search{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(247,244,236,0.08);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:14px 18px;
+    margin-bottom:28px;
+    position:relative; z-index:2;
+  }
+  .app-search-icon{ font-size:1rem; opacity:0.7; }
+  .app-search input{
+    flex:1; background:none; border:none; outline:none;
+    color:var(--foam); font-family:'Work Sans', sans-serif; font-size:0.95rem;
+  }
+  .app-search input::placeholder{ color:rgba(247,244,236,0.5); }
+  .app-search-btn{
+    background:var(--coral); color:#fff; border:none; border-radius:50%;
+    width:34px; height:34px; font-size:1rem; cursor:pointer; flex-shrink:0;
+  }
+
+  .app-section-title{
+    font-family:'Anton', sans-serif; text-transform:uppercase; font-size:1.05rem;
+    color:var(--foam); margin-bottom:14px; position:relative; z-index:2;
+  }
+  .app-shortcuts{
+    display:flex; gap:22px; flex-wrap:wrap; margin-bottom:28px;
+    position:relative; z-index:2;
+  }
+
+  .app-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    background:var(--navy-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:24px 26px;
+    text-decoration:none;
+    margin-bottom:20px;
+    position:relative; z-index:2;
+  }
+  .app-banner-eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.05em; color:var(--sand); margin-bottom:6px;
+  }
+  .app-banner-title{
+    font-family:'Anton', sans-serif; text-transform:uppercase; font-size:1.3rem;
+    color:var(--foam); line-height:1.1; margin-bottom:12px;
+  }
+  .app-banner-cta{
+    display:inline-block; background:var(--foam); color:var(--navy);
+    font-family:'JetBrains Mono', monospace; font-weight:700; font-size:0.75rem;
+    padding:9px 18px; border-radius:100px;
+  }
+  .app-banner-icon{ font-size:2.4rem; flex-shrink:0; }
+
+  .app-card{
+    background:var(--foam); border-radius:12px; padding:20px 22px;
+    margin-bottom:32px; position:relative; z-index:2;
+  }
+  .app-card-label{
+    font-family:'JetBrains Mono', monospace; font-size:0.66rem; text-transform:uppercase;
+    letter-spacing:0.05em; color:#8a8a8a; margin-bottom:10px;
+  }
+  .app-card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
+  .app-card-name{ font-family:'Anton', sans-serif; text-transform:uppercase; font-size:1.2rem; color:var(--navy); }
+  .app-card-loc{ font-family:'JetBrains Mono', monospace; font-size:0.7rem; color:#8a8a8a; margin-top:4px; }
+  .app-card-score{ font-family:'Anton', sans-serif; font-size:1.5rem; color:var(--coral); flex-shrink:0; }
+  .app-card-tags{ display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; }
+  .app-card-cta{
+    display:inline-block; background:var(--coral); color:#fff;
+    font-family:'JetBrains Mono', monospace; font-weight:700; font-size:0.75rem;
+    padding:10px 20px; border-radius:100px; text-decoration:none;
+  }
+
   .hero-grid{
     display:grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -228,24 +302,35 @@
 
   .wrap-wide{ max-width:1400px; }
 
+  .filters-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--amber);
+    margin-bottom:14px;
+  }
   .filters{
-    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;
+    display:flex; gap:22px; flex-wrap:wrap; margin-bottom:24px;
   }
   .filter-pill{
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.75rem;
-    letter-spacing:0.03em;
-    padding:10px 18px;
-    border-radius:100px;
-    border:1px solid var(--line);
-    background:transparent;
+    background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
     color:var(--foam);
-    cursor:pointer;
-    display:flex; align-items:center; gap:8px;
+    font-family:'Work Sans', sans-serif; font-size:0.78rem; font-weight:600;
+    padding:0; width:84px;
+  }
+  .filter-pill .dot{
+    width:64px; height:64px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.7rem;
+    background:rgba(247,244,236,0.08);
+    border:2px solid var(--line);
     transition:all .15s ease;
   }
-  .filter-pill .dot{ width:8px; height:8px; border-radius:50%; }
-  .filter-pill.active{ background:var(--foam); color:var(--navy); border-color:var(--foam); }
+  .filter-pill.active .dot{ background:var(--foam); border-color:var(--foam); transform:scale(1.08); color:var(--navy) !important; }
+  .filter-pill span:last-child{ color:rgba(247,244,236,0.75); }
+  .filter-pill.active span:last-child{ color:var(--foam); }
 
   .map-layout{
     display:flex; gap:20px; align-items:stretch;
@@ -306,7 +391,9 @@
     padding:5px 12px;
     border-radius:100px;
     color:#fff;
+    display:inline-flex; align-items:center; gap:5px;
   }
+  .popup-tag svg{ flex-shrink:0; width:14px; height:14px; }
   .popup-desc{ font-size:1.05rem; color:var(--ink); line-height:1.5; margin:0 0 20px; font-weight:500; }
 
   .panel-grid{
@@ -355,6 +442,7 @@
   }
   .link-card .link-name{ font-size:1rem; font-weight:700; color:var(--navy); }
   .link-card .link-type{ font-size:0.85rem; color:#3f5460; }
+  .link-card .link-distance{ font-size:0.8rem; color:var(--teal); font-weight:600; display:block; margin-top:2px; }
   .link-card .link-price{ font-size:0.8rem; color:#8a8a8a; margin-top:2px; }
   .link-card .link-price i{ font-style:normal; }
   .link-card .link-cta{
@@ -390,6 +478,18 @@
     font-size:1.05rem;
     color:var(--navy);
   }
+
+  .trust-legend{
+    display:flex; flex-direction:column; gap:8px;
+    background:#F3EFDD; border-radius:8px;
+    padding:12px 14px;
+    margin-bottom:20px;
+  }
+  .trust-legend-item{
+    display:flex; align-items:center; gap:8px;
+    font-size:0.76rem; color:#3f5460; line-height:1.3;
+  }
+  .trust-legend-item .badge{ flex-shrink:0; }
   .validate-btn{
     margin-left:auto;
     font-family:'JetBrains Mono', monospace;
@@ -410,10 +510,11 @@
   }
   .badge{
     font-family:'JetBrains Mono', monospace;
-    font-size:0.62rem;
+    font-size:0.68rem;
+    font-weight:700;
     text-transform:uppercase;
     letter-spacing:0.03em;
-    padding:3px 9px;
+    padding:5px 12px;
     border-radius:100px;
     color:#fff;
   }
@@ -592,8 +693,6 @@
   }
 
   @media (max-width: 860px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .compass-wrap{ order:-1; }
     .scatter-grid{ grid-template-columns:repeat(2,1fr); }
     .process{ grid-template-columns:1fr; gap:34px; }
     .process::before{ display:none; }
@@ -604,7 +703,38 @@
     .panel-card{ padding:24px 20px 32px; }
     .panel-card h4{ font-size:1.5rem; }
     .panel-grid{ grid-template-columns:1fr 1fr; }
-    .stat-row{ gap:22px; }
+  }
+  @media (max-width: 480px){
+    .wrap{ padding:0 18px; }
+    .logo{ font-size:1.05rem; }
+    #nav-tagline{ display:none; }
+    .nav-cta{ font-size:0.68rem; padding:8px 12px; }
+    .hero{ padding:24px 0 0; }
+    .app-search{ padding:11px 14px; margin-bottom:20px; }
+    .app-search input{ font-size:0.88rem; }
+    .app-search-btn{ width:30px; height:30px; }
+    .app-section-title{ font-size:0.95rem; margin-bottom:10px; }
+    .app-shortcuts{ gap:12px; margin-bottom:22px; }
+    .filter-pill{ width:60px; font-size:0.66rem; gap:5px; }
+    .filter-pill .dot{ width:48px; height:48px; font-size:1.25rem; border-width:1.5px; }
+    .app-banner{ padding:18px 16px; gap:10px; margin-bottom:16px; }
+    .app-banner-title{ font-size:1.05rem; margin-bottom:9px; }
+    .app-banner-eyebrow{ font-size:0.62rem; }
+    .app-banner-cta{ font-size:0.68rem; padding:8px 14px; }
+    .app-banner-icon{ font-size:1.8rem; }
+    .app-card{ padding:16px 16px; margin-bottom:24px; }
+    .app-card-name{ font-size:1.02rem; }
+    .app-card-score{ font-size:1.2rem; }
+    .filters-label{ font-size:0.64rem; }
+    .section{ padding:56px 0; }
+    .map-section{ padding:56px 0; }
+    .scatter-grid{ grid-template-columns:1fr; }
+    .fiche-card{ padding:20px; }
+    .fiche-top h3{ font-size:1.2rem; }
+    .footer-top{ flex-direction:column; align-items:flex-start; gap:16px; }
+    .filters{ gap:14px; }
+    #map{ height:320px; }
+    .spot-panel{ height:460px; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -624,53 +754,32 @@
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow" id="hero-eyebrow">Landes · Pays Basque — prépare ton trip</div>
-      <h1 id="hero-title">Un trip prêt,<br>pas juste un <em>spot.</em></h1>
-      <p class="lede" id="hero-lede">Tu pars surfer, kiter, faire du wind ou du wingfoil dans les Landes ou au Pays Basque ? WildSpots réunit le spot, l'école, l'hébergement et le trajet — pour préparer ton séjour sans jongler entre dix onglets.</p>
-      <div class="hero-ctas">
-        <a class="btn-primary" href="#carte" id="hero-cta-primary">Préparer mon trip ↓</a>
-        <a class="btn-ghost" href="#comment" id="hero-cta-ghost">Comment ça marche</a>
-      </div>
-      <div class="stat-row">
-        <div class="stat"><b>25</b><span id="stat-1-label">Spots référencés</span></div>
-        <div class="stat"><b>04</b><span id="stat-2-label">Sports couverts</span></div>
-        <div class="stat"><b>02</b><span id="stat-3-label">Territoires</span></div>
-      </div>
+<section class="map-section" id="carte" style="padding-top:32px;">
+  <div class="wrap wrap-wide">
+    <div class="section-head">
+      <div class="eyebrow" id="map-eyebrow">Prépare ton voyage</div>
+      <h2 id="map-title">Ton trip prêt en 5 minutes</h2>
+      <p id="map-intro">Sport, spot, hébergement, école, transport : les infos clés pour partir maintenant, vérifiées quand c'est possible. Clique un point, tout est là — pas besoin d'ouvrir dix autres onglets.</p>
     </div>
-    <div class="compass-wrap">
-      <svg class="compass" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="180" cy="180" r="150" stroke="rgba(247,244,236,0.16)" stroke-width="1"/>
-        <circle cx="180" cy="180" r="110" stroke="rgba(247,244,236,0.14)" stroke-width="1" stroke-dasharray="2 6"/>
-        <circle cx="180" cy="180" r="70" stroke="rgba(247,244,236,0.14)" stroke-width="1"/>
-        <g stroke="rgba(247,244,236,0.35)" stroke-width="1">
-          <line x1="180" y1="20" x2="180" y2="40"/>
-          <line x1="180" y1="320" x2="180" y2="340"/>
-          <line x1="20" y1="180" x2="40" y2="180"/>
-          <line x1="320" y1="180" x2="340" y2="180"/>
-        </g>
-        <text x="180" y="16" text-anchor="middle" fill="#E4D8B4" font-family="JetBrains Mono" font-size="11">N</text>
-        <text x="180" y="352" text-anchor="middle" fill="rgba(247,244,236,0.4)" font-family="JetBrains Mono" font-size="11">S</text>
-        <text x="12" y="184" text-anchor="middle" fill="rgba(247,244,236,0.4)" font-family="JetBrains Mono" font-size="11">O</text>
-        <text x="348" y="184" text-anchor="middle" fill="rgba(247,244,236,0.4)" font-family="JetBrains Mono" font-size="11">E</text>
-        <line x1="180" y1="180" x2="130" y2="70" stroke="#E3572A" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="130" cy="70" r="5" fill="#E3572A"/>
-        <circle cx="180" cy="180" r="4" fill="#F7F4EC"/>
-        <text x="150" y="235" fill="rgba(247,244,236,0.55)" font-family="JetBrains Mono" font-size="10">HOULE</text>
-        <text x="150" y="248" fill="#E4D8B4" font-family="JetBrains Mono" font-size="10">NW 1.8M / 11S</text>
-      </svg>
+    <div class="filters-label" id="filters-label">Choisis ton sport</div>
+    <div class="filters" id="filters"></div>
+    <div class="map-layout">
+      <div id="map"></div>
+      <aside id="spot-panel" class="spot-panel">
+        <div class="panel-placeholder">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#d8d0ba" stroke-width="1.5" stroke-dasharray="3 5"/><circle cx="20" cy="20" r="3" fill="#d8d0ba"/></svg>
+          <p id="panel-placeholder-text">Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.</p>
+        </div>
+      </aside>
+    </div>
+    <div class="map-legend">
+      <span style="color:#E3572A;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><ellipse cx="12" cy="9" rx="2.8" ry="7.4" transform="rotate(28 12 9)" fill="currentColor"/><path d="M2 17.5c2.2-3 4.4-3 6.6 0s4.4 3 6.6 0 4.4-3 6.6 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Surf</span>
+      <span style="color:#2A7F8A;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M12 2.5 17 9 12 15 7 9Z" fill="currentColor"/><path d="M12 15 9.3 20.5M12 15l2.7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="7.3" y="20.3" width="9.4" height="1.7" rx="0.85" fill="currentColor"/></svg>Kite</span>
+      <span style="color:#C98A2C;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M12.2 2.8c-4 1.4-4.6 8-.2 10.6z" fill="currentColor"/><line x1="12.2" y1="2.5" x2="12.2" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="12.2" cy="20.3" rx="7.6" ry="1.6" fill="currentColor"/></svg>Wind</span>
+      <span style="color:#8C7FD1;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align:-3px;margin-right:5px;"><path d="M3 9.5c3.6-4.4 13.4-4.4 18 0-3.6 2.8-14.4 2.8-18 0Z" fill="currentColor"/><line x1="12" y1="10.5" x2="12" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.2 17.5h7.6L12 21.8Z" fill="currentColor"/></svg>Wingfoil</span>
     </div>
   </div>
-
-  <div class="coastline">
-    <svg viewBox="0 0 1440 90" width="100%" height="90" preserveAspectRatio="none">
-      <path d="M0,60 C 120,40 220,80 340,55 C 460,30 540,70 660,50 C 780,32 860,68 980,45 C 1100,25 1220,60 1440,38 L1440,90 L0,90 Z" fill="#081925"/>
-      <path d="M0,60 C 120,40 220,80 340,55 C 460,30 540,70 660,50 C 780,32 860,68 980,45 C 1100,25 1220,60 1440,38" fill="none" stroke="rgba(247,244,236,0.25)" stroke-width="1" stroke-dasharray="1 6"/>
-    </svg>
-  </div>
-</header>
+</section>
 
 <section class="section">
   <div class="wrap">
@@ -684,32 +793,6 @@
       <div class="scatter-item" id="scatter-2"><b>Groupes Facebook</b>bons plans noyés dans le fil</div>
       <div class="scatter-item" id="scatter-3"><b>Forums &amp; blogs</b>avis épars, souvent datés</div>
       <div class="scatter-item" id="scatter-4"><b>Booking / Google Maps</b>logement seul, sans lien avec le spot</div>
-    </div>
-  </div>
-</section>
-
-<section class="map-section" id="carte">
-  <div class="wrap wrap-wide">
-    <div class="section-head">
-      <div class="eyebrow" id="map-eyebrow">Carte démo</div>
-      <h2 id="map-title">25 spots, Landes → Pays Basque</h2>
-      <p id="map-intro">Cliquez un point pour ouvrir sa fiche complète dans le panneau. Chaque section affiche son niveau de confiance : <span class="badge badge-ia" style="display:inline-block;vertical-align:1px;">IA</span> info générée par défaut, <span class="badge badge-communaute" style="display:inline-block;vertical-align:1px;">✓ Communauté · N</span> dès qu'un rider confirme, <span class="badge badge-ambassadeur" style="display:inline-block;vertical-align:1px;">🛡️ Validé ambassadeur</span> quand un ambassadeur WildSpots la certifie.</p>
-    </div>
-    <div class="filters" id="filters"></div>
-    <div class="map-layout">
-      <div id="map"></div>
-      <aside id="spot-panel" class="spot-panel">
-        <div class="panel-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#d8d0ba" stroke-width="1.5" stroke-dasharray="3 5"/><circle cx="20" cy="20" r="3" fill="#d8d0ba"/></svg>
-          <p id="panel-placeholder-text">Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.</p>
-        </div>
-      </aside>
-    </div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#E3572A"></i>Surf</span>
-      <span><i class="dot" style="background:#2A7F8A"></i>Kite</span>
-      <span><i class="dot" style="background:#C98A2C"></i>Wind</span>
-      <span><i class="dot" style="background:#8C7FD1"></i>Wingfoil</span>
     </div>
   </div>
 </section>
@@ -796,6 +879,10 @@
       heroLede: "Tu pars surfer, kiter, faire du wind ou du wingfoil dans les Landes ou au Pays Basque ? WildSpots réunit le spot, l'école, l'hébergement et le trajet — pour préparer ton séjour sans jongler entre dix onglets.",
       heroCtaPrimary: "Préparer mon trip ↓", heroCtaGhost: "Comment ça marche",
       stat1: "Spots référencés", stat2: "Sports couverts", stat3: "Territoires",
+      heroSearchPlaceholder: "Où veux-tu aller ? (ex. Hossegor, Biarritz...)",
+      appShortcutsTitle: "Pour toi",
+      bannerEyebrow: "Trip à préparer ?", bannerTitle: "Choisis ton spot à l'avance", bannerCta: "Explorer la carte →",
+      featuredLabel: "Spot du moment", featuredCta: "Voir la fiche →",
       problemEyebrow: "Le problème",
       problemTitle: "L'info existe déjà.<br>Elle est juste éparpillée.",
       problemDesc: "Pour choisir un spot et préparer un séjour, un rider ouvre en moyenne cinq ou six sources différentes — sans jamais avoir la vue d'ensemble.",
@@ -803,10 +890,10 @@
       scatter2: "<b>Groupes Facebook</b>bons plans noyés dans le fil",
       scatter3: "<b>Forums &amp; blogs</b>avis épars, souvent datés",
       scatter4: "<b>Booking / Google Maps</b>logement seul, sans lien avec le spot",
-      mapEyebrow: "Carte démo", mapTitle: "25 spots, Landes → Pays Basque",
-      mapIntro: 'Cliquez un point pour ouvrir sa fiche complète dans le panneau. Chaque section affiche son niveau de confiance : <span class="badge badge-ia" style="display:inline-block;vertical-align:1px;">IA</span> info générée par défaut, <span class="badge badge-communaute" style="display:inline-block;vertical-align:1px;">✓ Communauté · N</span> dès qu\'un rider confirme, <span class="badge badge-ambassadeur" style="display:inline-block;vertical-align:1px;">🛡️ Validé ambassadeur</span> quand un ambassadeur WildSpots la certifie.',
+      mapEyebrow: "Prépare ton voyage", mapTitle: "Ton trip prêt en 5 minutes",
+      mapIntro: "Sport, spot, hébergement, école, transport : les infos clés pour partir maintenant, vérifiées quand c'est possible. Clique un point, tout est là — pas besoin d'ouvrir dix autres onglets.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
-      filterAll: "Tous",
+      filterAll: "Tous", filtersLabel: "Choisis ton sport",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
       step1Title: "Explorer", step1Desc: "Filtrer les spots par sport, niveau et saison sur une carte unique du littoral.",
       step2Title: "Comparer", step2Desc: "Ouvrir une fiche par spot : conditions types, ambiance, accès, ce qu'il y a autour.",
@@ -828,6 +915,9 @@
       linkSiteOfficiel: "Voir le site officiel →", linkTarifs: "Voir tarifs & disponibilités →",
       estimationIA: "· estimation IA",
       badgeIA: "IA", badgeCommunaute: c => `✓ Communauté · ${c}`, badgeAmbassadeur: "🛡️ Validé ambassadeur",
+      legendIA: "Info générée automatiquement, à vérifier",
+      legendCommunaute: "Confirmée par des riders qui y sont allés",
+      legendAmbassadeur: "Certifiée par un ambassadeur WildSpots",
       btnConfirm: c => `⭐ Je confirme · ${c}`, btnConfirmed: c => `⭐ Validé · ${c}`,
       ambassadorToggle: "🛡️ Ambassadeur WildSpots ?", ambassadorPlaceholder: "Code ambassadeur",
       ambassadorConfirm: "Confirmer", ambassadorWrong: "Code incorrect",
@@ -848,6 +938,10 @@
       heroLede: "Heading out to surf, kite, wind or wingfoil in the Landes or Basque Country? WildSpots brings together the spot, the school, the accommodation and how to get there — so you can plan your trip without juggling ten tabs.",
       heroCtaPrimary: "Plan my trip ↓", heroCtaGhost: "How it works",
       stat1: "Spots listed", stat2: "Sports covered", stat3: "Regions",
+      heroSearchPlaceholder: "Where do you want to go? (e.g. Hossegor, Biarritz...)",
+      appShortcutsTitle: "For you",
+      bannerEyebrow: "Trip to plan?", bannerTitle: "Pick your spot ahead of time", bannerCta: "Explore the map →",
+      featuredLabel: "Featured spot", featuredCta: "See full profile →",
       problemEyebrow: "The problem",
       problemTitle: "The info already exists.<br>It's just scattered.",
       problemDesc: "To pick a spot and plan a trip, a rider opens five or six different sources on average — never getting the full picture.",
@@ -855,10 +949,10 @@
       scatter2: "<b>Facebook groups</b>tips buried in the feed",
       scatter3: "<b>Forums &amp; blogs</b>scattered, often outdated reviews",
       scatter4: "<b>Booking / Google Maps</b>lodging alone, disconnected from the spot",
-      mapEyebrow: "Demo map", mapTitle: "25 spots, Landes → Basque Country",
-      mapIntro: 'Click a point to open its full profile in the panel. Each section shows its trust level: <span class="badge badge-ia" style="display:inline-block;vertical-align:1px;">AI</span> generated info by default, <span class="badge badge-communaute" style="display:inline-block;vertical-align:1px;">✓ Community · N</span> once a rider confirms it, <span class="badge badge-ambassadeur" style="display:inline-block;vertical-align:1px;">🛡️ Ambassador verified</span> when a WildSpots ambassador certifies it.',
+      mapEyebrow: "Plan your trip", mapTitle: "Your trip, ready in 5 minutes",
+      mapIntro: "Sport, spot, accommodation, school, transport: the key info to leave right now, verified when possible. Click a point, it's all there — no need to open ten other tabs.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
-      filterAll: "All",
+      filterAll: "All", filtersLabel: "Choose your sport",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
       step1Title: "Explore", step1Desc: "Filter spots by sport, level and season on a single coastal map.",
       step2Title: "Compare", step2Desc: "Open each spot's profile: typical conditions, vibe, access, what's around.",
@@ -879,6 +973,9 @@
       linkSiteOfficiel: "See official site →", linkTarifs: "See rates & availability →",
       estimationIA: "· AI estimate",
       badgeIA: "AI", badgeCommunaute: c => `✓ Community · ${c}`, badgeAmbassadeur: "🛡️ Ambassador verified",
+      legendIA: "Auto-generated info, worth double-checking",
+      legendCommunaute: "Confirmed by riders who've been there",
+      legendAmbassadeur: "Certified by a WildSpots ambassador",
       btnConfirm: c => `⭐ I confirm · ${c}`, btnConfirmed: c => `⭐ Confirmed · ${c}`,
       ambassadorToggle: "🛡️ WildSpots ambassador?", ambassadorPlaceholder: "Ambassador code",
       ambassadorConfirm: "Confirm", ambassadorWrong: "Wrong code",
@@ -905,14 +1002,6 @@
     document.getElementById('nav-tagline').textContent = t('navTagline');
     document.getElementById('nav-cta-link').textContent = t('navCta');
     document.getElementById('lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
-    document.getElementById('hero-eyebrow').textContent = t('heroEyebrow');
-    document.getElementById('hero-title').innerHTML = t('heroTitle');
-    document.getElementById('hero-lede').textContent = t('heroLede');
-    document.getElementById('hero-cta-primary').textContent = t('heroCtaPrimary');
-    document.getElementById('hero-cta-ghost').textContent = t('heroCtaGhost');
-    document.getElementById('stat-1-label').textContent = t('stat1');
-    document.getElementById('stat-2-label').textContent = t('stat2');
-    document.getElementById('stat-3-label').textContent = t('stat3');
     document.getElementById('problem-eyebrow').textContent = t('problemEyebrow');
     document.getElementById('problem-title').innerHTML = t('problemTitle');
     document.getElementById('problem-desc').textContent = t('problemDesc');
@@ -949,6 +1038,7 @@
     document.getElementById('footer-tag2').textContent = t('footerTag2');
     const filterAllLabel = document.getElementById('filter-label-all');
     if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
+    document.getElementById('filters-label').textContent = t('filtersLabel');
   }
 
   window.toggleLang = function(){
@@ -958,55 +1048,55 @@
   };
 
   const spots = [
-    {name:"Biscarrosse-Plage", commune:"Biscarrosse, Landes", lat:44.4536, lng:-1.2650, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, beach-break sur bancs mobiles", access:"Parking direct, 2 min à pied", ambiance:"Familial, plage large", around:"Écoles de surf, campings à proximité", desc:"Plage océane large, beach-break régulier, spot familial.", score:7.0, school:{name:"École La Vigie", url:"https://www.la-vigie-biscarrosse.com/"}, stay:{name:"Camping Club Plage Sud", url:"https://www.ms-vacances.com/camping-campeole/camping-plage-sud/decouvrir-le-camping/"}, transport:"Gare TER la plus proche : Facture-Biganos (~30 min) ; aéroport de Bordeaux-Mérignac à ~1h15 ; Vélodyssée sur place.", tip:"Session tôt le matin, la houle a tendance à monter l'après-midi.",
+    {name:"Biscarrosse-Plage", commune:"Biscarrosse, Landes", lat:44.4536, lng:-1.2650, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, beach-break sur bancs mobiles", access:"Parking direct, 2 min à pied", ambiance:"Familial, plage large", around:"Écoles de surf, campings à proximité", desc:"Plage océane large, beach-break régulier, spot familial.", score:7.0, school:{name:"École La Vigie", url:"https://www.la-vigie-biscarrosse.com/"}, stay:{name:"Camping Club Plage Sud", url:"https://www.ms-vacances.com/camping-campeole/camping-plage-sud/decouvrir-le-camping/", distance:"~5 min à pied du spot"}, transport:"Gare TER la plus proche : Facture-Biganos (~30 min) ; aéroport de Bordeaux-Mérignac à ~1h15 ; Vélodyssée sur place.", tip:"Session tôt le matin, la houle a tendance à monter l'après-midi.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW swell, beach-break on shifting sandbanks", access:"Direct parking, 2 min walk", ambiance:"Family-friendly, wide beach", around:"Surf schools, campsites nearby", desc:"Wide ocean beach, regular beach-break, family-friendly spot.", transport:"Nearest train station: Facture-Biganos (~30 min); Bordeaux-Mérignac airport ~1h15; Vélodyssée bike path on-site.", tip:"Surf early morning, the swell tends to build up in the afternoon."}},
-    {name:"Mimizan Plage", commune:"Mimizan, Landes", lat:44.2033, lng:-1.2919, sports:["surf"], level:"Débutant à confirmé", season:"Sept–Mai", conditions:"Houle NW/W, puissant, bancs changeants", access:"Parking front de mer", ambiance:"Station animée l'été", around:"Écoles de surf, commerces, location matériel", desc:"Beach-break puissant, bancs de sable changeants.", score:7.3, school:{name:"École Silver Coast", url:"https://silvercoast-surf.com/"}, stay:{name:"Hébergements — Office de tourisme de Mimizan", url:"https://www.mimizan-tourisme.com/"}, transport:"Gare TER à Morcenx (~25 min) ; aéroport de Bordeaux-Mérignac à ~1h ; Vélodyssée sur place.", tip:"Privilégier la plage Nord (Remember), moins prise d'assaut que la plage Sud en été.",
+    {name:"Mimizan Plage", commune:"Mimizan, Landes", lat:44.2033, lng:-1.2919, sports:["surf"], level:"Débutant à confirmé", season:"Sept–Mai", conditions:"Houle NW/W, puissant, bancs changeants", access:"Parking front de mer", ambiance:"Station animée l'été", around:"Écoles de surf, commerces, location matériel", desc:"Beach-break puissant, bancs de sable changeants.", score:7.3, school:{name:"École Silver Coast", url:"https://silvercoast-surf.com/"}, stay:{name:"Hébergements — Office de tourisme de Mimizan", url:"https://www.mimizan-tourisme.com/", distance:"Variable selon l'hébergement choisi"}, transport:"Gare TER à Morcenx (~25 min) ; aéroport de Bordeaux-Mérignac à ~1h ; Vélodyssée sur place.", tip:"Privilégier la plage Nord (Remember), moins prise d'assaut que la plage Sud en été.",
       en:{level:"Beginner to advanced", season:"Sept–May", conditions:"NW/W swell, powerful, shifting sandbanks", access:"Seafront parking", ambiance:"Lively resort in summer", around:"Surf schools, shops, gear rental", desc:"Powerful beach-break with shifting sandbanks.", transport:"Train station in Morcenx (~25 min); Bordeaux-Mérignac airport ~1h; Vélodyssée bike path on-site.", tip:"Head to North beach (Remember), less crowded than South beach in summer."}},
-    {name:"Contis-Plage", commune:"Saint-Julien-en-Born, Landes", lat:44.0906, lng:-1.3238, sports:["surf"], level:"Tous niveaux", season:"Oct–Avril", conditions:"Houle W, vagues rondes et régulières", access:"Parking + courte marche dunes", ambiance:"Calme, peu fréquenté", around:"Phare, camping, peu de services l'hiver", desc:"Spot moins fréquenté, vagues rondes, phare en fond.", score:6.8, school:{name:"École Max Respect Contis", url:"https://www.max-respect.com/fr/surf-contis.htm"}, stay:{name:"Hébergements — Côte Landes Nature Tourisme", url:"https://www.cotelandesnaturetourisme.com/"}, transport:"Gare TER à Morcenx (~30 min) ; aéroport de Bordeaux-Mérignac à ~1h20 ; peu de bus, voiture conseillée.", tip:"Monter au phare de Contis après la session pour la vue sur la côte.",
+    {name:"Contis-Plage", commune:"Saint-Julien-en-Born, Landes", lat:44.0906, lng:-1.3238, sports:["surf"], level:"Tous niveaux", season:"Oct–Avril", conditions:"Houle W, vagues rondes et régulières", access:"Parking + courte marche dunes", ambiance:"Calme, peu fréquenté", around:"Phare, camping, peu de services l'hiver", desc:"Spot moins fréquenté, vagues rondes, phare en fond.", score:6.8, school:{name:"École Max Respect Contis", url:"https://www.max-respect.com/fr/surf-contis.htm"}, stay:{name:"Hébergements — Côte Landes Nature Tourisme", url:"https://www.cotelandesnaturetourisme.com/", distance:"Variable selon l'hébergement choisi"}, transport:"Gare TER à Morcenx (~30 min) ; aéroport de Bordeaux-Mérignac à ~1h20 ; peu de bus, voiture conseillée.", tip:"Monter au phare de Contis après la session pour la vue sur la côte.",
       en:{level:"All levels", season:"Oct–April", conditions:"W swell, round and regular waves", access:"Parking + short walk through the dunes", ambiance:"Quiet, low crowds", around:"Lighthouse, campsite, few services in winter", desc:"Less crowded spot, round waves, lighthouse in the background.", transport:"Train station in Morcenx (~30 min); Bordeaux-Mérignac airport ~1h20; few buses, a car is recommended.", tip:"Climb the Contis lighthouse after your session for the coastal view."}},
-    {name:"Étang de Léon", commune:"Léon, Landes", lat:43.8850, lng:-1.2960, sports:["kite","wind","wingfoil"], level:"Débutant", season:"Avril–Oct", conditions:"Plan d'eau plat, vent thermique régulier", access:"Base nautique, accès direct plage du lac", ambiance:"Cool, orienté apprentissage", around:"Écoles de kite/wing, location matériel sur site", desc:"Lagune plate protégée, idéale pour apprendre en sécurité.", score:7.8, school:{name:"Foil in Landes (wingfoil, lac de Léon)", url:"https://www.foilinlandes.com/"}, stay:{name:"Hébergements — Côte Landes Nature Tourisme", url:"https://www.cotelandesnaturetourisme.com/"}, transport:"Gare TER à Castets ou Linxe (~20 min) ; aéroport de Bordeaux-Mérignac à ~1h ; accès facile en voiture, peu de transports en commun.", tip:"Réserver son créneau en semaine, le lac est pris d'assaut le week-end en été.",
+    {name:"Étang de Léon", commune:"Léon, Landes", lat:43.8850, lng:-1.2960, sports:["kite","wind","wingfoil"], level:"Débutant", season:"Avril–Oct", conditions:"Plan d'eau plat, vent thermique régulier", access:"Base nautique, accès direct plage du lac", ambiance:"Cool, orienté apprentissage", around:"Écoles de kite/wing, location matériel sur site", desc:"Lagune plate protégée, idéale pour apprendre en sécurité.", score:7.8, school:{name:"Foil in Landes (wingfoil, lac de Léon)", url:"https://www.foilinlandes.com/"}, stay:{name:"Hébergements — Côte Landes Nature Tourisme", url:"https://www.cotelandesnaturetourisme.com/", distance:"Variable selon l'hébergement choisi"}, transport:"Gare TER à Castets ou Linxe (~20 min) ; aéroport de Bordeaux-Mérignac à ~1h ; accès facile en voiture, peu de transports en commun.", tip:"Réserver son créneau en semaine, le lac est pris d'assaut le week-end en été.",
       en:{level:"Beginner", season:"April–Oct", conditions:"Flat water, steady thermal wind", access:"Watersports base, direct lake beach access", ambiance:"Chill, learning-focused", around:"Kite/wing schools, on-site gear rental", desc:"Sheltered flat lagoon, ideal for learning safely.", transport:"Train station in Castets or Linxe (~20 min); Bordeaux-Mérignac airport ~1h; easy by car, little public transport.", tip:"Book on a weekday — the lake gets packed on summer weekends."}},
-    {name:"Vielle-Saint-Girons", commune:"Saint-Girons-Plage, Landes", lat:43.9294, lng:-1.3500, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, beach-break exposé", access:"Parking + traversée dunes boisées", ambiance:"Sauvage, nature préservée", around:"Campings nature, peu de commerces", desc:"Plage sauvage encadrée de dunes, moins de monde à l'eau.", score:7.1, school:{name:"École Max Respect St Girons", url:"https://www.max-respect.com/fr/surf-saint-girons.htm"}, stay:{name:"Camping L'Océane", url:"https://www.camping-oceane.fr/"}, transport:"Gare TER à Castets (~20 min) ; aéroport de Bordeaux-Mérignac à ~1h05 ; voiture recommandée, peu de commerces sur place.", tip:"Prévoir eau et ombre : peu de services sur place, surtout hors saison.",
+    {name:"Vielle-Saint-Girons", commune:"Saint-Girons-Plage, Landes", lat:43.9294, lng:-1.3500, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, beach-break exposé", access:"Parking + traversée dunes boisées", ambiance:"Sauvage, nature préservée", around:"Campings nature, peu de commerces", desc:"Plage sauvage encadrée de dunes, moins de monde à l'eau.", score:7.1, school:{name:"École Max Respect St Girons", url:"https://www.max-respect.com/fr/surf-saint-girons.htm"}, stay:{name:"Camping L'Océane", url:"https://www.camping-oceane.fr/", distance:"~10 min en voiture"}, transport:"Gare TER à Castets (~20 min) ; aéroport de Bordeaux-Mérignac à ~1h05 ; voiture recommandée, peu de commerces sur place.", tip:"Prévoir eau et ombre : peu de services sur place, surtout hors saison.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW swell, exposed beach-break", access:"Parking + walk through wooded dunes", ambiance:"Wild, unspoiled nature", around:"Nature campsites, few shops", desc:"Wild beach framed by dunes, fewer people in the water.", transport:"Train station in Castets (~20 min); Bordeaux-Mérignac airport ~1h05; a car is recommended, few services on-site.", tip:"Bring water and shade — few services on-site, especially off-season."}},
-    {name:"Moliets-et-Maa", commune:"Moliets-et-Maa, Landes", lat:43.8462, lng:-1.3833, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, beach-break régulier", access:"Parking direct plage", ambiance:"Village familial", around:"Écoles de surf, golf, pistes cyclables", desc:"Beach-break régulier, bon spot progression.", score:7.2, school:{name:"Maa Surf School & Shop", url:"https://www.molietsetmaasurfschool.com/"}, stay:{name:"Camping Les Cigales", url:"https://ecoledesurfmoliets.surf/surf-camp-moliets/"}, transport:"Gare TGV de Dax à ~35 min ; aéroport de Biarritz à ~50 min ; bus RDTL l'été.", tip:"Combiner surf le matin et golf ou vélo l'après-midi, tout est à proximité.",
+    {name:"Moliets-et-Maa", commune:"Moliets-et-Maa, Landes", lat:43.8462, lng:-1.3833, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, beach-break régulier", access:"Parking direct plage", ambiance:"Village familial", around:"Écoles de surf, golf, pistes cyclables", desc:"Beach-break régulier, bon spot progression.", score:7.2, school:{name:"Maa Surf School & Shop", url:"https://www.molietsetmaasurfschool.com/"}, stay:{name:"Camping Les Cigales", url:"https://ecoledesurfmoliets.surf/surf-camp-moliets/", distance:"~5 min à pied du spot"}, transport:"Gare TGV de Dax à ~35 min ; aéroport de Biarritz à ~50 min ; bus RDTL l'été.", tip:"Combiner surf le matin et golf ou vélo l'après-midi, tout est à proximité.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW/W swell, regular beach-break", access:"Direct beach parking", ambiance:"Family-friendly village", around:"Surf schools, golf course, bike paths", desc:"Regular beach-break, good spot for progression.", transport:"Dax TGV station ~35 min; Biarritz airport ~50 min; RDTL bus in summer.", tip:"Combine morning surf with afternoon golf or cycling — everything's close by."}},
-    {name:"Messanges", commune:"Messanges, Landes", lat:43.8090, lng:-1.3960, sports:["surf"], level:"Débutant à intermédiaire", season:"Sept–Mai", conditions:"Houle W, vagues clémentes", access:"Parking + digue piétonne", ambiance:"Familial, écoles nombreuses", around:"Nombreuses écoles de surf, campings", desc:"Vagues clémentes, plusieurs écoles de surf sur place.", score:7.0, school:{name:"Messanges Surf School", url:"https://messanges-surf-school.com/"}, stay:{name:"La Dune Surf Camp", url:"https://www.ladunesurfcamp.com/"}, transport:"Gare TGV de Dax à ~35 min ; aéroport de Biarritz à ~55 min ; bus RDTL l'été.", tip:"Réserver son cours tôt, les places partent vite en juillet-août.",
+    {name:"Messanges", commune:"Messanges, Landes", lat:43.8090, lng:-1.3960, sports:["surf"], level:"Débutant à intermédiaire", season:"Sept–Mai", conditions:"Houle W, vagues clémentes", access:"Parking + digue piétonne", ambiance:"Familial, écoles nombreuses", around:"Nombreuses écoles de surf, campings", desc:"Vagues clémentes, plusieurs écoles de surf sur place.", score:7.0, school:{name:"Messanges Surf School", url:"https://messanges-surf-school.com/"}, stay:{name:"La Dune Surf Camp", url:"https://www.ladunesurfcamp.com/", distance:"~5-10 min à pied de la plage"}, transport:"Gare TGV de Dax à ~35 min ; aéroport de Biarritz à ~55 min ; bus RDTL l'été.", tip:"Réserver son cours tôt, les places partent vite en juillet-août.",
       en:{level:"Beginner to intermediate", season:"Sept–May", conditions:"W swell, gentle waves", access:"Parking + pedestrian dyke", ambiance:"Family-friendly, many schools", around:"Many surf schools, campsites", desc:"Gentle waves, several surf schools on-site.", transport:"Dax TGV station ~35 min; Biarritz airport ~55 min; RDTL bus in summer.", tip:"Book your lesson early — slots fill up fast in July-August."}},
-    {name:"Vieux-Boucau", commune:"Vieux-Boucau-les-Bains, Landes", lat:43.7870, lng:-1.4020, sports:["surf","wind"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, courant du lac influent", access:"Parking centre station", ambiance:"Station balnéaire vivante", around:"Commerces, restaurants, port d'Albret proche", desc:"Plage centrale animée, courant du lac à proximité.", score:7.4, school:{name:"École ESCF Vieux-Boucau", url:"https://ecoledesurf.com/ecoles/surf-vieux-boucau/"}, stay:{name:"Atlantic Surf Lodge", url:"https://atlantic-surflodge.com/fr/bienvenue-chez-atlantic-surf-lodge/"}, transport:"Gare TGV de Dax à ~30 min ; aéroport de Biarritz à ~50 min ; bus RDTL l'été.", tip:"Le plan d'eau du lac est parfait pour finir la journée en famille après le surf.",
+    {name:"Vieux-Boucau", commune:"Vieux-Boucau-les-Bains, Landes", lat:43.7870, lng:-1.4020, sports:["surf","wind"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, courant du lac influent", access:"Parking centre station", ambiance:"Station balnéaire vivante", around:"Commerces, restaurants, port d'Albret proche", desc:"Plage centrale animée, courant du lac à proximité.", score:7.4, school:{name:"École ESCF Vieux-Boucau", url:"https://ecoledesurf.com/ecoles/surf-vieux-boucau/"}, stay:{name:"Atlantic Surf Lodge", url:"https://atlantic-surflodge.com/fr/bienvenue-chez-atlantic-surf-lodge/", distance:"~5 min à pied du spot"}, transport:"Gare TGV de Dax à ~30 min ; aéroport de Biarritz à ~50 min ; bus RDTL l'été.", tip:"Le plan d'eau du lac est parfait pour finir la journée en famille après le surf.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW swell, lake current has an effect", access:"Town-centre parking", ambiance:"Lively seaside resort", around:"Shops, restaurants, Port d'Albret nearby", desc:"Lively central beach, lake current nearby.", transport:"Dax TGV station ~30 min; Biarritz airport ~50 min; RDTL bus in summer.", tip:"The lake's flat water is perfect for a family wind-down after surfing."}},
-    {name:"Port d'Albret / Soustons", commune:"Soustons, Landes", lat:43.7695, lng:-1.4010, sports:["wind","wingfoil","kite"], level:"Débutant à intermédiaire", season:"Mai–Sept", conditions:"Plan d'eau plat, vent thermique NW l'été", access:"Base nautique, parking sur place", ambiance:"Familial, orienté glisse plate", around:"Location matériel, écoles de wind/kite", desc:"Lagune d'eau douce, vent thermique fiable l'été.", score:7.6, school:{name:"Pôle Nautique de Soustons Plage (wingfoil, voile)", url:"https://pole-nautique-soustons-plage.com/fr/ecole-de-voile/"}, stay:{name:"Hébergements — Landes Atlantique Sud Tourisme", url:"https://www.landesatlantiquesud.com/"}, transport:"Gare TGV de Dax à ~30 min ; aéroport de Biarritz à ~45 min ; bus RDTL l'été.", tip:"Le vent thermique se lève en général en début d'après-midi l'été.",
+    {name:"Port d'Albret / Soustons", commune:"Soustons, Landes", lat:43.7695, lng:-1.4010, sports:["wind","wingfoil","kite"], level:"Débutant à intermédiaire", season:"Mai–Sept", conditions:"Plan d'eau plat, vent thermique NW l'été", access:"Base nautique, parking sur place", ambiance:"Familial, orienté glisse plate", around:"Location matériel, écoles de wind/kite", desc:"Lagune d'eau douce, vent thermique fiable l'été.", score:7.6, school:{name:"Pôle Nautique de Soustons Plage (wingfoil, voile)", url:"https://pole-nautique-soustons-plage.com/fr/ecole-de-voile/"}, stay:{name:"Hébergements — Landes Atlantique Sud Tourisme", url:"https://www.landesatlantiquesud.com/", distance:"Variable selon l'hébergement choisi"}, transport:"Gare TGV de Dax à ~30 min ; aéroport de Biarritz à ~45 min ; bus RDTL l'été.", tip:"Le vent thermique se lève en général en début d'après-midi l'été.",
       en:{level:"Beginner to intermediate", season:"May–Sept", conditions:"Flat water, NW thermal wind in summer", access:"Watersports base, on-site parking", ambiance:"Family-friendly, flat-water focused", around:"Gear rental, wind/kite schools", desc:"Freshwater lagoon, reliable thermal wind in summer.", transport:"Dax TGV station ~30 min; Biarritz airport ~45 min; RDTL bus in summer.", tip:"The thermal wind usually kicks in early afternoon in summer."}},
-    {name:"Seignosse — Les Bourdaines", commune:"Seignosse, Landes", lat:43.7189, lng:-1.4278, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW creuse, pic exigeant", access:"Parking + sentier dunes, 5 min", ambiance:"Local, assez chargé aux bonnes conditions", around:"Peu de commerces sur site, Seignosse-bourg proche", desc:"Beach-break creux entre les dunes, peu de fenêtres d'accès.", score:8.0, school:{name:"École Aloha", url:"https://www.aloha-ecoledesurf.com/"}, stay:{name:"Natural Surf Lodge (surf camp)", url:"https://www.naturalsurfschool.com/surf-hebergement/"}, transport:"Gare de Dax ou Bayonne à ~25 min ; aéroport de Biarritz à ~30 min ; Vélodyssée sur place.", tip:"Vérifier la marée avant de partir : le spot ne marche que sur certaines fenêtres.",
+    {name:"Seignosse — Les Bourdaines", commune:"Seignosse, Landes", lat:43.7189, lng:-1.4278, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW creuse, pic exigeant", access:"Parking + sentier dunes, 5 min", ambiance:"Local, assez chargé aux bonnes conditions", around:"Peu de commerces sur site, Seignosse-bourg proche", desc:"Beach-break creux entre les dunes, peu de fenêtres d'accès.", score:8.0, school:{name:"École Aloha", url:"https://www.aloha-ecoledesurf.com/"}, stay:{name:"Natural Surf Lodge (surf camp)", url:"https://www.naturalsurfschool.com/surf-hebergement/", distance:"~10-15 min en voiture"}, transport:"Gare de Dax ou Bayonne à ~25 min ; aéroport de Biarritz à ~30 min ; Vélodyssée sur place.", tip:"Vérifier la marée avant de partir : le spot ne marche que sur certaines fenêtres.",
       en:{level:"Intermediate", season:"Sept–May", conditions:"Hollow NW swell, demanding peak", access:"Parking + 5 min dune path", ambiance:"Local crowd, can get busy in good conditions", around:"Few shops on-site, Seignosse village nearby", desc:"Hollow beach-break between the dunes, works only on certain tide windows.", transport:"Dax or Bayonne train station ~25 min; Biarritz airport ~30 min; Vélodyssée bike path on-site.", tip:"Check the tide before heading out — this spot only works in certain windows."}},
-    {name:"Seignosse — Le Penon", commune:"Seignosse, Landes", lat:43.7047, lng:-1.4263, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, plusieurs pics", access:"Parking direct, plage surveillée", ambiance:"Central, bien équipé", around:"Écoles de surf, restaurants, location matériel", desc:"Spot central de Seignosse, très bien équipé.", score:7.9, school:{name:"École L'Agréou", url:"https://www.lagreou-surf-seignosse.com/"}, stay:{name:"Natural Surf Lodge (surf camp)", url:"https://www.naturalsurfschool.com/surf-hebergement/"}, transport:"Gare de Dax ou Bayonne à ~25 min ; aéroport de Biarritz à ~30 min ; Vélodyssée sur place.", tip:"Spot polyvalent, bon plan B si les Bourdaines sont trop chargées.",
+    {name:"Seignosse — Le Penon", commune:"Seignosse, Landes", lat:43.7047, lng:-1.4263, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, plusieurs pics", access:"Parking direct, plage surveillée", ambiance:"Central, bien équipé", around:"Écoles de surf, restaurants, location matériel", desc:"Spot central de Seignosse, très bien équipé.", score:7.9, school:{name:"École L'Agréou", url:"https://www.lagreou-surf-seignosse.com/"}, stay:{name:"Natural Surf Lodge (surf camp)", url:"https://www.naturalsurfschool.com/surf-hebergement/", distance:"~10-15 min en voiture"}, transport:"Gare de Dax ou Bayonne à ~25 min ; aéroport de Biarritz à ~30 min ; Vélodyssée sur place.", tip:"Spot polyvalent, bon plan B si les Bourdaines sont trop chargées.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW/W swell, several peaks", access:"Direct parking, lifeguarded beach", ambiance:"Central, well-equipped", around:"Surf schools, restaurants, gear rental", desc:"Seignosse's central spot, very well equipped.", transport:"Dax or Bayonne train station ~25 min; Biarritz airport ~30 min; Vélodyssée bike path on-site.", tip:"Versatile spot, a good backup if Les Bourdaines is too crowded."}},
-    {name:"Hossegor — La Gravière", commune:"Hossegor, Landes", lat:43.6647, lng:-1.4406, sports:["surf"], level:"Confirmé / Expert", season:"Août–Nov", conditions:"Houle NW puissante, reef de sable creux", access:"Parking + accès direct plage", ambiance:"Compétitive, spot mondialement suivi", around:"Shapers, surf shops, restaurants haut de gamme", desc:"Vague de reef mondialement connue, très puissante.", score:9.1, school:{name:"Darrigood Surf School (ESCF Hossegor)", url:"https://ecoledesurf.com/ecoles/surf-hossegor/"}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Éviter juillet-août pour la Gravière : viser septembre pour moins de monde.",
+    {name:"Hossegor — La Gravière", commune:"Hossegor, Landes", lat:43.6647, lng:-1.4406, sports:["surf"], level:"Confirmé / Expert", season:"Août–Nov", conditions:"Houle NW puissante, reef de sable creux", access:"Parking + accès direct plage", ambiance:"Compétitive, spot mondialement suivi", around:"Shapers, surf shops, restaurants haut de gamme", desc:"Vague de reef mondialement connue, très puissante.", score:9.1, school:{name:"Darrigood Surf School (ESCF Hossegor)", url:"https://ecoledesurf.com/ecoles/surf-hossegor/"}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/", distance:"~10 min à pied du spot"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Éviter juillet-août pour la Gravière : viser septembre pour moins de monde.",
       en:{level:"Advanced / Expert", season:"Aug–Nov", conditions:"Powerful NW swell, hollow sand-bottom wave", access:"Parking + direct beach access", ambiance:"Competitive, world-renowned spot", around:"Shapers, surf shops, upscale restaurants", desc:"World-famous, very powerful sand-bottom wave.", transport:"Bayonne train station ~25 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"Avoid July-August at La Gravière — aim for September for smaller crowds."}},
-    {name:"Hossegor — La Nord", commune:"Hossegor, Landes", lat:43.6715, lng:-1.4419, sports:["surf"], level:"Intermédiaire à confirmé", season:"Sept–Mai", conditions:"Houle NW, pics plus accessibles", access:"Parking centre-ville, 5 min à pied", ambiance:"Animée, bon compromis niveau", around:"Commerces, écoles de surf, bars", desc:"Alternative à la Gravière, pics plus abordables.", score:8.2, school:{name:"Watermansport Surfschool", url:"https://watermansport-surfschool.com/"}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Alternative moins courue quand la Gravière est pleine.",
+    {name:"Hossegor — La Nord", commune:"Hossegor, Landes", lat:43.6715, lng:-1.4419, sports:["surf"], level:"Intermédiaire à confirmé", season:"Sept–Mai", conditions:"Houle NW, pics plus accessibles", access:"Parking centre-ville, 5 min à pied", ambiance:"Animée, bon compromis niveau", around:"Commerces, écoles de surf, bars", desc:"Alternative à la Gravière, pics plus abordables.", score:8.2, school:{name:"Watermansport Surfschool", url:"https://watermansport-surfschool.com/"}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/", distance:"~5 min à pied du spot"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Alternative moins courue quand la Gravière est pleine.",
       en:{level:"Intermediate to advanced", season:"Sept–May", conditions:"NW swell, more manageable peaks", access:"Town-centre parking, 5 min walk", ambiance:"Lively, good level trade-off", around:"Shops, surf schools, bars", desc:"Alternative to La Gravière, more approachable peaks.", transport:"Bayonne train station ~25 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"A quieter alternative when La Gravière is packed."}},
-    {name:"Capbreton", commune:"Capbreton, Landes", lat:43.6437, lng:-1.4460, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, influence du gouf marin", access:"Parking port + plage centrale", ambiance:"Village animé, port de pêche", around:"Restaurants, écoles de surf, port", desc:"Proche du gouf de Capbreton, ambiance village animée.", score:7.7, school:{name:"Water Addict Surf Academy (WASA)", url:"https://www.water-addict.com/"}, stay:{name:"Locations WASA", url:"https://www.water-addict.com/"}, transport:"Gare de Bayonne à ~20 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Le port est sympa pour un déjeuner après la session.",
+    {name:"Capbreton", commune:"Capbreton, Landes", lat:43.6437, lng:-1.4460, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, influence du gouf marin", access:"Parking port + plage centrale", ambiance:"Village animé, port de pêche", around:"Restaurants, écoles de surf, port", desc:"Proche du gouf de Capbreton, ambiance village animée.", score:7.7, school:{name:"Water Addict Surf Academy (WASA)", url:"https://www.water-addict.com/"}, stay:{name:"Locations WASA", url:"https://www.water-addict.com/", distance:"À quelques minutes à pied du spot"}, transport:"Gare de Bayonne à ~20 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Le port est sympa pour un déjeuner après la session.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW swell, influenced by the Capbreton canyon", access:"Harbour + central beach parking", ambiance:"Lively village, fishing harbour", around:"Restaurants, surf schools, harbour", desc:"Close to the Capbreton canyon, lively village atmosphere.", transport:"Bayonne train station ~20 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"The harbour is a nice spot for lunch after your session."}},
-    {name:"Labenne-Océan", commune:"Labenne, Landes", lat:43.6020, lng:-1.4680, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, plage longue et régulière", access:"Parking direct, peu fréquenté", ambiance:"Tranquille, nature", around:"Camping naturiste voisin, peu de commerces", desc:"Longue plage sauvage, spot plus tranquille.", score:6.9, school:{name:"Tiki Surf School", url:"https://www.tikisurfschool.com/"}, stay:{name:"Camping La Mer (Labenne-Océan)", url:"https://www.tikisurfschool.com/"}, transport:"Gare de Bayonne à ~20 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Spot tranquille, parfait pour souffler après les plages plus animées d'Hossegor.",
+    {name:"Labenne-Océan", commune:"Labenne, Landes", lat:43.6020, lng:-1.4680, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, plage longue et régulière", access:"Parking direct, peu fréquenté", ambiance:"Tranquille, nature", around:"Camping naturiste voisin, peu de commerces", desc:"Longue plage sauvage, spot plus tranquille.", score:6.9, school:{name:"Tiki Surf School", url:"https://www.tikisurfschool.com/"}, stay:{name:"Camping La Mer (Labenne-Océan)", url:"https://www.tikisurfschool.com/", distance:"Accès direct à la plage"}, transport:"Gare de Bayonne à ~20 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Spot tranquille, parfait pour souffler après les plages plus animées d'Hossegor.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW/W swell, long and regular beach", access:"Direct parking, low crowds", ambiance:"Quiet, natural setting", around:"Naturist campsite nearby, few shops", desc:"Long wild beach, a quieter spot.", transport:"Bayonne train station ~20 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"A quiet spot, perfect for unwinding after the busier Hossegor beaches."}},
-    {name:"Ondres-Plage", commune:"Ondres, Landes", lat:43.5758, lng:-1.4670, sports:["surf","wind"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, vent souvent présent", access:"Parking front de mer", ambiance:"Familial, calme", around:"Restaurants de plage, écoles de surf", desc:"Plage familiale entre Landes et Pays Basque.", score:7.0, school:{name:"École du Surf Français Go and Surf", url:"https://www.goandsurf.com/"}, stay:{name:"Camping Espace Blue Océan", url:"https://landes-tourisme.info/ecole,de,surf,messanges,580,87,ab.html"}, transport:"Gare de Bayonne à ~15 min ; aéroport de Biarritz à ~20 min ; bus Chronoplus.", tip:"Bon compromis entre Landes et Pays Basque, moins couru que ses voisins.",
+    {name:"Ondres-Plage", commune:"Ondres, Landes", lat:43.5758, lng:-1.4670, sports:["surf","wind"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW, vent souvent présent", access:"Parking front de mer", ambiance:"Familial, calme", around:"Restaurants de plage, écoles de surf", desc:"Plage familiale entre Landes et Pays Basque.", score:7.0, school:{name:"École du Surf Français Go and Surf", url:"https://www.goandsurf.com/"}, stay:{name:"Camping Espace Blue Océan", url:"https://landes-tourisme.info/ecole,de,surf,messanges,580,87,ab.html", distance:"~10 min en voiture"}, transport:"Gare de Bayonne à ~15 min ; aéroport de Biarritz à ~20 min ; bus Chronoplus.", tip:"Bon compromis entre Landes et Pays Basque, moins couru que ses voisins.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW swell, wind often present", access:"Seafront parking", ambiance:"Family-friendly, quiet", around:"Beach restaurants, surf schools", desc:"Family beach between the Landes and the Basque Country.", transport:"Bayonne train station ~15 min; Biarritz airport ~20 min; Chronoplus bus.", tip:"A good middle ground between the Landes and Basque Country, quieter than its neighbours."}},
-    {name:"Tarnos — Le Métro", commune:"Tarnos, Landes", lat:43.5490, lng:-1.4750, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW, embouchure de l'Adour proche", access:"Parking + sentier littoral", ambiance:"Local, peu touristique", around:"Peu de services, proche zone portuaire", desc:"Beach-break au nord de l'Adour, moins fréquenté.", score:7.1, school:{name:"École Surfescapade", url:"https://www.surf-escapade.com/"}, stay:{name:"Village Vacances La Forêt des Landes", url:"https://www.surf-escapade.com/index.php/surf-camp"}, transport:"Gare de Bayonne à ~15 min ; aéroport de Biarritz à ~15 min ; bus Chronoplus.", tip:"Peu de services sur place : prévoir son pique-nique.",
+    {name:"Tarnos — Le Métro", commune:"Tarnos, Landes", lat:43.5490, lng:-1.4750, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW, embouchure de l'Adour proche", access:"Parking + sentier littoral", ambiance:"Local, peu touristique", around:"Peu de services, proche zone portuaire", desc:"Beach-break au nord de l'Adour, moins fréquenté.", score:7.1, school:{name:"École Surfescapade", url:"https://www.surf-escapade.com/"}, stay:{name:"Village Vacances La Forêt des Landes", url:"https://www.surf-escapade.com/index.php/surf-camp", distance:"~10-15 min en voiture"}, transport:"Gare de Bayonne à ~15 min ; aéroport de Biarritz à ~15 min ; bus Chronoplus.", tip:"Peu de services sur place : prévoir son pique-nique.",
       en:{level:"Intermediate", season:"Sept–May", conditions:"NW swell, close to the Adour river mouth", access:"Parking + coastal path", ambiance:"Local, not touristy", around:"Few services, near the harbour area", desc:"Beach-break north of the Adour, less crowded.", transport:"Bayonne train station ~15 min; Biarritz airport ~15 min; Chronoplus bus.", tip:"Few services on-site — bring your own picnic."}},
-    {name:"Anglet — Chambre d'Amour", commune:"Anglet, Pyrénées-Atlantiques", lat:43.4960, lng:-1.5279, sports:["surf"], level:"Tous niveaux", season:"Toute l'année", conditions:"Houle NW/W, plusieurs pics urbains", access:"Parking + accès immédiat, transports en commun", ambiance:"Urbain, très fréquenté", around:"Commerces, écoles de surf, vie nocturne proche", desc:"Spot urbain emblématique, très facile d'accès.", score:7.5, school:{name:"John & Tim Surf School", url:"https://ecolesurf.com/ecole-de-surf-a-la-chambre-damour-anglet/"}, stay:{name:"Belambra Club Anglet", url:"https://ecoledesurf.com/ecoles/surf-anglet/hebergement/"}, transport:"Aéroport de Biarritz à ~10 min ; gare de Biarritz-La Négresse à ~15 min ; bus Chronoplus, arrêt à proximité.", tip:"Se garer tôt l'été, le parking sature vite en journée.",
+    {name:"Anglet — Chambre d'Amour", commune:"Anglet, Pyrénées-Atlantiques", lat:43.4960, lng:-1.5279, sports:["surf"], level:"Tous niveaux", season:"Toute l'année", conditions:"Houle NW/W, plusieurs pics urbains", access:"Parking + accès immédiat, transports en commun", ambiance:"Urbain, très fréquenté", around:"Commerces, écoles de surf, vie nocturne proche", desc:"Spot urbain emblématique, très facile d'accès.", score:7.5, school:{name:"John & Tim Surf School", url:"https://ecolesurf.com/ecole-de-surf-a-la-chambre-damour-anglet/"}, stay:{name:"Belambra Club Anglet", url:"https://ecoledesurf.com/ecoles/surf-anglet/hebergement/", distance:"~5-10 min à pied du spot"}, transport:"Aéroport de Biarritz à ~10 min ; gare de Biarritz-La Négresse à ~15 min ; bus Chronoplus, arrêt à proximité.", tip:"Se garer tôt l'été, le parking sature vite en journée.",
       en:{level:"All levels", season:"Year-round", conditions:"NW/W swell, several urban peaks", access:"Parking + immediate access, public transport", ambiance:"Urban, very busy", around:"Shops, surf schools, nightlife nearby", desc:"Iconic urban spot, very easy to access.", transport:"Biarritz airport ~10 min; Biarritz-La Négresse train station ~15 min; Chronoplus bus stop nearby.", tip:"Park early in summer — the car park fills up fast during the day."}},
-    {name:"Anglet — Sables d'Or", commune:"Anglet, Pyrénées-Atlantiques", lat:43.5015, lng:-1.5265, sports:["surf"], level:"Débutant à intermédiaire", season:"Toute l'année", conditions:"Houle W, plage surveillée", access:"Parking + bus urbain", ambiance:"Familial, très encadré", around:"Nombreuses écoles de surf, snacks de plage", desc:"Zone surveillée, nombreuses écoles de surf.", score:7.3, school:{name:"École Rainbow", url:"https://www.ecoledesurf-rainbow.com/"}, stay:{name:"Belambra Club Anglet", url:"https://ecoledesurf.com/ecoles/surf-anglet/hebergement/"}, transport:"Aéroport de Biarritz à ~10 min ; gare de Biarritz-La Négresse à ~15 min ; bus Chronoplus.", tip:"Plage animée et bien encadrée, idéale pour un premier cours.",
+    {name:"Anglet — Sables d'Or", commune:"Anglet, Pyrénées-Atlantiques", lat:43.5015, lng:-1.5265, sports:["surf"], level:"Débutant à intermédiaire", season:"Toute l'année", conditions:"Houle W, plage surveillée", access:"Parking + bus urbain", ambiance:"Familial, très encadré", around:"Nombreuses écoles de surf, snacks de plage", desc:"Zone surveillée, nombreuses écoles de surf.", score:7.3, school:{name:"École Rainbow", url:"https://www.ecoledesurf-rainbow.com/"}, stay:{name:"Belambra Club Anglet", url:"https://ecoledesurf.com/ecoles/surf-anglet/hebergement/", distance:"~10 min à pied du spot"}, transport:"Aéroport de Biarritz à ~10 min ; gare de Biarritz-La Négresse à ~15 min ; bus Chronoplus.", tip:"Plage animée et bien encadrée, idéale pour un premier cours.",
       en:{level:"Beginner to intermediate", season:"Year-round", conditions:"W swell, lifeguarded beach", access:"Parking + city bus", ambiance:"Family-friendly, well supervised", around:"Many surf schools, beach snack bars", desc:"Lifeguarded area, many surf schools.", transport:"Biarritz airport ~10 min; Biarritz-La Négresse train station ~15 min; Chronoplus bus.", tip:"Lively, well-supervised beach — great for a first lesson."}},
-    {name:"Biarritz — Côte des Basques", commune:"Biarritz, Pyrénées-Atlantiques", lat:43.4805, lng:-1.5620, sports:["surf"], level:"Tous niveaux", season:"Toute l'année", conditions:"Houle W, vagues longues au coucher du soleil", access:"Escaliers depuis la ville, pas de parking direct", ambiance:"Mythique, très fréquenté", around:"Restaurants, écoles de surf historiques", desc:"Spot historique du surf en France, coucher de soleil.", score:8.3, school:{name:"École Jo Moraiz (depuis 1966)", url:"https://www.jomoraiz.com/"}, stay:{name:"Hébergements Jo Moraiz", url:"https://www.jomoraiz.com/"}, transport:"Aéroport de Biarritz à ~5 min ; gare de Biarritz-La Négresse à ~10 min ; bus Chronoplus, pas de parking direct sur le spot.", tip:"Viser le coucher de soleil pour la session la plus mémorable.",
+    {name:"Biarritz — Côte des Basques", commune:"Biarritz, Pyrénées-Atlantiques", lat:43.4805, lng:-1.5620, sports:["surf"], level:"Tous niveaux", season:"Toute l'année", conditions:"Houle W, vagues longues au coucher du soleil", access:"Escaliers depuis la ville, pas de parking direct", ambiance:"Mythique, très fréquenté", around:"Restaurants, écoles de surf historiques", desc:"Spot historique du surf en France, coucher de soleil.", score:8.3, school:{name:"École Jo Moraiz (depuis 1966)", url:"https://www.jomoraiz.com/"}, stay:{name:"Hébergements Jo Moraiz", url:"https://www.jomoraiz.com/", distance:"Variable, en centre-ville de Biarritz"}, transport:"Aéroport de Biarritz à ~5 min ; gare de Biarritz-La Négresse à ~10 min ; bus Chronoplus, pas de parking direct sur le spot.", tip:"Viser le coucher de soleil pour la session la plus mémorable.",
       en:{level:"All levels", season:"Year-round", conditions:"W swell, long waves at sunset", access:"Stairs from town, no direct parking", ambiance:"Iconic, very busy", around:"Restaurants, historic surf schools", desc:"France's historic surf spot, sunset sessions.", transport:"Biarritz airport ~5 min; Biarritz-La Négresse train station ~10 min; Chronoplus bus, no direct parking at the spot.", tip:"Aim for sunset for the most memorable session."}},
-    {name:"Biarritz — Grande Plage", commune:"Biarritz, Pyrénées-Atlantiques", lat:43.4838, lng:-1.5578, sports:["surf"], level:"Débutant", season:"Toute l'année", conditions:"Houle faible à modérée, protégée", access:"Centre-ville, accès immédiat", ambiance:"Touristique, chic", around:"Hôtels, restaurants, casino, commerces", desc:"Vagues douces en centre-ville, idéal pour débuter.", score:7.2, school:{name:"ESF Biarritz Pays Basque", url:"https://www.ecole-du-surf-francais-biarritz.fr/"}, stay:{name:"Biarritz Surf Lodge", url:"https://www.surftraining.com/en/"}, transport:"Aéroport de Biarritz à ~5 min ; gare de Biarritz-La Négresse à ~10 min ; en plein centre-ville.", tip:"Spot très encadré, parfait pour une première approche du surf en ville.",
+    {name:"Biarritz — Grande Plage", commune:"Biarritz, Pyrénées-Atlantiques", lat:43.4838, lng:-1.5578, sports:["surf"], level:"Débutant", season:"Toute l'année", conditions:"Houle faible à modérée, protégée", access:"Centre-ville, accès immédiat", ambiance:"Touristique, chic", around:"Hôtels, restaurants, casino, commerces", desc:"Vagues douces en centre-ville, idéal pour débuter.", score:7.2, school:{name:"ESF Biarritz Pays Basque", url:"https://www.ecole-du-surf-francais-biarritz.fr/"}, stay:{name:"Biarritz Surf Lodge", url:"https://www.surftraining.com/en/", distance:"À quelques minutes à pied du spot"}, transport:"Aéroport de Biarritz à ~5 min ; gare de Biarritz-La Négresse à ~10 min ; en plein centre-ville.", tip:"Spot très encadré, parfait pour une première approche du surf en ville.",
       en:{level:"Beginner", season:"Year-round", conditions:"Small to moderate, sheltered swell", access:"Town centre, immediate access", ambiance:"Touristy, upscale", around:"Hotels, restaurants, casino, shops", desc:"Gentle waves right in town, ideal for beginners.", transport:"Biarritz airport ~5 min; Biarritz-La Négresse train station ~10 min; right in the town centre.", tip:"Well-supervised spot, perfect first taste of surfing in town."}},
-    {name:"Bidart — Parlementia", commune:"Bidart, Pyrénées-Atlantiques", lat:43.4405, lng:-1.5820, sports:["surf"], level:"Confirmé / Expert", season:"Oct–Mars", conditions:"Houle NW puissante, reef exposé", access:"Sentier côtier depuis le parking", ambiance:"Exigeant, spot de gros surf", around:"Peu de services directs, Bidart-bourg proche", desc:"Reef exigeant, grosses houles hivernales.", score:8.4, school:{name:"École de surf Bidart-Guéthary-Parlementia", url:"https://www.ecole-de-surf-guethary-bidart.com/"}, stay:{name:"Camping Erreka / Berrua (4★)", url:"https://www.lecoledelaglisse.com/ecole-de-la-glisse-ecole-de-surf-bidart-biarritz-paysbasque-guethary-surf-school"}, transport:"Aéroport de Biarritz à ~15 min ; gare de Biarritz-La Négresse à ~15 min ; peu de bus, voiture conseillée.", tip:"Réservé aux surfeurs expérimentés par grosse houle : bien évaluer son niveau avant d'y aller.",
+    {name:"Bidart — Parlementia", commune:"Bidart, Pyrénées-Atlantiques", lat:43.4405, lng:-1.5820, sports:["surf"], level:"Confirmé / Expert", season:"Oct–Mars", conditions:"Houle NW puissante, reef exposé", access:"Sentier côtier depuis le parking", ambiance:"Exigeant, spot de gros surf", around:"Peu de services directs, Bidart-bourg proche", desc:"Reef exigeant, grosses houles hivernales.", score:8.4, school:{name:"École de surf Bidart-Guéthary-Parlementia", url:"https://www.ecole-de-surf-guethary-bidart.com/"}, stay:{name:"Camping Erreka / Berrua (4★)", url:"https://www.lecoledelaglisse.com/ecole-de-la-glisse-ecole-de-surf-bidart-biarritz-paysbasque-guethary-surf-school", distance:"~5-10 min en voiture"}, transport:"Aéroport de Biarritz à ~15 min ; gare de Biarritz-La Négresse à ~15 min ; peu de bus, voiture conseillée.", tip:"Réservé aux surfeurs expérimentés par grosse houle : bien évaluer son niveau avant d'y aller.",
       en:{level:"Advanced / Expert", season:"Oct–March", conditions:"Powerful NW swell, exposed reef", access:"Coastal path from the car park", ambiance:"Demanding, big-wave spot", around:"Few direct services, Bidart village nearby", desc:"Demanding reef break, big winter swells.", transport:"Biarritz airport ~15 min; Biarritz-La Négresse train station ~15 min; few buses, a car is recommended.", tip:"For experienced surfers only on big swells — assess your level honestly before paddling out."}},
-    {name:"Guéthary — Avalanche", commune:"Guéthary, Pyrénées-Atlantiques", lat:43.4280, lng:-1.5980, sports:["surf"], level:"Expert", season:"Oct–Mars", conditions:"Houle NW très grosse, reef profond", access:"Vue depuis le port, mise à l'eau technique", ambiance:"Spot mythique, très surveillé par les locaux", around:"Port pittoresque, restaurants basques", desc:"Spot de gros surf réputé, pour riders expérimentés.", score:8.6, school:{name:"École de surf Bidart-Guéthary-Parlementia", url:"https://www.ecole-de-surf-guethary-bidart.com/"}, stay:{name:"Le Surf Camp — villa à Guéthary", url:"https://www.lecoledelaglisse.com/le-surf-camp-cote-basque-vacances-bidart-biarritz-surfcamp"}, transport:"Aéroport de Biarritz à ~15 min ; gare de Biarritz-La Négresse à ~15 min ; petit village, se garer tôt.", tip:"Spot de spécialistes : observer depuis le port avant de se mettre à l'eau si on découvre le spot.",
+    {name:"Guéthary — Avalanche", commune:"Guéthary, Pyrénées-Atlantiques", lat:43.4280, lng:-1.5980, sports:["surf"], level:"Expert", season:"Oct–Mars", conditions:"Houle NW très grosse, reef profond", access:"Vue depuis le port, mise à l'eau technique", ambiance:"Spot mythique, très surveillé par les locaux", around:"Port pittoresque, restaurants basques", desc:"Spot de gros surf réputé, pour riders expérimentés.", score:8.6, school:{name:"École de surf Bidart-Guéthary-Parlementia", url:"https://www.ecole-de-surf-guethary-bidart.com/"}, stay:{name:"Le Surf Camp — villa à Guéthary", url:"https://www.lecoledelaglisse.com/le-surf-camp-cote-basque-vacances-bidart-biarritz-surfcamp", distance:"À quelques minutes à pied du port"}, transport:"Aéroport de Biarritz à ~15 min ; gare de Biarritz-La Négresse à ~15 min ; petit village, se garer tôt.", tip:"Spot de spécialistes : observer depuis le port avant de se mettre à l'eau si on découvre le spot.",
       en:{level:"Expert", season:"Oct–March", conditions:"Very big NW swell, deep reef", access:"View from the harbour, technical entry", ambiance:"Legendary spot, closely watched by locals", transport:"Biarritz airport ~15 min; Biarritz-La Négresse train station ~15 min; small village, park early.", tip:"Locals-heavy spot: watch from the harbour before paddling out if you're new here.", around:"Picturesque harbour, Basque restaurants", desc:"Renowned big-wave spot, for experienced riders."}},
-    {name:"Saint-Jean-de-Luz — Lafitenia", commune:"Saint-Jean-de-Luz, Pyrénées-Atlantiques", lat:43.4160, lng:-1.6080, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW, reef régulier et propre", access:"Parking + sentier côtier, 5 min", ambiance:"Local, respecté des surfeurs", around:"Peu de commerces sur site, ville à 10 min", desc:"Vague de reef réputée pour sa régularité.", score:8.0, school:{name:"Lafitenia Surfcamp (location, accès direct au spot)", url:"http://www.mango-surf.com/annuaire/lafitenia-surfcamp--278.html"}, stay:{name:"Hôtel Lafitenia Resort", url:"https://www.lafiteniaresort.com/places/le-surf-a-saint-jean-de-luz/"}, transport:"Gare de Saint-Jean-de-Luz-Ciboure à ~10 min ; aéroport de Biarritz à ~20 min ; réseau Txik Txak.", tip:"Spot très fréquenté aux beaux jours : privilégier les sessions tôt le matin.",
+    {name:"Saint-Jean-de-Luz — Lafitenia", commune:"Saint-Jean-de-Luz, Pyrénées-Atlantiques", lat:43.4160, lng:-1.6080, sports:["surf"], level:"Intermédiaire", season:"Sept–Mai", conditions:"Houle NW, reef régulier et propre", access:"Parking + sentier côtier, 5 min", ambiance:"Local, respecté des surfeurs", around:"Peu de commerces sur site, ville à 10 min", desc:"Vague de reef réputée pour sa régularité.", score:8.0, school:{name:"Lafitenia Surfcamp (location, accès direct au spot)", url:"http://www.mango-surf.com/annuaire/lafitenia-surfcamp--278.html"}, stay:{name:"Hôtel Lafitenia Resort", url:"https://www.lafiteniaresort.com/places/le-surf-a-saint-jean-de-luz/", distance:"Sur place, accès direct au spot"}, transport:"Gare de Saint-Jean-de-Luz-Ciboure à ~10 min ; aéroport de Biarritz à ~20 min ; réseau Txik Txak.", tip:"Spot très fréquenté aux beaux jours : privilégier les sessions tôt le matin.",
       en:{level:"Intermediate", season:"Sept–May", conditions:"NW swell, clean and consistent reef", access:"Parking + 5 min coastal path", ambiance:"Local crowd, respected by surfers", around:"Few shops on-site, town 10 min away", desc:"Reef wave renowned for its consistency.", transport:"Saint-Jean-de-Luz-Ciboure train station ~10 min; Biarritz airport ~20 min; Txik Txak bus network.", tip:"Gets busy on good days — early morning sessions are best."}},
-    {name:"Hendaye Plage", commune:"Hendaye, Pyrénées-Atlantiques", lat:43.3600, lng:-1.7780, sports:["surf","wind","wingfoil"], level:"Débutant", season:"Toute l'année", conditions:"Baie protégée, houle et vent atténués", access:"Parking front de mer, plage surveillée", ambiance:"Familial, transfrontalier (Espagne face)", around:"Écoles de surf/wing, restaurants, casino", desc:"Baie protégée face à l'Espagne, spot très abordable.", score:7.4, school:{name:"École du Surf Français Hendaia", url:"https://www.ecoledesurf-hendaye.com/"}, stay:{name:"Centre de séjour Bella Vista", url:"https://www.ecoledesurf-hendaye.com/surf-camp-groupes-famille-cote-basque.html"}, transport:"Gare d'Hendaye (TGV + trains espagnols) à ~10 min ; aéroport de Biarritz à ~25 min ; réseau Txik Txak.", tip:"Idéal pour débuter toute l'année grâce à sa baie protégée.",
+    {name:"Hendaye Plage", commune:"Hendaye, Pyrénées-Atlantiques", lat:43.3600, lng:-1.7780, sports:["surf","wind","wingfoil"], level:"Débutant", season:"Toute l'année", conditions:"Baie protégée, houle et vent atténués", access:"Parking front de mer, plage surveillée", ambiance:"Familial, transfrontalier (Espagne face)", around:"Écoles de surf/wing, restaurants, casino", desc:"Baie protégée face à l'Espagne, spot très abordable.", score:7.4, school:{name:"École du Surf Français Hendaia", url:"https://www.ecoledesurf-hendaye.com/"}, stay:{name:"Centre de séjour Bella Vista", url:"https://www.ecoledesurf-hendaye.com/surf-camp-groupes-famille-cote-basque.html", distance:"~10 min à pied de la plage"}, transport:"Gare d'Hendaye (TGV + trains espagnols) à ~10 min ; aéroport de Biarritz à ~25 min ; réseau Txik Txak.", tip:"Idéal pour débuter toute l'année grâce à sa baie protégée.",
       en:{level:"Beginner", season:"Year-round", conditions:"Sheltered bay, reduced swell and wind", access:"Seafront parking, lifeguarded beach", ambiance:"Family-friendly, cross-border (facing Spain)", around:"Surf/wing schools, restaurants, casino", desc:"Sheltered bay facing Spain, a very approachable spot.", transport:"Hendaye station (TGV + Spanish trains) ~10 min; Biarritz airport ~25 min; Txik Txak bus network.", tip:"Great for learning year-round thanks to its sheltered bay."}}
   ];
 
@@ -1189,7 +1279,7 @@
   function buildPanelHTML(spot, idx){
     const d = lang === 'en' && spot.en ? spot.en : spot; // champs traduits si dispo
     const tags = spot.sports.map(s =>
-      `<span class="popup-tag" style="background:${SPORT_COLORS[s]}">${SPORT_LABELS[s]}</span>`
+      `<span class="popup-tag" style="background:${SPORT_COLORS[s]}">${SPORT_ICONS[s]}${SPORT_LABELS[s]}</span>`
     ).join("");
 
     function sectionHeader(title, key){
@@ -1204,6 +1294,12 @@
         <div class="popup-loc">📍 ${spot.commune}</div>
         <div class="popup-tags">${tags}</div>
         <p class="popup-desc">${d.desc}</p>
+
+        <div class="trust-legend">
+          <span class="trust-legend-item"><span class="badge badge-ia">${t('badgeIA')}</span> ${t('legendIA')}</span>
+          <span class="trust-legend-item"><span class="badge badge-communaute">✓ ${lang === 'fr' ? 'Communauté' : 'Community'}</span> ${t('legendCommunaute')}</span>
+          <span class="trust-legend-item"><span class="badge badge-ambassadeur">🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}</span> ${t('legendAmbassadeur')}</span>
+        </div>
 
         ${sectionHeader(t('secTechnique'), "technique")}
         <div class="panel-grid">
@@ -1226,6 +1322,7 @@
             <span class="link-kind">${t('linkVerifie')}</span>
             <span class="link-name">${spot.stay.name}</span>
             <span class="link-type">${KIND_LABELS[lang][inferKind(spot.stay.name)]}</span>
+            ${spot.stay.distance ? `<span class="link-distance">📍 ${spot.stay.distance}</span>` : ""}
             <span class="link-price">${inferPrice(inferKind(spot.stay.name))} <i>${t('estimationIA')}</i></span>
             <span class="link-cta">${t('linkTarifs')}</span>
           </a>
@@ -1349,12 +1446,31 @@
     return marker;
   });
 
+  let activeSport = "all";
+
+  function updateMarkerVisibility(){
+    markers.forEach((m, idx) => {
+      const spot = spots[idx];
+      const show = activeSport === "all" || spot.sports.includes(activeSport);
+      if (show && !map.hasLayer(m)) m.addTo(map);
+      if (!show && map.hasLayer(m)) map.removeLayer(m);
+    });
+  }
+
+  const SPORT_ICONS = {
+    all: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 15c1.8-2.4 3.6-2.4 5.4 0s3.6 2.4 5.4 0 3.6-2.4 5.4 0 3.6 2.4 3.8 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10c1.8-2.4 3.6-2.4 5.4 0s3.6 2.4 5.4 0 3.6-2.4 5.4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/></svg>`,
+    surf: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="9" rx="2.8" ry="7.4" transform="rotate(28 12 9)" fill="currentColor"/><path d="M2 17.5c2.2-3 4.4-3 6.6 0s4.4 3 6.6 0 4.4-3 6.6 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
+    kite: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5 17 9 12 15 7 9Z" fill="currentColor"/><path d="M12 15 9.3 20.5M12 15l2.7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="7.3" y="20.3" width="9.4" height="1.7" rx="0.85" fill="currentColor"/></svg>`,
+    wind: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.2 2.8c-4 1.4-4.6 8-.2 10.6z" fill="currentColor"/><line x1="12.2" y1="2.5" x2="12.2" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="12.2" cy="20.3" rx="7.6" ry="1.6" fill="currentColor"/></svg>`,
+    wingfoil: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5c3.6-4.4 13.4-4.4 18 0-3.6 2.8-14.4 2.8-18 0Z" fill="currentColor"/><line x1="12" y1="10.5" x2="12" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.2 17.5h7.6L12 21.8Z" fill="currentColor"/></svg>`
+  };
+
   const filterDefs = [
-    {key:"all", label:"Tous", color:"#F7F4EC"},
-    {key:"surf", label:"Surf", color:SPORT_COLORS.surf},
-    {key:"kite", label:"Kite", color:SPORT_COLORS.kite},
-    {key:"wind", label:"Wind", color:SPORT_COLORS.wind},
-    {key:"wingfoil", label:"Wingfoil", color:SPORT_COLORS.wingfoil}
+    {key:"all", label:"Tous", icon:SPORT_ICONS.all, color:"#F7F4EC"},
+    {key:"surf", label:"Surf", icon:SPORT_ICONS.surf, color:SPORT_COLORS.surf},
+    {key:"kite", label:"Kite", icon:SPORT_ICONS.kite, color:SPORT_COLORS.kite},
+    {key:"wind", label:"Wind", icon:SPORT_ICONS.wind, color:SPORT_COLORS.wind},
+    {key:"wingfoil", label:"Wingfoil", icon:SPORT_ICONS.wingfoil, color:SPORT_COLORS.wingfoil}
   ];
 
   const filtersEl = document.getElementById('filters');
@@ -1362,19 +1478,17 @@
     const btn = document.createElement('button');
     btn.className = 'filter-pill' + (f.key === 'all' ? ' active' : '');
     btn.dataset.key = f.key;
-    btn.innerHTML = `<span class="dot" style="background:${f.color}"></span><span${f.key === 'all' ? ' id="filter-label-all"' : ''}>${f.key === 'all' ? t('filterAll') : f.label}</span>`;
+    btn.innerHTML = `<span class="dot" style="border-color:${f.color}; color:${f.color}">${f.icon}</span><span${f.key === 'all' ? ' id="filter-label-all"' : ''}>${f.key === 'all' ? t('filterAll') : f.label}</span>`;
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#filters .filter-pill').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
-      markers.forEach(m => {
-        const show = f.key === 'all' || m.spotSports.includes(f.key);
-        if (show && !map.hasLayer(m)) m.addTo(map);
-        if (!show && map.hasLayer(m)) map.removeLayer(m);
-      });
+      activeSport = f.key;
+      updateMarkerVisibility();
     });
     filtersEl.appendChild(btn);
   });
 
+  // ── Recherche rapide, en haut de la carte ──
   applyStaticTranslations();
 </script>
 </body>

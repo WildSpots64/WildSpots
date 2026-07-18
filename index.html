@@ -863,7 +863,6 @@
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <div class="eyebrow" id="map-eyebrow">Landes · Pays Basque</div>
       <h2 id="map-title">Le bon spot, sans y passer des heures</h2>
     </div>
     <div class="filters-label" id="filters-label">Choisis ton sport</div>
@@ -1054,7 +1053,6 @@
     document.getElementById('nav-tagline').textContent = t('navTagline');
     document.getElementById('nav-cta-link').textContent = t('navCta');
     document.getElementById('lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
-    document.getElementById('map-eyebrow').textContent = t('mapEyebrow');
     document.getElementById('map-title').textContent = t('mapTitle');
     document.getElementById('panel-placeholder-text').textContent = t('panelPlaceholder');
     document.getElementById('footer-title').textContent = t('footerTitle');
@@ -1349,7 +1347,6 @@
           <div class="popup-row"><span>${t('rowSaison')}</span><span>${d.season}</span></div>
           <div class="popup-row"><span>${t('rowConditions')}</span><span>${d.conditions}</span></div>
           <div class="popup-row"><span>${t('rowAmbiance')}</span><span>${d.ambiance}</span></div>
-          <div class="popup-row"><span>${t('rowScore')}</span><span>${spot.score.toFixed(1)} / 10</span></div>
           <div class="popup-row"><span>${t('rowAcces')}</span><span>${d.access}</span></div>
         </div>
         <div class="popup-around"><span>${t('rowAutour')}</span>${d.around}</div>
@@ -1393,7 +1390,6 @@
           <textarea id="comment-text-${idx}" placeholder="${t('commentPlaceholderText')}" maxlength="240"></textarea>
           <button type="button" onclick="addComment(${idx})">${t('commentPublish')}</button>
         </div>
-        <p class="comment-note">${supabaseClient ? t('commentNoteOn') : t('commentNoteOff')}</p>
 
         <div class="section-label"><b>${t('secSuggest')}</b><span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span></div>
         <div id="suggestion-zone-${idx}">${buildSuggestionForm(idx)}</div>
@@ -1583,7 +1579,6 @@
             <div class="spot-row-name">${spot.name}</div>
             <div class="spot-row-meta">${spot.commune} · ${d.level}</div>
           </div>
-          <div class="spot-row-score">${spot.score.toFixed(1)}</div>
           <div class="spot-row-arrow">→</div>
         </div>`;
     }).join("");

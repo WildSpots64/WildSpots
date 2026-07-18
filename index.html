@@ -318,7 +318,7 @@
     display:flex; flex-direction:column; align-items:center; gap:8px;
     color:var(--foam);
     font-family:'Work Sans', sans-serif; font-size:0.78rem; font-weight:600;
-    padding:0; width:84px;
+    padding:0; width:auto;
   }
   .filter-pill .dot{
     width:64px; height:64px; border-radius:50%;
@@ -332,6 +332,55 @@
 
   .zone-search-wrap{ position:relative; margin-bottom:36px; z-index:500; isolation:isolate; }
   .zone-search-wrap .app-search{ margin-bottom:0; cursor:pointer; }
+  .zone-search-icon-btn{
+    width:56px; height:56px; border-radius:50%;
+    background:rgba(227,87,42,0.12);
+    border:2px solid var(--coral);
+    color:var(--coral);
+    font-size:1.4rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .zone-search-icon-btn:hover{ background:rgba(227,87,42,0.2); }
+
+  .view-toggle{ display:flex; gap:8px; margin-bottom:14px; }
+  .view-toggle-btn{
+    display:flex; align-items:center; gap:6px;
+    background:rgba(247,244,236,0.06);
+    border:1.5px solid var(--line);
+    border-radius:100px;
+    padding:9px 18px;
+    color:rgba(247,244,236,0.7);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem; font-weight:600;
+    cursor:pointer;
+  }
+  .view-toggle-btn.active{ background:var(--foam); border-color:var(--foam); color:var(--navy); }
+
+  #table-view{
+    flex:1.3; min-width:0; height:640px; overflow-y:auto;
+    background:var(--foam); border-radius:4px; border:1px solid var(--line);
+  }
+  .spot-row{
+    display:flex; align-items:center; gap:12px;
+    padding:14px 18px;
+    border-bottom:1px solid #e6dfc9;
+    cursor:pointer;
+  }
+  .spot-row:hover{ background:#F3EFDD; }
+  .spot-row:last-child{ border-bottom:none; }
+  .spot-row-sports{ display:flex; gap:4px; flex-shrink:0; }
+  .spot-row-sports .row-dot{
+    width:26px; height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+  }
+  .spot-row-sports .row-dot svg{ width:14px; height:14px; }
+  .spot-row-main{ flex:1; min-width:0; }
+  .spot-row-name{ font-family:'Anton', sans-serif; text-transform:uppercase; font-size:0.98rem; color:var(--navy); line-height:1.2; }
+  .spot-row-meta{ font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:#8a8a8a; margin-top:2px; }
+  .spot-row-score{ font-family:'Anton', sans-serif; font-size:1.15rem; color:var(--coral); flex-shrink:0; }
+  .spot-row-arrow{ color:#b3aea0; flex-shrink:0; }
   .zone-search-hero{
     padding:20px 26px;
     border:2px solid var(--coral);
@@ -750,6 +799,7 @@
     .fiche-preview{ grid-template-columns:1fr; }
     .map-layout{ flex-direction:column; }
     #map{ height:380px; flex:none; }
+    #table-view{ height:380px; flex:none; }
     .spot-panel{ height:520px; flex:none; }
     .panel-card{ padding:24px 20px 32px; }
     .panel-card h4{ font-size:1.5rem; }
@@ -766,7 +816,7 @@
     .app-search-btn{ width:30px; height:30px; }
     .app-section-title{ font-size:0.95rem; margin-bottom:10px; }
     .app-shortcuts{ gap:12px; margin-bottom:22px; }
-    .filter-pill{ width:60px; font-size:0.66rem; gap:5px; }
+    .filter-pill{ width:auto; }
     .filter-pill .dot{ width:48px; height:48px; font-size:1.25rem; border-width:1.5px; }
     .app-banner{ padding:18px 16px; gap:10px; margin-bottom:16px; }
     .app-banner-title{ font-size:1.05rem; margin-bottom:9px; }
@@ -785,6 +835,7 @@
     .footer-top{ flex-direction:column; align-items:flex-start; gap:16px; }
     .filters{ gap:14px; }
     #map{ height:320px; }
+    #table-view{ height:320px; }
     .spot-panel{ height:460px; }
   }
   @media (prefers-reduced-motion: reduce){
@@ -805,34 +856,20 @@
   </div>
 </nav>
 
-<section class="section" style="padding-top:48px;">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow" id="problem-eyebrow">Le problème</div>
-      <h2 id="problem-title">L'info existe déjà.<br>Elle est juste éparpillée.</h2>
-      <p id="problem-desc">Pour choisir un spot et préparer un séjour, un rider ouvre en moyenne cinq ou six sources différentes — sans jamais avoir la vue d'ensemble.</p>
-    </div>
-    <div class="scatter-grid">
-      <div class="scatter-item" id="scatter-1"><b>Windguru / Windy</b>conditions du jour, sans contexte local</div>
-      <div class="scatter-item" id="scatter-2"><b>Groupes Facebook</b>bons plans noyés dans le fil</div>
-      <div class="scatter-item" id="scatter-3"><b>Forums &amp; blogs</b>avis épars, souvent datés</div>
-      <div class="scatter-item" id="scatter-4"><b>Booking / Google Maps</b>logement seul, sans lien avec le spot</div>
-    </div>
-  </div>
-</section>
-
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <div class="eyebrow" id="map-eyebrow">Prépare ton voyage</div>
-      <h2 id="map-title">Ton trip prêt en 5 minutes</h2>
-      <p id="map-intro">Sport, spot, hébergement, école, transport : les infos clés pour partir maintenant, vérifiées quand c'est possible. Clique un point, tout est là — pas besoin d'ouvrir dix autres onglets.</p>
+      <div class="eyebrow" id="map-eyebrow">Landes · Pays Basque</div>
+      <h2 id="map-title">Trouve ton spot, adapté à ce que tu cherches</h2>
+      <p id="map-intro">Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.</p>
+    </div>
     </div>
     <div class="filters-label" id="filters-label">Choisis ton sport</div>
     <div class="filters" id="filters"></div>
     <div class="filters-label" id="filters-label-zone">Choisis ta zone</div>
     <div class="zone-search-wrap">
-      <div class="app-search zone-search-hero" id="zone-search-trigger">
+      <button type="button" class="zone-search-icon-btn" id="zone-search-collapsed" title="Choisir une destination">📍</button>
+      <div class="app-search zone-search-hero" id="zone-search-trigger" style="display:none;">
         <span class="app-search-icon">🔍</span>
         <input type="text" id="zone-search" placeholder="Où veux-tu partir ?" readonly>
         <span class="app-search-caret">▾</span>
@@ -857,8 +894,13 @@
         <div class="zone-option disabled">🇱🇰 <span>Sri Lanka — Arugam Bay</span><i class="soon-tag" id="soon-tag-14">Bientôt</i></div>
       </div>
     </div>
+    <div class="view-toggle">
+      <button type="button" class="view-toggle-btn active" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
+      <button type="button" class="view-toggle-btn" id="view-btn-table">📋 <span id="view-label-table">Tableau</span></button>
+    </div>
     <div class="map-layout">
       <div id="map"></div>
+      <div id="table-view" style="display:none;"></div>
       <aside id="spot-panel" class="spot-panel">
         <div class="panel-placeholder">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#d8d0ba" stroke-width="1.5" stroke-dasharray="3 5"/><circle cx="20" cy="20" r="3" fill="#d8d0ba"/></svg>
@@ -961,17 +1003,11 @@
       appShortcutsTitle: "Pour toi",
       bannerEyebrow: "Trip à préparer ?", bannerTitle: "Choisis ton spot à l'avance", bannerCta: "Explorer la carte →",
       featuredLabel: "Spot du moment", featuredCta: "Voir la fiche →",
-      problemEyebrow: "Le problème",
-      problemTitle: "L'info existe déjà.<br>Elle est juste éparpillée.",
-      problemDesc: "Pour choisir un spot et préparer un séjour, un rider ouvre en moyenne cinq ou six sources différentes — sans jamais avoir la vue d'ensemble.",
-      scatter1: "<b>Windguru / Windy</b>conditions du jour, sans contexte local",
-      scatter2: "<b>Groupes Facebook</b>bons plans noyés dans le fil",
-      scatter3: "<b>Forums &amp; blogs</b>avis épars, souvent datés",
-      scatter4: "<b>Booking / Google Maps</b>logement seul, sans lien avec le spot",
-      mapEyebrow: "Prépare ton voyage", mapTitle: "Ton trip prêt en 5 minutes",
-      mapIntro: "Sport, spot, hébergement, école, transport : les infos clés pour partir maintenant, vérifiées quand c'est possible. Clique un point, tout est là — pas besoin d'ouvrir dix autres onglets.",
+      mapEyebrow: "Landes · Pays Basque", mapTitle: "Trouve ton spot, adapté à ce que tu cherches",
+      mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
       filterAll: "Tous", filtersLabel: "Choisis ton sport", filtersLabelZone: "Choisis ta zone", zoneAll: "Toutes les zones",
+      viewMap: "Carte", viewTable: "Tableau",
       zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt disponible", soonTag: "Bientôt",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
       step1Title: "Explorer", step1Desc: "Filtrer les spots par sport, niveau et saison sur une carte unique du littoral.",
@@ -1021,17 +1057,11 @@
       appShortcutsTitle: "For you",
       bannerEyebrow: "Trip to plan?", bannerTitle: "Pick your spot ahead of time", bannerCta: "Explore the map →",
       featuredLabel: "Featured spot", featuredCta: "See full profile →",
-      problemEyebrow: "The problem",
-      problemTitle: "The info already exists.<br>It's just scattered.",
-      problemDesc: "To pick a spot and plan a trip, a rider opens five or six different sources on average — never getting the full picture.",
-      scatter1: "<b>Windguru / Windy</b>day's conditions, no local context",
-      scatter2: "<b>Facebook groups</b>tips buried in the feed",
-      scatter3: "<b>Forums &amp; blogs</b>scattered, often outdated reviews",
-      scatter4: "<b>Booking / Google Maps</b>lodging alone, disconnected from the spot",
-      mapEyebrow: "Plan your trip", mapTitle: "Your trip, ready in 5 minutes",
-      mapIntro: "Sport, spot, accommodation, school, transport: the key info to leave right now, verified when possible. Click a point, it's all there — no need to open ten other tabs.",
+      mapEyebrow: "Landes · Basque Country", mapTitle: "Find your spot, matched to what you need",
+      mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
       filterAll: "All", filtersLabel: "Choose your sport", filtersLabelZone: "Choose your area", zoneAll: "All areas",
+      viewMap: "Map", viewTable: "Table",
       zoneActiveLabel: "Landes · Basque Country", zoneAvailableNow: "Available now", zoneComingSoon: "Coming soon", soonTag: "Soon",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
       step1Title: "Explore", step1Desc: "Filter spots by sport, level and season on a single coastal map.",
@@ -1082,13 +1112,6 @@
     document.getElementById('nav-tagline').textContent = t('navTagline');
     document.getElementById('nav-cta-link').textContent = t('navCta');
     document.getElementById('lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
-    document.getElementById('problem-eyebrow').textContent = t('problemEyebrow');
-    document.getElementById('problem-title').innerHTML = t('problemTitle');
-    document.getElementById('problem-desc').textContent = t('problemDesc');
-    document.getElementById('scatter-1').innerHTML = t('scatter1');
-    document.getElementById('scatter-2').innerHTML = t('scatter2');
-    document.getElementById('scatter-3').innerHTML = t('scatter3');
-    document.getElementById('scatter-4').innerHTML = t('scatter4');
     document.getElementById('map-eyebrow').textContent = t('mapEyebrow');
     document.getElementById('map-title').textContent = t('mapTitle');
     document.getElementById('map-intro').innerHTML = t('mapIntro');
@@ -1119,6 +1142,10 @@
     const filterAllLabel = document.getElementById('filter-label-all');
     if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
     document.getElementById('filters-label').textContent = t('filtersLabel');
+    const viewLabelMap = document.getElementById('view-label-map');
+    if (viewLabelMap) viewLabelMap.textContent = t('viewMap');
+    const viewLabelTable = document.getElementById('view-label-table');
+    if (viewLabelTable) viewLabelTable.textContent = t('viewTable');
     const filtersLabelZoneEl = document.getElementById('filters-label-zone');
     if (filtersLabelZoneEl) filtersLabelZoneEl.textContent = t('filtersLabelZone');
     const zoneActiveLabelEl = document.getElementById('zone-dropdown-label-active');
@@ -1137,6 +1164,7 @@
     lang = lang === 'fr' ? 'en' : 'fr';
     applyStaticTranslations();
     if (currentOpenIdx !== null) openSpot(currentOpenIdx);
+    if (typeof currentView !== 'undefined' && currentView === 'table') renderTableView();
   };
 
   const spots = [
@@ -1539,6 +1567,7 @@
   });
 
   let activeSport = "all";
+  let currentView = "map";
 
   function updateMarkerVisibility(){
     markers.forEach((m, idx) => {
@@ -1547,6 +1576,7 @@
       if (show && !map.hasLayer(m)) m.addTo(map);
       if (!show && map.hasLayer(m)) map.removeLayer(m);
     });
+    if (currentView === "table") renderTableView();
   }
 
   const SPORT_ICONS = {
@@ -1554,7 +1584,7 @@
     surf: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="9" rx="2.8" ry="7.4" transform="rotate(28 12 9)" fill="currentColor"/><path d="M2 17.5c2.2-3 4.4-3 6.6 0s4.4 3 6.6 0 4.4-3 6.6 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
     kite: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5 17 9 12 15 7 9Z" fill="currentColor"/><path d="M12 15 9.3 20.5M12 15l2.7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="7.3" y="20.3" width="9.4" height="1.7" rx="0.85" fill="currentColor"/></svg>`,
     wind: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.2 2.8c-4 1.4-4.6 8-.2 10.6z" fill="currentColor"/><line x1="12.2" y1="2.5" x2="12.2" y2="18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="12.2" cy="20.3" rx="7.6" ry="1.6" fill="currentColor"/></svg>`,
-    wingfoil: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5c3.6-4.4 13.4-4.4 18 0-3.6 2.8-14.4 2.8-18 0Z" fill="currentColor"/><line x1="12" y1="10.5" x2="12" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.2 17.5h7.6L12 21.8Z" fill="currentColor"/></svg>`
+    wingfoil: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 7.5c4-3.6 15-3.6 19 0-4 2.4-15 2.4-19 0Z" fill="currentColor"/><rect x="9.3" y="8.6" width="5.4" height="2" rx="1" fill="currentColor"/><line x1="12" y1="10.6" x2="12" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="7.5" y1="19.6" x2="16.5" y2="19.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`
   };
 
   const filterDefs = [
@@ -1570,7 +1600,9 @@
     const btn = document.createElement('button');
     btn.className = 'filter-pill' + (f.key === 'all' ? ' active' : '');
     btn.dataset.key = f.key;
-    btn.innerHTML = `<span class="dot" style="border-color:${f.color}; color:${f.color}">${f.icon}</span><span${f.key === 'all' ? ' id="filter-label-all"' : ''}>${f.key === 'all' ? t('filterAll') : f.label}</span>`;
+    btn.title = f.key === 'all' ? t('filterAll') : f.label;
+    btn.setAttribute('aria-label', btn.title);
+    btn.innerHTML = `<span class="dot" style="border-color:${f.color}; color:${f.color}">${f.icon}</span>`;
     btn.addEventListener('click', () => {
       document.querySelectorAll('#filters .filter-pill').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
@@ -1580,24 +1612,80 @@
     filtersEl.appendChild(btn);
   });
 
-  // ── Barre de recherche destination façon Booking : une seule zone active pour l'instant ──
+  // ── Barre de recherche destination façon Booking : repliée en icône par défaut ──
   const zoneSearchInput = document.getElementById('zone-search');
   const zoneDropdown = document.getElementById('zone-dropdown');
+  const zoneCollapsedBtn = document.getElementById('zone-search-collapsed');
+  const zoneTrigger = document.getElementById('zone-search-trigger');
   zoneSearchInput.value = t('zoneActiveLabel');
 
-  document.getElementById('zone-search-trigger').addEventListener('click', (e) => {
+  function expandZoneSearch(){
+    zoneCollapsedBtn.style.display = 'none';
+    zoneTrigger.style.display = 'flex';
+    zoneDropdown.classList.add('open');
+  }
+  function collapseZoneSearch(){
+    zoneTrigger.style.display = 'none';
+    zoneCollapsedBtn.style.display = 'flex';
+    zoneDropdown.classList.remove('open');
+  }
+
+  zoneCollapsedBtn.addEventListener('click', (e) => { e.stopPropagation(); expandZoneSearch(); });
+  zoneTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
     zoneDropdown.classList.toggle('open');
   });
   document.querySelector('.zone-option[data-zone="all"]').addEventListener('click', () => {
     zoneSearchInput.value = t('zoneActiveLabel');
-    zoneDropdown.classList.remove('open');
+    collapseZoneSearch();
   });
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.zone-search-wrap')) zoneDropdown.classList.remove('open');
+    if (!e.target.closest('.zone-search-wrap')) collapseZoneSearch();
   });
 
-  // ── Recherche rapide, en haut de la carte ──
+  // ── Vue tableau : liste scrollable des spots, alternative à la carte pour mobile ──
+  function renderTableView(){
+    const tableEl = document.getElementById('table-view');
+    const visibleSpots = spots
+      .map((spot, idx) => ({ spot, idx }))
+      .filter(({ spot }) => activeSport === "all" || spot.sports.includes(activeSport));
+
+    tableEl.innerHTML = visibleSpots.map(({ spot, idx }) => {
+      const d = lang === 'en' && spot.en ? spot.en : spot;
+      const dots = spot.sports.map(s => `<span class="row-dot" style="background:${SPORT_COLORS[s]}">${SPORT_ICONS[s]}</span>`).join("");
+      return `
+        <div class="spot-row" data-idx="${idx}">
+          <div class="spot-row-sports">${dots}</div>
+          <div class="spot-row-main">
+            <div class="spot-row-name">${spot.name}</div>
+            <div class="spot-row-meta">${spot.commune} · ${d.level}</div>
+          </div>
+          <div class="spot-row-score">${spot.score.toFixed(1)}</div>
+          <div class="spot-row-arrow">→</div>
+        </div>`;
+    }).join("");
+
+    tableEl.querySelectorAll('.spot-row').forEach(row => {
+      row.addEventListener('click', () => openSpot(parseInt(row.dataset.idx, 10)));
+    });
+  }
+
+  document.getElementById('view-btn-map').addEventListener('click', () => {
+    currentView = "map";
+    document.getElementById('view-btn-map').classList.add('active');
+    document.getElementById('view-btn-table').classList.remove('active');
+    document.getElementById('map').style.display = 'block';
+    document.getElementById('table-view').style.display = 'none';
+  });
+  document.getElementById('view-btn-table').addEventListener('click', () => {
+    currentView = "table";
+    document.getElementById('view-btn-table').classList.add('active');
+    document.getElementById('view-btn-map').classList.remove('active');
+    document.getElementById('map').style.display = 'none';
+    document.getElementById('table-view').style.display = 'block';
+    renderTableView();
+  });
+
   applyStaticTranslations();
 </script>
 </body>

@@ -710,16 +710,20 @@
   .budget-total b{ color:var(--coral); font-family:'Anton', sans-serif; font-size:1.2rem; }
 
   .trust-legend{
-    display:flex; flex-direction:column; gap:8px;
+    display:flex; flex-direction:column; gap:6px;
     background:#F3EFDD; border-radius:8px;
-    padding:12px 14px;
+    padding:10px 12px;
     margin-bottom:20px;
   }
   .trust-legend-item{
-    display:flex; align-items:center; gap:8px;
-    font-size:0.76rem; color:#3f5460; line-height:1.3;
+    display:flex; align-items:center; gap:6px;
+    font-size:0.66rem; color:#3f5460; line-height:1.25;
   }
-  .trust-legend-item .badge{ flex-shrink:0; }
+  .trust-legend-item .badge{
+    flex-shrink:0;
+    font-size:0.56rem;
+    padding:3px 8px;
+  }
   .validate-btn{
     margin-left:auto;
     font-family:'JetBrains Mono', monospace;
@@ -940,32 +944,35 @@
     .logo{ font-size:1.05rem; }
     #nav-tagline{ display:none; }
     .nav-cta{ font-size:0.68rem; padding:8px 12px; }
-    .hero{ padding:24px 0 0; }
-    .app-search{ padding:11px 14px; margin-bottom:20px; }
-    .app-search input{ font-size:0.88rem; }
-    .app-search-btn{ width:30px; height:30px; }
-    .app-section-title{ font-size:0.95rem; margin-bottom:10px; }
-    .app-shortcuts{ gap:12px; margin-bottom:22px; }
-    .filter-pill{ width:auto; padding:10px 16px; font-size:0.8rem; }
-    .app-banner{ padding:18px 16px; gap:10px; margin-bottom:16px; }
-    .app-banner-title{ font-size:1.05rem; margin-bottom:9px; }
-    .app-banner-eyebrow{ font-size:0.62rem; }
-    .app-banner-cta{ font-size:0.68rem; padding:8px 14px; }
-    .app-banner-icon{ font-size:1.8rem; }
-    .app-card{ padding:16px 16px; margin-bottom:24px; }
-    .app-card-name{ font-size:1.02rem; }
-    .app-card-score{ font-size:1.2rem; }
+    .map-section{ padding:24px 0 56px; }
     .filters-label{ font-size:0.64rem; }
+    .filters-label-hero{ font-size:1.05rem; }
+    .filters{ gap:10px; }
+    .filter-pill{ width:auto; padding:9px 14px; font-size:0.76rem; }
+    .wizard-cta{ padding:16px 16px; font-size:0.95rem; gap:8px; }
+    .zone-dropdown{ max-height:280px; font-size:0.9rem; }
+    .zone-option{ padding:12px 14px; font-size:0.88rem; }
+    .view-toggle{ gap:6px; }
+    .view-toggle-btn{ padding:8px 14px; font-size:0.72rem; }
+    .trust-legend{ padding:9px 10px; }
+    .trust-legend-item{ font-size:0.62rem; }
+    .quick-cards{ gap:6px; }
+    .quick-card{ padding:8px 11px; font-size:0.74rem; }
+    .accordion-header{ padding:15px 2px; }
+    .accordion-header b{ font-size:0.92rem; }
+    .panel-grid{ grid-template-columns:1fr; }
+    .panel-card{ padding:24px 18px 30px; }
+    .panel-card h4{ font-size:1.3rem; }
     .section{ padding:56px 0; }
-    .map-section{ padding:56px 0; }
     .scatter-grid{ grid-template-columns:1fr; }
     .fiche-card{ padding:20px; }
     .fiche-top h3{ font-size:1.2rem; }
     .footer-top{ flex-direction:column; align-items:flex-start; gap:16px; }
-    .filters{ gap:14px; }
     #map{ height:320px; }
     #table-view{ height:320px; }
     .spot-panel{ height:460px; }
+    .spot-row{ padding:12px 14px; gap:8px; }
+    .spot-row-name{ font-size:0.88rem; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -998,7 +1005,7 @@
       <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
     </div>
 
-    <div class="filters-label filters-label-hero" id="filters-label-zone">Destination</div>
+    <div class="filters-label" id="filters-label-zone">1. Destination</div>
     <div class="zone-search-wrap">
       <button type="button" class="wizard-cta" id="zone-cta-btn">
         <span>📍</span> <span id="zone-cta-label">Landes · Pays Basque</span> <span class="app-search-caret">▾</span>
@@ -1024,8 +1031,9 @@
       </div>
     </div>
 
-    <div class="filters-label" id="filters-label">Choisis ton sport</div>
+    <div class="filters-label" id="filters-label">2. Sport</div>
     <div class="filters" id="filters"></div>
+    <div class="filters-label" id="filters-label-step3">3. C'est parti</div>
     <div class="view-toggle">
       <button type="button" class="view-toggle-btn" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
       <button type="button" class="view-toggle-btn active" id="view-btn-table">📋 <span id="view-label-table">Tableau</span></button>
@@ -1078,7 +1086,7 @@
       mapEyebrow: "Tu prépares un trip ?", mapTitle: "Trouve le bon spot en quelques minutes",
       mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
-      filterAll: "Tous", filtersLabel: "Choisis ton sport", filtersLabelZone: "Destination", zoneAll: "Toutes les zones",
+      filterAll: "Tous", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. C'est parti", zoneAll: "Toutes les zones",
       viewMap: "Carte", viewTable: "Tableau",
       zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt disponible", soonTag: "Bientôt",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
@@ -1143,7 +1151,7 @@
       mapEyebrow: "Planning a trip?", mapTitle: "Find the right spot in minutes",
       mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
-      filterAll: "All", filtersLabel: "Choose your sport", filtersLabelZone: "Destination", zoneAll: "All areas",
+      filterAll: "All", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Let's go", zoneAll: "All areas",
       viewMap: "Map", viewTable: "Table",
       zoneActiveLabel: "Landes · Basque Country", zoneAvailableNow: "Available now", zoneComingSoon: "Coming soon", soonTag: "Soon",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
@@ -1216,6 +1224,8 @@
     const filterAllLabel = document.getElementById('filter-label-all');
     if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
     document.getElementById('filters-label').textContent = t('filtersLabel');
+    const filtersLabelStep3El = document.getElementById('filters-label-step3');
+    if (filtersLabelStep3El) filtersLabelStep3El.textContent = t('filtersLabelStep3');
     document.getElementById('legend-badge-ia').textContent = t('badgeIA');
     document.getElementById('legend-text-ia').textContent = t('legendIA');
     document.getElementById('legend-badge-communaute').textContent = `✓ ${lang === 'fr' ? 'Communauté' : 'Community'}`;

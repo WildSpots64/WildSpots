@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WildSpots — démo Landes / Pays Basque</title>
-<meta name="description" content="25 spots de surf, kite, wind et wingfoil entre Landes et Pays Basque, avec fiches détaillées et bons plans vérifiés.">
+<title>WildSpots — Moins de recherches. Plus de sessions.</title>
+<meta name="description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec hébergement, école et budget en quelques minutes.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="WildSpots — 25 spots Landes / Pays Basque">
-<meta property="og:description" content="Carte interactive des meilleurs spots de surf, kite, wind et wingfoil entre les Landes et le Pays Basque, avec fiches détaillées, hébergements vérifiés et avis de la communauté.">
+<meta property="og:title" content="WildSpots — Moins de recherches. Plus de sessions.">
+<meta property="og:description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec hébergement, école et budget en quelques minutes.">
 <meta property="og:image" content="og-image.png">
 <meta property="og:url" content="https://wildspots64.github.io/WildSpots/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WildSpots — 25 spots Landes / Pays Basque">
-<meta name="twitter:description" content="Carte interactive des spots de surf, kite, wind et wingfoil entre Landes et Pays Basque.">
+<meta name="twitter:title" content="WildSpots — Moins de recherches. Plus de sessions.">
+<meta name="twitter:description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque en quelques minutes.">
 <meta name="twitter:image" content="og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -310,6 +310,93 @@
     color:var(--amber);
     margin-bottom:14px;
   }
+  .wizard-cta{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    width:100%;
+    background:linear-gradient(90deg, var(--coral), #F0895A);
+    border:none; border-radius:14px;
+    padding:20px 24px;
+    margin-bottom:28px;
+    font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:0.01em;
+    font-size:1.15rem; color:#fff;
+    cursor:pointer;
+    box-shadow:0 12px 30px -10px rgba(227,87,42,0.55);
+  }
+  .wizard-cta:hover{ transform:translateY(-1px); }
+  .wizard-cta span:first-child{ font-size:1.3rem; }
+  .wizard-secondary-link{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    width:100%;
+    background:none; border:1px dashed var(--line);
+    border-radius:100px;
+    padding:11px 18px;
+    margin-bottom:28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem; color:rgba(247,244,236,0.75);
+    cursor:pointer;
+  }
+  .wizard-secondary-link:hover{ border-color:var(--coral); color:var(--foam); }
+
+  .wizard-overlay{
+    position:fixed; inset:0; background:rgba(8,25,37,0.75);
+    z-index:3000;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .wizard-modal{
+    background:var(--foam);
+    border-radius:16px;
+    max-width:480px; width:100%;
+    max-height:85vh; overflow-y:auto;
+    padding:32px 28px;
+  }
+  .wizard-progress{
+    display:flex; gap:6px; margin-bottom:20px;
+  }
+  .wizard-progress-dot{ flex:1; height:4px; border-radius:100px; background:#e6dfc9; }
+  .wizard-progress-dot.done{ background:var(--coral); }
+  .wizard-close{
+    float:right; background:none; border:none; font-size:1.3rem; color:#8a8a8a; cursor:pointer;
+  }
+  .wizard-title{ font-family:'Anton', sans-serif; text-transform:uppercase; font-size:1.4rem; color:var(--navy); margin:0 0 20px; clear:both; }
+  .wizard-options{ display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+  .wizard-option{
+    display:flex; align-items:center; gap:12px;
+    background:#fff; border:2px solid #e6dfc9; border-radius:12px;
+    padding:16px 18px;
+    font-family:'Work Sans', sans-serif; font-size:1rem; font-weight:600; color:var(--navy);
+    cursor:pointer; text-align:left;
+  }
+  .wizard-option:hover{ border-color:var(--coral); }
+  .wizard-option.selected{ border-color:var(--coral); background:#FDF1EC; }
+  .wizard-option span:first-child{ font-size:1.2rem; }
+  .wizard-next{
+    display:block; width:100%;
+    background:var(--coral); color:#fff; border:none; border-radius:100px;
+    padding:14px; font-family:'JetBrains Mono', monospace; font-weight:700; font-size:0.85rem;
+    cursor:pointer;
+  }
+  .wizard-next:disabled{ opacity:0.4; cursor:default; }
+  .wizard-back{
+    display:block; margin-top:10px; background:none; border:none;
+    color:#8a8a8a; font-family:'JetBrains Mono', monospace; font-size:0.75rem; cursor:pointer;
+    text-align:center; width:100%;
+  }
+  .wizard-results-banner{
+    display:flex; justify-content:space-between; align-items:center;
+    background:#FDF1EC; border:1px solid var(--coral);
+    border-radius:10px; padding:12px 16px; margin-bottom:14px;
+  }
+  .wizard-results-banner span{ font-size:0.85rem; color:var(--navy); font-weight:600; }
+  .wizard-reset-btn{
+    background:none; border:1px solid var(--navy); border-radius:100px;
+    padding:6px 14px; font-family:'JetBrains Mono', monospace; font-size:0.7rem; color:var(--navy); cursor:pointer;
+  }
+  .spot-row-match{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--coral); font-weight:700;
+    flex-shrink:0; margin-right:4px;
+  }
+
   .filters-label-hero{
     font-family:'Anton', sans-serif;
     font-size:1.3rem;
@@ -584,6 +671,44 @@
     color:var(--navy);
   }
 
+  .accordion{ margin-top:8px; }
+  .accordion-item{ border-top:1px solid #e6dfc9; }
+  .accordion-item:last-child{ border-bottom:1px solid #e6dfc9; }
+  .accordion-header{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:none; border:none; cursor:pointer;
+    padding:18px 2px;
+    text-align:left;
+  }
+  .accordion-header b{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-size:1.02rem;
+    color:var(--navy);
+  }
+  .accordion-header-right{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .accordion-chevron{ color:#b3aea0; font-size:0.8rem; }
+  .accordion-body{ padding:0 2px 20px; }
+
+  .quick-cards{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-bottom:20px;
+  }
+  .quick-card{
+    display:flex; align-items:center; gap:7px;
+    background:#fff; border:1px solid #e6dfc9; border-radius:10px;
+    padding:10px 14px;
+    font-family:'Work Sans', sans-serif; font-size:0.8rem; font-weight:600;
+    color:var(--navy); cursor:pointer;
+  }
+  .quick-card:hover{ border-color:var(--coral); }
+  .quick-card span{ font-size:1rem; }
+  .budget-note{ font-size:0.76rem; color:#8a8a8a; margin:6px 0 0; }
+  .budget-total{ font-size:1rem; color:var(--navy); margin:10px 0 4px; }
+  .budget-total b{ color:var(--coral); font-family:'Anton', sans-serif; font-size:1.2rem; }
+
   .trust-legend{
     display:flex; flex-direction:column; gap:8px;
     background:#F3EFDD; border-radius:8px;
@@ -852,7 +977,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">WildSpots <span id="nav-tagline">// démo</span></div>
+    <div class="logo">WildSpots <span id="nav-tagline">Moins de recherches. Plus de sessions.</span></div>
     <div style="display:flex; align-items:center; gap:14px;">
       <button type="button" id="lang-toggle" class="nav-cta" style="cursor:pointer; font-family:'JetBrains Mono',monospace;" onclick="toggleLang()">EN</button>
       <a class="nav-cta" href="#carte" id="nav-cta-link">Voir la carte →</a>
@@ -863,18 +988,20 @@
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <h2 id="map-title">Le bon spot, sans y passer des heures</h2>
+      <h2 id="map-title">Trouve ton spot en quelques minutes</h2>
     </div>
-    <div class="filters-label" id="filters-label">Choisis ton sport</div>
-    <div class="filters" id="filters"></div>
+
+    <div class="trust-legend">
+      <span class="trust-legend-item"><span class="badge badge-ia" id="legend-badge-ia">IA</span> <span id="legend-text-ia">Info générée automatiquement, à vérifier</span></span>
+      <span class="trust-legend-item"><span class="badge badge-communaute" id="legend-badge-communaute">✓ Communauté</span> <span id="legend-text-communaute">Confirmée par des riders qui y sont allés</span></span>
+      <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
+    </div>
+
     <div class="filters-label filters-label-hero" id="filters-label-zone">Destination</div>
     <div class="zone-search-wrap">
-      <button type="button" class="zone-search-icon-btn" id="zone-search-collapsed" title="Choisir une destination">📍</button>
-      <div class="app-search zone-search-hero" id="zone-search-trigger" style="display:none;">
-        <span class="app-search-icon">🔍</span>
-        <input type="text" id="zone-search" placeholder="Où veux-tu partir ?" readonly>
-        <span class="app-search-caret">▾</span>
-      </div>
+      <button type="button" class="wizard-cta" id="zone-cta-btn">
+        <span>📍</span> <span id="zone-cta-label">Landes · Pays Basque</span> <span class="app-search-caret">▾</span>
+      </button>
       <div class="zone-dropdown" id="zone-dropdown">
         <div class="zone-dropdown-label" id="zone-dropdown-label-active">Disponible maintenant</div>
         <div class="zone-option active" data-zone="all">🏄 <span>Landes · Pays Basque</span></div>
@@ -895,6 +1022,9 @@
         <div class="zone-option disabled">🇱🇰 <span>Sri Lanka — Arugam Bay</span><i class="soon-tag" id="soon-tag-14">Bientôt</i></div>
       </div>
     </div>
+
+    <div class="filters-label" id="filters-label">Choisis ton sport</div>
+    <div class="filters" id="filters"></div>
     <div class="view-toggle">
       <button type="button" class="view-toggle-btn" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
       <button type="button" class="view-toggle-btn active" id="view-btn-table">📋 <span id="view-label-table">Tableau</span></button>
@@ -934,7 +1064,7 @@
   // ── Traductions de l'interface statique ──
   const UI = {
     fr: {
-      navTagline: "// démo", navCta: "Voir la carte →",
+      navTagline: "Moins de recherches. Plus de sessions.", navCta: "Voir la carte →",
       heroEyebrow: "Landes · Pays Basque — prépare ton trip",
       heroTitle: 'Un trip prêt,<br>pas juste un <em>spot.</em>',
       heroLede: "Tu pars surfer, kiter, faire du wind ou du wingfoil dans les Landes ou au Pays Basque ? WildSpots réunit le spot, l'école, l'hébergement et le trajet — pour préparer ton séjour sans jongler entre dix onglets.",
@@ -944,7 +1074,7 @@
       appShortcutsTitle: "Pour toi",
       bannerEyebrow: "Trip à préparer ?", bannerTitle: "Choisis ton spot à l'avance", bannerCta: "Explorer la carte →",
       featuredLabel: "Spot du moment", featuredCta: "Voir la fiche →",
-      mapEyebrow: "Landes · Pays Basque", mapTitle: "Le bon spot, sans y passer des heures",
+      mapEyebrow: "Landes · Pays Basque", mapTitle: "Trouve ton spot en quelques minutes",
       mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
       filterAll: "Tous", filtersLabel: "Choisis ton sport", filtersLabelZone: "Destination", zoneAll: "Toutes les zones",
@@ -962,7 +1092,18 @@
       footerTitle: "WildSpots — projet en cours de validation.", footerCta: "Revoir la carte ↑",
       footerTag1: "WILDSPOTS // DÉMO NO-CODE", footerTag2: "DONNÉES ILLUSTRATIVES — LANDES / PAYS BASQUE",
       // panneau dynamique
-      secTechnique: "Fiche technique", secTransport: "Transport", secBonPlan: "Bon plan",
+      secTechnique: "Fiche technique", secTransport: "Transport", secBonPlan: "Bon plan", secBudget: "Budget hébergement",
+      rowBudgetMin: "Budget min (par nuit)", rowBudgetMoyen: "Budget moyen (par nuit)",
+      budgetNote: "Estimation IA pour 2 personnes, hébergement uniquement — à vérifier sur le site.",
+      rowHebergement: "Hébergement", rowCours: n => `${n} cours`, rowLocation: "Location de matériel", rowCourses: "Courses", rowTotal: "Total estimé",
+      budgetFullNote: "Estimation IA basée sur tes réponses au quiz — à ajuster selon tes besoins réels.",
+      cardSpot: "Spot", cardTransport: "Transport", cardHebergement: "Hébergement", cardEcole: "École", cardBudget: "Budget",
+      wizardCtaLabel: "Trouver le meilleur spot pour moi",
+      wizardWhoTitle: "Avec qui pars-tu ?", wizardWhoSolo: "Seul", wizardWhoCouple: "Couple", wizardWhoFamily: "Famille", wizardWhoFriends: "Amis",
+      wizardPrioTitle: "Qu'est-ce qui est important ?", wizardPrioWalk: "Tout à pied", wizardPrioCheap: "Pas cher", wizardPrioProgress: "Progression", wizardPrioNightlife: "Vie nocturne", wizardPrioNature: "Nature", wizardPrioQuiet: "Peu de monde",
+      wizardDurationTitle: "Combien de temps ?", wizardDurationWeekend: "Week-end", wizardDurationWeek: "1 semaine", wizardDurationTwoWeeks: "2 semaines",
+      wizardNext: "Suivant →", wizardBack: "← Retour",
+      wizardResultsLabel: "Tes spots recommandés", wizardReset: "Refaire le quiz",
       secEcole: "École / location de matériel", secHebergement: "Hébergement",
       secAvis: "Avis de la communauté", secSuggest: "Vous connaissez mieux ?",
       rowNiveau: "Niveau", rowSaison: "Saison", rowConditions: "Conditions", rowAmbiance: "Ambiance",
@@ -988,7 +1129,7 @@
       suggThanks: n => `Merci ${n} ! Ta proposition a été transmise`, suggDemo: " (mode démo, non sauvegardée)"
     },
     en: {
-      navTagline: "// demo", navCta: "View map →",
+      navTagline: "Less searching. More sessions.", navCta: "View map →",
       heroEyebrow: "Landes · Basque Country — plan your trip",
       heroTitle: 'A trip ready to go,<br>not just a <em>spot.</em>',
       heroLede: "Heading out to surf, kite, wind or wingfoil in the Landes or Basque Country? WildSpots brings together the spot, the school, the accommodation and how to get there — so you can plan your trip without juggling ten tabs.",
@@ -998,7 +1139,7 @@
       appShortcutsTitle: "For you",
       bannerEyebrow: "Trip to plan?", bannerTitle: "Pick your spot ahead of time", bannerCta: "Explore the map →",
       featuredLabel: "Featured spot", featuredCta: "See full profile →",
-      mapEyebrow: "Landes · Basque Country", mapTitle: "The right spot, without wasting hours on it",
+      mapEyebrow: "Landes · Basque Country", mapTitle: "Find your spot in minutes",
       mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
       filterAll: "All", filtersLabel: "Choose your sport", filtersLabelZone: "Destination", zoneAll: "All areas",
@@ -1015,7 +1156,18 @@
       ficheLabel4: "Vibe", ficheVal4: "Competitive, very busy",
       footerTitle: "WildSpots — project in validation phase.", footerCta: "Back to the map ↑",
       footerTag1: "WILDSPOTS // NO-CODE DEMO", footerTag2: "SAMPLE DATA — LANDES / BASQUE COUNTRY",
-      secTechnique: "Spot profile", secTransport: "Transport", secBonPlan: "Tip",
+      secTechnique: "Spot profile", secTransport: "Transport", secBonPlan: "Tip", secBudget: "Accommodation budget",
+      rowBudgetMin: "Min budget (per night)", rowBudgetMoyen: "Average budget (per night)",
+      budgetNote: "AI estimate for 2 people, accommodation only — check the official site for exact rates.",
+      rowHebergement: "Accommodation", rowCours: n => `${n} lessons`, rowLocation: "Gear rental", rowCourses: "Groceries", rowTotal: "Estimated total",
+      budgetFullNote: "AI estimate based on your quiz answers — adjust to your actual needs.",
+      cardSpot: "Spot", cardTransport: "Transport", cardHebergement: "Stay", cardEcole: "School", cardBudget: "Budget",
+      wizardCtaLabel: "Find the best spot for me",
+      wizardWhoTitle: "Who's coming with you?", wizardWhoSolo: "Solo", wizardWhoCouple: "Couple", wizardWhoFamily: "Family", wizardWhoFriends: "Friends",
+      wizardPrioTitle: "What matters most?", wizardPrioWalk: "Everything walkable", wizardPrioCheap: "Cheap", wizardPrioProgress: "Progression", wizardPrioNightlife: "Nightlife", wizardPrioNature: "Nature", wizardPrioQuiet: "Few people",
+      wizardDurationTitle: "How long?", wizardDurationWeekend: "Weekend", wizardDurationWeek: "1 week", wizardDurationTwoWeeks: "2 weeks",
+      wizardNext: "Next →", wizardBack: "← Back",
+      wizardResultsLabel: "Your recommended spots", wizardReset: "Retake the quiz",
       secEcole: "School / gear rental", secHebergement: "Accommodation",
       secAvis: "Community reviews", secSuggest: "Know a better spot?",
       rowNiveau: "Level", rowSaison: "Season", rowConditions: "Conditions", rowAmbiance: "Vibe",
@@ -1062,6 +1214,12 @@
     const filterAllLabel = document.getElementById('filter-label-all');
     if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
     document.getElementById('filters-label').textContent = t('filtersLabel');
+    document.getElementById('legend-badge-ia').textContent = t('badgeIA');
+    document.getElementById('legend-text-ia').textContent = t('legendIA');
+    document.getElementById('legend-badge-communaute').textContent = `✓ ${lang === 'fr' ? 'Communauté' : 'Community'}`;
+    document.getElementById('legend-text-communaute').textContent = t('legendCommunaute');
+    document.getElementById('legend-badge-ambassadeur').textContent = `🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}`;
+    document.getElementById('legend-text-ambassadeur').textContent = t('legendAmbassadeur');
     const viewLabelMap = document.getElementById('view-label-map');
     if (viewLabelMap) viewLabelMap.textContent = t('viewMap');
     const viewLabelTable = document.getElementById('view-label-table');
@@ -1076,8 +1234,8 @@
       const el = document.getElementById(id);
       if (el) el.textContent = t('soonTag');
     });
-    const zoneSearchEl = document.getElementById('zone-search');
-    if (zoneSearchEl && !zoneSearchEl.dataset.touched) zoneSearchEl.value = t('zoneActiveLabel');
+    const zoneCtaLabelEl = document.getElementById('zone-cta-label');
+    if (zoneCtaLabelEl) zoneCtaLabelEl.textContent = t('zoneActiveLabel');
   }
 
   window.toggleLang = function(){
@@ -1316,16 +1474,158 @@
     }
   };
 
+  const BUDGET_MAP = {
+    fr: {
+      Camping: { min: "20 €", moyen: "35 €" },
+      "Hôtel": { min: "70 €", moyen: "110 €" },
+      "Village vacances": { min: "50 €", moyen: "75 €" },
+      "Surf camp / lodge": { min: "55 €", moyen: "85 €" },
+      "Résidence / resort": { min: "100 €", moyen: "160 €" },
+      "Sélection office de tourisme": { min: "Variable", moyen: "Variable" },
+      "École de surf": { min: "35 €", moyen: "45 €" },
+      "École de glisse": { min: "40 €", moyen: "60 €" },
+      "Établissement local": { min: "Variable", moyen: "Variable" }
+    },
+    en: {
+      Camping: { min: "€20", moyen: "€35" },
+      "Hôtel": { min: "€70", moyen: "€110" },
+      "Village vacances": { min: "€50", moyen: "€75" },
+      "Surf camp / lodge": { min: "€55", moyen: "€85" },
+      "Résidence / resort": { min: "€100", moyen: "€160" },
+      "Sélection office de tourisme": { min: "Varies", moyen: "Varies" },
+      "École de surf": { min: "€35", moyen: "€45" },
+      "École de glisse": { min: "€40", moyen: "€60" },
+      "Établissement local": { min: "Varies", moyen: "Varies" }
+    }
+  };
+  function budgetEstimate(kindKey){
+    const table = BUDGET_MAP[lang] || BUDGET_MAP.fr;
+    return table[kindKey] || table["Établissement local"];
+  }
+
+  // ── Budget détaillé estimé à partir des réponses du quiz (hébergement + cours + location + courses) ──
+  const NIGHT_RATE = { "Camping":45, "Hôtel":120, "Village vacances":90, "Surf camp / lodge":95, "Résidence / resort":170, "Sélection office de tourisme":90, "École de surf":90, "École de glisse":90, "Établissement local":90 };
+  const NIGHTS_BY_DURATION = { weekend:2, semaine:7, deux_semaines:14 };
+  const GROUP_SIZE = { seul:1, couple:2, famille:4, amis:4 };
+  const LESSONS_BY_DURATION = { weekend:2, semaine:5, deux_semaines:9 };
+
+  function computeFullBudget(spot){
+    if (!wizardAnswers.duration || !spot.stay) return null;
+    const nights = NIGHTS_BY_DURATION[wizardAnswers.duration] || 7;
+    const group = GROUP_SIZE[wizardAnswers.who] || 2;
+    const groupFactor = group <= 1 ? 0.6 : group === 2 ? 0.85 : group <= 4 ? 1.15 : 1.4;
+    const kind = inferKind(spot.stay.name);
+
+    const hebergement = Math.round((NIGHT_RATE[kind] || 90) * nights * groupFactor);
+
+    const wantsLessons = spot.school && (wizardAnswers.who === 'famille' || wizardAnswers.priorities.includes('progression'));
+    const lessonsCount = LESSONS_BY_DURATION[wizardAnswers.duration] || 5;
+    const cours = wantsLessons ? Math.round(lessonsCount * 48) : 0;
+
+    const location = spot.school ? Math.round(nights * 26 * (group <= 2 ? 0.6 : group <= 4 ? 1 : 1.3)) : 0;
+
+    const courses = Math.round(nights * 36 * (group <= 2 ? 0.5 : group <= 4 ? 1 : 1.4));
+
+    const total = hebergement + cours + location + courses;
+    return { hebergement, cours, location, courses, total, lessonsCount, wantsLessons };
+  }
+
   function buildPanelHTML(spot, idx){
     const d = lang === 'en' && spot.en ? spot.en : spot; // champs traduits si dispo
     const tags = spot.sports.map(s =>
       `<span class="popup-tag" style="background:${SPORT_COLORS[s]}">${SPORT_ICONS[s]}${SPORT_LABELS[s]}</span>`
     ).join("");
 
-    function sectionHeader(title, key){
-      return `<div class="section-label"><b>${title}</b><span id="status-${idx}-${key}">${statusBadge(idx, key)}</span></div>
-      <div id="controls-${idx}-${key}">${sectionControls(idx, key)}</div>`;
+    function accordion(anchor, title, badgeHtml, bodyHtml){
+      return `
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" id="${anchor}" onclick="toggleAccordion('${anchor}-body', this)">
+            <b>${title}</b>
+            <span class="accordion-header-right">${badgeHtml}<span class="accordion-chevron">▸</span></span>
+          </button>
+          <div class="accordion-body" id="${anchor}-body" style="display:none;">
+            ${bodyHtml}
+          </div>
+        </div>`;
     }
+
+    const budget = spot.stay ? budgetEstimate(inferKind(spot.stay.name)) : null;
+    const fullBudget = computeFullBudget(spot);
+
+    const quickCards = [
+      { icon: "🎯", label: t('cardSpot'), anchor: `anchor-technique-${idx}` },
+      { icon: "🚗", label: t('cardTransport'), anchor: `anchor-transport-${idx}` },
+      spot.stay ? { icon: "🛏️", label: t('cardHebergement'), anchor: `anchor-hebergement-${idx}` } : null,
+      spot.school ? { icon: "🏄", label: t('cardEcole'), anchor: `anchor-ecole-${idx}` } : null
+    ].filter(Boolean);
+
+    const quickCardsHtml = `
+      <div class="quick-cards">
+        ${quickCards.map(c => `<button type="button" class="quick-card" onclick="openAndScroll('${c.anchor}')"><span>${c.icon}</span>${c.label}</button>`).join("")}
+      </div>`;
+
+    const technicheBody = `
+      <div class="panel-grid">
+        <div class="popup-row"><span>${t('rowNiveau')}</span><span>${d.level}</span></div>
+        <div class="popup-row"><span>${t('rowSaison')}</span><span>${d.season}</span></div>
+        <div class="popup-row"><span>${t('rowConditions')}</span><span>${d.conditions}</span></div>
+        <div class="popup-row"><span>${t('rowAmbiance')}</span><span>${d.ambiance}</span></div>
+        <div class="popup-row"><span>${t('rowAcces')}</span><span>${d.access}</span></div>
+      </div>
+      <div class="popup-around"><span>${t('rowAutour')}</span>${d.around}</div>
+      <div id="controls-${idx}-technique">${sectionControls(idx, "technique")}</div>`;
+
+    const transportBody = `<p class="popup-transport">${d.transport || "—"}</p><div id="controls-${idx}-transport">${sectionControls(idx, "transport")}</div>`;
+
+    const hebergementBody = spot.stay ? `
+      <div class="popup-links">
+        <a class="link-card link-card-primary" href="${spot.stay.url}" target="_blank" rel="noopener">
+          <span class="link-kind">${t('linkVerifie')}</span>
+          <span class="link-name">${spot.stay.name}</span>
+          <span class="link-type">${KIND_LABELS[lang][inferKind(spot.stay.name)]}</span>
+          ${spot.stay.distance ? `<span class="link-distance">📍 ${spot.stay.distance}</span>` : ""}
+          <span class="link-price">${inferPrice(inferKind(spot.stay.name))} <i>${t('estimationIA')}</i></span>
+          <span class="link-cta">${t('linkTarifs')}</span>
+        </a>
+      </div>
+      <div id="controls-${idx}-hebergement">${sectionControls(idx, "hebergement")}</div>` : "";
+
+    const ecoleBody = spot.school ? `
+      <div class="popup-links">
+        <a class="link-card" href="${spot.school.url}" target="_blank" rel="noopener">
+          <span class="link-kind">${t('linkVerifie')}</span>
+          <span class="link-name">${spot.school.name}</span>
+          <span class="link-type">${KIND_LABELS[lang][inferKind(spot.school.name)]}</span>
+          <span class="link-price">${inferPrice(inferKind(spot.school.name))} <i>${t('estimationIA')}</i></span>
+          <span class="link-cta">${t('linkSiteOfficiel')}</span>
+        </a>
+      </div>
+      <div id="controls-${idx}-ecole">${sectionControls(idx, "ecole")}</div>` : "";
+
+    const budgetBody = budget ? (fullBudget ? `
+      <div class="panel-grid">
+        <div class="popup-row"><span>${t('rowHebergement')}</span><span>${fullBudget.hebergement} €</span></div>
+        ${fullBudget.wantsLessons ? `<div class="popup-row"><span>${t('rowCours', fullBudget.lessonsCount)}</span><span>${fullBudget.cours} €</span></div>` : ""}
+        ${fullBudget.location > 0 ? `<div class="popup-row"><span>${t('rowLocation')}</span><span>${fullBudget.location} €</span></div>` : ""}
+        <div class="popup-row"><span>${t('rowCourses')}</span><span>${fullBudget.courses} €</span></div>
+      </div>
+      <p class="budget-total">${t('rowTotal')} : <b>${fullBudget.total} €</b></p>
+      <p class="budget-note">${t('budgetFullNote')}</p>` : `
+      <div class="panel-grid">
+        <div class="popup-row"><span>${t('rowBudgetMin')}</span><span>${budget.min}</span></div>
+        <div class="popup-row"><span>${t('rowBudgetMoyen')}</span><span>${budget.moyen}</span></div>
+      </div>
+      <p class="budget-note">${t('budgetNote')}</p>`) : "";
+
+    const avisBody = `
+      <div id="comments-list-${idx}">${renderComments(idx)}</div>
+      <div class="comment-form">
+        <input type="text" id="comment-author-${idx}" placeholder="${t('commentPlaceholderName')}" maxlength="40">
+        <textarea id="comment-text-${idx}" placeholder="${t('commentPlaceholderText')}" maxlength="240"></textarea>
+        <button type="button" onclick="addComment(${idx})">${t('commentPublish')}</button>
+      </div>`;
+
+    const suggestBody = `<div id="suggestion-zone-${idx}">${buildSuggestionForm(idx)}</div>`;
 
     return `
       <div class="panel-card">
@@ -1335,64 +1635,17 @@
         <div class="popup-tags">${tags}</div>
         <p class="popup-desc">${d.desc}</p>
 
-        <div class="trust-legend">
-          <span class="trust-legend-item"><span class="badge badge-ia">${t('badgeIA')}</span> ${t('legendIA')}</span>
-          <span class="trust-legend-item"><span class="badge badge-communaute">✓ ${lang === 'fr' ? 'Communauté' : 'Community'}</span> ${t('legendCommunaute')}</span>
-          <span class="trust-legend-item"><span class="badge badge-ambassadeur">🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}</span> ${t('legendAmbassadeur')}</span>
+        ${quickCardsHtml}
+
+        <div class="accordion">
+          ${accordion(`anchor-technique-${idx}`, t('secTechnique'), `<span id="status-${idx}-technique">${statusBadge(idx, "technique")}</span>`, technicheBody)}
+          ${accordion(`anchor-transport-${idx}`, t('secTransport'), `<span id="status-${idx}-transport">${statusBadge(idx, "transport")}</span>`, transportBody)}
+          ${spot.stay ? accordion(`anchor-hebergement-${idx}`, t('secHebergement'), `<span id="status-${idx}-hebergement">${statusBadge(idx, "hebergement")}</span>`, hebergementBody) : ""}
+          ${spot.school ? accordion(`anchor-ecole-${idx}`, t('secEcole'), `<span id="status-${idx}-ecole">${statusBadge(idx, "ecole")}</span>`, ecoleBody) : ""}
+          ${spot.tip ? accordion(`anchor-bonplan-${idx}`, t('secBonPlan'), `<span class="badge badge-ia">${t('badgeIA')}</span>`, `<p class="popup-tip">💡 ${d.tip}</p>`) : ""}
+          ${accordion(`anchor-avis-${idx}`, t('secAvis'), `<span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span>`, avisBody)}
+          ${accordion(`anchor-suggest-${idx}`, t('secSuggest'), `<span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span>`, suggestBody)}
         </div>
-
-        ${sectionHeader(t('secTechnique'), "technique")}
-        <div class="panel-grid">
-          <div class="popup-row"><span>${t('rowNiveau')}</span><span>${d.level}</span></div>
-          <div class="popup-row"><span>${t('rowSaison')}</span><span>${d.season}</span></div>
-          <div class="popup-row"><span>${t('rowConditions')}</span><span>${d.conditions}</span></div>
-          <div class="popup-row"><span>${t('rowAmbiance')}</span><span>${d.ambiance}</span></div>
-          <div class="popup-row"><span>${t('rowAcces')}</span><span>${d.access}</span></div>
-        </div>
-        <div class="popup-around"><span>${t('rowAutour')}</span>${d.around}</div>
-
-        ${sectionHeader(t('secTransport'), "transport")}
-        <p class="popup-transport">${d.transport || "—"}</p>
-
-        ${spot.stay ? `
-        ${sectionHeader(t('secHebergement'), "hebergement")}
-        <div class="popup-links">
-          <a class="link-card link-card-primary" href="${spot.stay.url}" target="_blank" rel="noopener">
-            <span class="link-kind">${t('linkVerifie')}</span>
-            <span class="link-name">${spot.stay.name}</span>
-            <span class="link-type">${KIND_LABELS[lang][inferKind(spot.stay.name)]}</span>
-            ${spot.stay.distance ? `<span class="link-distance">📍 ${spot.stay.distance}</span>` : ""}
-            <span class="link-price">${inferPrice(inferKind(spot.stay.name))} <i>${t('estimationIA')}</i></span>
-            <span class="link-cta">${t('linkTarifs')}</span>
-          </a>
-        </div>` : ""}
-
-        ${spot.school ? `
-        ${sectionHeader(t('secEcole'), "ecole")}
-        <div class="popup-links">
-          <a class="link-card" href="${spot.school.url}" target="_blank" rel="noopener">
-            <span class="link-kind">${t('linkVerifie')}</span>
-            <span class="link-name">${spot.school.name}</span>
-            <span class="link-type">${KIND_LABELS[lang][inferKind(spot.school.name)]}</span>
-            <span class="link-price">${inferPrice(inferKind(spot.school.name))} <i>${t('estimationIA')}</i></span>
-            <span class="link-cta">${t('linkSiteOfficiel')}</span>
-          </a>
-        </div>` : ""}
-
-        ${spot.tip ? `
-        <div class="section-label"><b>${t('secBonPlan')}</b><span class="badge badge-ia">${t('badgeIA')}</span></div>
-        <p class="popup-tip">💡 ${d.tip}</p>` : ""}
-
-        <div class="section-label"><b>${t('secAvis')}</b><span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span></div>
-        <div id="comments-list-${idx}">${renderComments(idx)}</div>
-        <div class="comment-form">
-          <input type="text" id="comment-author-${idx}" placeholder="${t('commentPlaceholderName')}" maxlength="40">
-          <textarea id="comment-text-${idx}" placeholder="${t('commentPlaceholderText')}" maxlength="240"></textarea>
-          <button type="button" onclick="addComment(${idx})">${t('commentPublish')}</button>
-        </div>
-
-        <div class="section-label"><b>${t('secSuggest')}</b><span class="badge badge-communaute">${lang === 'fr' ? 'Communauté' : 'Community'}</span></div>
-        <div id="suggestion-zone-${idx}">${buildSuggestionForm(idx)}</div>
       </div>
     `;
   }
@@ -1441,6 +1694,27 @@
     panelEl.innerHTML = buildPanelHTML(spots[idx], idx);
     panelEl.scrollTop = 0;
   }
+
+  window.toggleAccordion = function(bodyId, headerBtn){
+    const body = document.getElementById(bodyId);
+    if (!body) return;
+    const chevron = headerBtn.querySelector('.accordion-chevron');
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    if (chevron) chevron.textContent = isOpen ? '▸' : '▾';
+  };
+
+  window.openAndScroll = function(anchorId){
+    const header = document.getElementById(anchorId);
+    if (!header) return;
+    const body = document.getElementById(`${anchorId}-body`);
+    if (body && body.style.display !== 'block') {
+      body.style.display = 'block';
+      const chevron = header.querySelector('.accordion-chevron');
+      if (chevron) chevron.textContent = '▾';
+    }
+    header.scrollIntoView({ behavior:'smooth', block:'start' });
+  };
 
   window.addComment = async function(idx){
     const authorEl = document.getElementById(`comment-author-${idx}`);
@@ -1531,47 +1805,50 @@
     filtersEl.appendChild(btn);
   });
 
-  // ── Barre de recherche destination façon Booking : repliée en icône par défaut ──
-  const zoneSearchInput = document.getElementById('zone-search');
+  // ── Sélecteur de destination : gros bouton unique, plus de repli en icône ──
+  const zoneCtaLabel = document.getElementById('zone-cta-label');
   const zoneDropdown = document.getElementById('zone-dropdown');
-  const zoneCollapsedBtn = document.getElementById('zone-search-collapsed');
-  const zoneTrigger = document.getElementById('zone-search-trigger');
-  zoneSearchInput.value = t('zoneActiveLabel');
+  const zoneCtaBtn = document.getElementById('zone-cta-btn');
+  zoneCtaLabel.textContent = t('zoneActiveLabel');
 
-  function expandZoneSearch(){
-    zoneCollapsedBtn.style.display = 'none';
-    zoneTrigger.style.display = 'flex';
-    zoneDropdown.classList.add('open');
-  }
-  function collapseZoneSearch(){
-    zoneTrigger.style.display = 'none';
-    zoneCollapsedBtn.style.display = 'flex';
-    zoneDropdown.classList.remove('open');
-  }
-
-  zoneCollapsedBtn.addEventListener('click', (e) => { e.stopPropagation(); expandZoneSearch(); });
-  zoneTrigger.addEventListener('click', (e) => {
+  zoneCtaBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     zoneDropdown.classList.toggle('open');
   });
   document.querySelector('.zone-option[data-zone="all"]').addEventListener('click', () => {
-    zoneSearchInput.value = t('zoneActiveLabel');
-    collapseZoneSearch();
+    zoneCtaLabel.textContent = t('zoneActiveLabel');
+    zoneDropdown.classList.remove('open');
   });
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.zone-search-wrap')) collapseZoneSearch();
+    if (!e.target.closest('.zone-search-wrap')) zoneDropdown.classList.remove('open');
   });
 
   // ── Vue tableau : liste scrollable des spots, alternative à la carte pour mobile ──
+  // Variables conservées à l'état neutre (le quiz qui les alimentait a été retiré) :
+  // wizardResults reste toujours null → le tableau affiche la liste normale.
+  // wizardAnswers reste vide → computeFullBudget() renvoie toujours null → repli sur le budget simple.
+  let wizardAnswers = { who: null, priorities: [], duration: null };
+  let wizardResults = null;
+
   function renderTableView(){
     const tableEl = document.getElementById('table-view');
-    const visibleSpots = spots
-      .map((spot, idx) => ({ spot, idx }))
-      .filter(({ spot }) => activeSport === "all" || spot.sports.includes(activeSport));
+    const durationKey = 'min';
 
-    tableEl.innerHTML = visibleSpots.map(({ spot, idx }) => {
+    let visibleSpots;
+    let banner = "";
+    if (wizardResults) {
+      visibleSpots = wizardResults.map(idx => ({ spot: spots[idx], idx }));
+      banner = `<div class="wizard-results-banner"><span>${t('wizardResultsLabel')} (${visibleSpots.length})</span><button type="button" class="wizard-reset-btn" id="wizard-reset-btn">${t('wizardReset')}</button></div>`;
+    } else {
+      visibleSpots = spots
+        .map((spot, idx) => ({ spot, idx }))
+        .filter(({ spot }) => activeSport === "all" || spot.sports.includes(activeSport));
+    }
+
+    tableEl.innerHTML = banner + visibleSpots.map(({ spot, idx }) => {
       const d = lang === 'en' && spot.en ? spot.en : spot;
       const dots = spot.sports.map(s => `<span class="row-dot" style="background:${SPORT_COLORS[s]}">${SPORT_ICONS[s]}</span>`).join("");
+      const budgetTag = (wizardResults && spot.stay) ? `<span class="spot-row-match">${budgetEstimate(inferKind(spot.stay.name))[durationKey]}</span>` : "";
       return `
         <div class="spot-row" data-idx="${idx}">
           <div class="spot-row-sports">${dots}</div>
@@ -1579,6 +1856,7 @@
             <div class="spot-row-name">${spot.name}</div>
             <div class="spot-row-meta">${spot.commune} · ${d.level}</div>
           </div>
+          ${budgetTag}
           <div class="spot-row-arrow">→</div>
         </div>`;
     }).join("");
@@ -1586,6 +1864,8 @@
     tableEl.querySelectorAll('.spot-row').forEach(row => {
       row.addEventListener('click', () => openSpot(parseInt(row.dataset.idx, 10)));
     });
+    const resetBtn = document.getElementById('wizard-reset-btn');
+    if (resetBtn) resetBtn.addEventListener('click', () => { wizardResults = null; renderTableView(); });
   }
 
   document.getElementById('view-btn-map').addEventListener('click', () => {

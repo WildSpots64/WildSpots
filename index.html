@@ -709,12 +709,26 @@
   .budget-total{ font-size:1rem; color:var(--navy); margin:10px 0 4px; }
   .budget-total b{ color:var(--coral); font-family:'Anton', sans-serif; font-size:1.2rem; }
 
+  .trust-legend-wrap{ position:relative; margin-bottom:24px; text-align:right; z-index:600; isolation:isolate; }
+  .trust-legend-toggle{
+    background:none; border:1px solid var(--line); border-radius:100px;
+    padding:6px 12px;
+    font-family:'JetBrains Mono', monospace; font-size:0.66rem;
+    color:rgba(247,244,236,0.7); cursor:pointer;
+  }
+  .trust-legend-toggle:hover{ border-color:var(--amber); color:var(--foam); }
   .trust-legend{
-    display:flex; flex-direction:column; gap:6px;
+    display:none;
+    position:absolute; top:calc(100% + 6px); right:0;
+    flex-direction:column; gap:6px;
     background:#F3EFDD; border-radius:8px;
     padding:10px 12px;
-    margin-bottom:20px;
+    width:min(280px, 80vw);
+    box-shadow:0 10px 24px -8px rgba(0,0,0,0.3);
+    z-index:400;
+    text-align:left;
   }
+  .trust-legend.open{ display:flex; }
   .trust-legend-item{
     display:flex; align-items:center; gap:6px;
     font-size:0.66rem; color:#3f5460; line-height:1.25;
@@ -999,10 +1013,13 @@
       <h2 id="map-title">Trouve le bon spot en quelques minutes</h2>
     </div>
 
-    <div class="trust-legend">
-      <span class="trust-legend-item"><span class="badge badge-ia" id="legend-badge-ia">IA</span> <span id="legend-text-ia">Info générée automatiquement, à vérifier</span></span>
-      <span class="trust-legend-item"><span class="badge badge-communaute" id="legend-badge-communaute">✓ Communauté</span> <span id="legend-text-communaute">Confirmée par des riders qui y sont allés</span></span>
-      <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
+    <div class="trust-legend-wrap">
+      <button type="button" class="trust-legend-toggle" id="trust-legend-toggle">ℹ️ <span id="trust-legend-toggle-label">Comment lire les badges ?</span></button>
+      <div class="trust-legend" id="trust-legend">
+        <span class="trust-legend-item"><span class="badge badge-ia" id="legend-badge-ia">IA</span> <span id="legend-text-ia">Info générée automatiquement, à vérifier</span></span>
+        <span class="trust-legend-item"><span class="badge badge-communaute" id="legend-badge-communaute">✓ Communauté</span> <span id="legend-text-communaute">Confirmée par des riders qui y sont allés</span></span>
+        <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
+      </div>
     </div>
 
     <div class="filters-label" id="filters-label-zone">1. Destination</div>
@@ -1033,7 +1050,7 @@
 
     <div class="filters-label" id="filters-label">2. Sport</div>
     <div class="filters" id="filters"></div>
-    <div class="filters-label" id="filters-label-step3">3. C'est parti</div>
+    <div class="filters-label" id="filters-label-step3">3. Go</div>
     <div class="view-toggle">
       <button type="button" class="view-toggle-btn" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
       <button type="button" class="view-toggle-btn active" id="view-btn-table">📋 <span id="view-label-table">Tableau</span></button>
@@ -1086,7 +1103,7 @@
       mapEyebrow: "Tu prépares un trip ?", mapTitle: "Trouve le bon spot en quelques minutes",
       mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
-      filterAll: "Tous", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. C'est parti", zoneAll: "Toutes les zones",
+      filterAll: "Tous", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Go", zoneAll: "Toutes les zones",
       viewMap: "Carte", viewTable: "Tableau",
       zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt disponible", soonTag: "Bientôt",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
@@ -1124,6 +1141,7 @@
       legendIA: "Info générée automatiquement, à vérifier",
       legendCommunaute: "Confirmée par des riders qui y sont allés",
       legendAmbassadeur: "Certifiée par un ambassadeur WildSpots",
+      trustLegendToggle: "Comment lire les badges ?",
       btnConfirm: c => `⭐ Je confirme · ${c}`, btnConfirmed: c => `⭐ Validé · ${c}`,
       ambassadorToggle: "🛡️ Ambassadeur WildSpots ?", ambassadorPlaceholder: "Code ambassadeur",
       ambassadorConfirm: "Confirmer", ambassadorWrong: "Code incorrect",
@@ -1151,7 +1169,7 @@
       mapEyebrow: "Planning a trip?", mapTitle: "Find the right spot in minutes",
       mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
-      filterAll: "All", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Let's go", zoneAll: "All areas",
+      filterAll: "All", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Go", zoneAll: "All areas",
       viewMap: "Map", viewTable: "Table",
       zoneActiveLabel: "Landes · Basque Country", zoneAvailableNow: "Available now", zoneComingSoon: "Coming soon", soonTag: "Soon",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
@@ -1188,6 +1206,7 @@
       legendIA: "Auto-generated info, worth double-checking",
       legendCommunaute: "Confirmed by riders who've been there",
       legendAmbassadeur: "Certified by a WildSpots ambassador",
+      trustLegendToggle: "How to read the badges?",
       btnConfirm: c => `⭐ I confirm · ${c}`, btnConfirmed: c => `⭐ Confirmed · ${c}`,
       ambassadorToggle: "🛡️ WildSpots ambassador?", ambassadorPlaceholder: "Ambassador code",
       ambassadorConfirm: "Confirm", ambassadorWrong: "Wrong code",
@@ -1232,6 +1251,7 @@
     document.getElementById('legend-text-communaute').textContent = t('legendCommunaute');
     document.getElementById('legend-badge-ambassadeur').textContent = `🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}`;
     document.getElementById('legend-text-ambassadeur').textContent = t('legendAmbassadeur');
+    document.getElementById('trust-legend-toggle-label').textContent = t('trustLegendToggle');
     const viewLabelMap = document.getElementById('view-label-map');
     if (viewLabelMap) viewLabelMap.textContent = t('viewMap');
     const viewLabelTable = document.getElementById('view-label-table');
@@ -1833,6 +1853,17 @@
   });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.zone-search-wrap')) zoneDropdown.classList.remove('open');
+  });
+
+  // ── Légende IA/Communauté/Ambassadeur : repliée par défaut, dépliée au clic ──
+  const trustLegendToggle = document.getElementById('trust-legend-toggle');
+  const trustLegend = document.getElementById('trust-legend');
+  trustLegendToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    trustLegend.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.trust-legend-wrap')) trustLegend.classList.remove('open');
   });
 
   // ── Vue tableau : liste scrollable des spots, alternative à la carte pour mobile ──

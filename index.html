@@ -988,7 +988,8 @@
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <h2 id="map-title">Trouve ton spot en quelques minutes</h2>
+      <div class="eyebrow" id="map-eyebrow">Tu prépares un trip ?</div>
+      <h2 id="map-title">Trouve le bon spot en quelques minutes</h2>
     </div>
 
     <div class="trust-legend">
@@ -1074,7 +1075,7 @@
       appShortcutsTitle: "Pour toi",
       bannerEyebrow: "Trip à préparer ?", bannerTitle: "Choisis ton spot à l'avance", bannerCta: "Explorer la carte →",
       featuredLabel: "Spot du moment", featuredCta: "Voir la fiche →",
-      mapEyebrow: "Landes · Pays Basque", mapTitle: "Trouve ton spot en quelques minutes",
+      mapEyebrow: "Tu prépares un trip ?", mapTitle: "Trouve le bon spot en quelques minutes",
       mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
       panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
       filterAll: "Tous", filtersLabel: "Choisis ton sport", filtersLabelZone: "Destination", zoneAll: "Toutes les zones",
@@ -1139,7 +1140,7 @@
       appShortcutsTitle: "For you",
       bannerEyebrow: "Trip to plan?", bannerTitle: "Pick your spot ahead of time", bannerCta: "Explore the map →",
       featuredLabel: "Featured spot", featuredCta: "See full profile →",
-      mapEyebrow: "Landes · Basque Country", mapTitle: "Find your spot in minutes",
+      mapEyebrow: "Planning a trip?", mapTitle: "Find the right spot in minutes",
       mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
       panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
       filterAll: "All", filtersLabel: "Choose your sport", filtersLabelZone: "Destination", zoneAll: "All areas",
@@ -1205,6 +1206,7 @@
     document.getElementById('nav-tagline').textContent = t('navTagline');
     document.getElementById('nav-cta-link').textContent = t('navCta');
     document.getElementById('lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
+    document.getElementById('map-eyebrow').textContent = t('mapEyebrow');
     document.getElementById('map-title').textContent = t('mapTitle');
     document.getElementById('panel-placeholder-text').textContent = t('panelPlaceholder');
     document.getElementById('footer-title').textContent = t('footerTitle');

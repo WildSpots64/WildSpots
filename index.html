@@ -1501,10 +1501,9 @@
       en:{level:"Beginner", season:"Year-round", conditions:"Sheltered bay, reduced swell and wind", access:"Seafront parking, lifeguarded beach", ambiance:"Family-friendly, cross-border (facing Spain)", around:"Surf/wing schools, restaurants, casino", desc:"Sheltered bay facing Spain, a very approachable spot.", transport:"Hendaye station (TGV + Spanish trains) ~10 min; Biarritz airport ~25 min; Txik Txak bus network.", tip:"Great for learning year-round thanks to its sheltered bay."}}
   ];
 
-  const map = L.map('map', { scrollWheelZoom:false }).setView([43.75, -1.55], 9);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    maxZoom: 18
+   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
   }).addTo(map);
 
   function primaryColor(sports){

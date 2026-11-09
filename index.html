@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WildSpots — Moins de recherches. Plus de sessions.</title>
-<meta name="description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec hébergement, école et budget en quelques minutes.">
+<meta name="description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec accès, hébergement, écoles et bons plans en quelques minutes.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WildSpots — Moins de recherches. Plus de sessions.">
-<meta property="og:description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec hébergement, école et budget en quelques minutes.">
-<meta property="og:image" content="og-image.png">
+<meta property="og:description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque, avec accès, hébergement, écoles et bons plans en quelques minutes.">
+<meta property="og:image" content="https://wildspots64.github.io/WildSpots/og-image.png">
 <meta property="og:url" content="https://wildspots64.github.io/WildSpots/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="WildSpots — Moins de recherches. Plus de sessions.">
 <meta name="twitter:description" content="Trouve le bon spot de surf, kite, wind ou wingfoil dans les Landes et le Pays Basque en quelques minutes.">
-<meta name="twitter:image" content="og-image.png">
+<meta name="twitter:image" content="https://wildspots64.github.io/WildSpots/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -95,6 +95,7 @@
     transition:background .2s ease, border-color .2s ease;
   }
   .nav-cta:hover{ background:var(--coral); border-color:var(--coral); }
+  button.nav-cta{ background:transparent; } /* bouton FR/EN : sans ça, fond gris clair + texte clair = illisible */
 
   /* HERO */
   .hero{
@@ -992,6 +993,126 @@
     html{ scroll-behavior:auto; }
     *{ transition:none !important; }
   }
+
+  /* ═══════════════════════════════════════════════════════════
+     SPRINT 1 UX — hero mobile-first (titre, sports, carte d'office)
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Titre principal (H1) et sous-titre : plus compacts */
+  .section-head h1{ font-size:clamp(1.85rem, 7vw, 2.9rem); color:var(--navy); }
+  .map-section .section-head h1{ color:var(--foam); }
+  .map-section .section-head{ margin-bottom:22px; }
+  .map-section .section-head .eyebrow{ margin-bottom:14px; }
+  .map-section .section-head p{ margin-top:14px; }
+
+  /* Bouton principal : en ligne sur ordinateur (collé en bas sur smartphone, voir plus bas) */
+  .cta-bar{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:0 0 28px; }
+  .cta-bar .btn-primary{ border:none; cursor:pointer; font-size:0.9rem; padding:15px 28px; }
+  .cta-secondary{
+    background:none; border:none; padding:8px 4px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--sand);
+    text-decoration:underline; text-underline-offset:4px;
+  }
+  .cta-secondary:hover{ color:var(--foam); }
+
+  /* Boutons de sport avec icônes (zone tactile ≥ 44 px) */
+  .filters{ gap:10px; margin-bottom:14px; }
+  .filter-pill{ gap:8px; min-height:44px; padding:10px 16px; white-space:nowrap; }
+  .filter-pill .pill-icon{ display:inline-flex; width:20px; height:20px; flex-shrink:0; }
+  .filter-pill .pill-icon svg{ width:20px; height:20px; }
+  .filter-pill[data-key="all"].active .pill-icon{ color:var(--navy) !important; }
+  .filter-pill.active span:last-child{ color:var(--navy); } /* corrige un texte clair sur fond clair */
+
+  /* Ligne destination + bascule Carte / Liste */
+  .controls-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 14px; margin-bottom:14px; }
+  .zone-search-wrap{ margin-bottom:0; }
+  .view-toggle{ margin-bottom:0; }
+  .zone-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    min-height:44px; padding:8px 16px;
+    background:rgba(247,244,236,0.06);
+    border:1.5px solid var(--coral); border-radius:100px;
+    color:var(--foam);
+    font-family:'Work Sans', sans-serif; font-size:0.88rem; font-weight:600;
+    cursor:pointer;
+  }
+  .zone-pill:hover{ background:rgba(227,87,42,0.14); }
+  .zone-dropdown{ right:auto; width:min(340px, calc(100vw - 36px)); max-width:none; max-height:min(440px, 70vh); }
+
+  /* Encart « Bientôt » : prévenir quand de nouvelles destinations ouvrent */
+  .soon-box{ padding:4px 18px 14px; }
+  .soon-box p{ margin:4px 0 10px; font-size:0.84rem; line-height:1.4; color:#3f5460; font-weight:500; }
+  .soon-form{ display:flex; flex-direction:column; gap:8px; }
+  .soon-form input{
+    width:100%; padding:11px 12px;
+    border:1px solid #d8d0ba; border-radius:8px; background:#fff; color:var(--navy);
+    font-family:'Work Sans', sans-serif; font-size:16px; /* 16 px : évite le zoom automatique sur iPhone */
+  }
+  .soon-form button{
+    background:var(--coral); color:#fff; border:none; border-radius:100px;
+    padding:12px 16px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; font-weight:700; letter-spacing:0.02em;
+  }
+  .soon-form button:disabled{ opacity:.6; cursor:default; }
+  .soon-consent{ font-size:0.66rem; line-height:1.35; color:#8a8a8a; }
+  .soon-msg{ font-size:0.8rem; font-weight:600; min-height:1.1em; }
+  .soon-msg.ok{ color:var(--teal); }
+  .soon-msg.err{ color:#b3401b; }
+
+  /* Indice posé sur la carte : « Touche un spot pour voir sa fiche » */
+  .map-hint{
+    /* décalé à droite du bouton de zoom (≈ 44 px de large) pour ne pas se chevaucher */
+    position:absolute; left:56px; top:12px; z-index:650;
+    width:max-content; max-width:calc(100% - 68px); text-align:center;
+    padding:8px 12px; border-radius:18px;
+    background:var(--navy); color:var(--foam); border:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0; line-height:1.3;
+    text-wrap:balance; /* si le texte passe sur 2 lignes, elles sont équilibrées (pas de mot seul) */
+    box-shadow:0 8px 20px -8px rgba(0,0,0,0.5);
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .map-hint::before{ content:"👆"; margin-right:8px; }
+  .map-hint.gone{ opacity:0; transform:translateY(-6px); }
+
+  /* Légende des badges : sous la carte, s'ouvre vers le haut */
+  .trust-row{ display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; margin-top:16px; }
+  .trust-row-text{ font-size:0.8rem; line-height:1.4; color:rgba(247,244,236,0.78); }
+  /* z-index bas : la légende doit rester SOUS la barre du bas (z-index 450) quand on fait défiler */
+  .trust-legend-wrap{ margin-bottom:0; text-align:left; z-index:5; }
+  .zone-search-wrap{ scroll-margin-top:76px; }
+  .trust-legend{ top:auto; bottom:calc(100% + 8px); right:auto; left:0; }
+
+  /* Quand on saute vers la carte / la liste / la fiche, on laisse la place de la barre du haut */
+  #map, #table-view, .spot-panel{ scroll-margin-top:76px; }
+
+  @media (max-width: 860px){
+    body{ padding-bottom:112px; } /* place pour la barre du bas */
+    .cta-bar{
+      position:fixed; left:0; right:0; bottom:0; z-index:450;
+      flex-direction:column; align-items:stretch; flex-wrap:nowrap; gap:2px; margin:0;
+      padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(11,36,54,0.94);
+      -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+      border-top:1px solid var(--line);
+    }
+    .cta-bar .btn-primary{ width:100%; justify-content:center; min-height:52px; font-size:0.95rem; }
+    .cta-secondary{ align-self:center; padding:6px 8px; font-size:0.74rem; }
+    /* Boutons de sport : une seule ligne qu'on fait défiler du doigt */
+    .filters{
+      flex-wrap:nowrap; overflow-x:auto;
+      margin-left:-28px; margin-right:-28px; padding:2px 28px 6px;
+      scrollbar-width:none; -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;
+      scroll-padding:0 28px; /* sinon l'aimantation colle le 1er bouton au bord de l'écran */
+    }
+    .filters::-webkit-scrollbar{ display:none; }
+    .filter-pill{ flex:0 0 auto; scroll-snap-align:start; }
+    #map{ height:clamp(300px, 46vh, 440px); }
+    .zone-dropdown{ max-height:min(420px, 60vh); }
+  }
+  @media (max-width: 480px){
+    .filters{ margin-left:-18px; margin-right:-18px; padding-left:18px; padding-right:18px; scroll-padding:0 18px; }
+  }
 </style>
 </head>
 <body>
@@ -1001,7 +1122,6 @@
     <div class="logo">WildSpots <span id="nav-tagline">Moins de recherches. Plus de sessions.</span></div>
     <div style="display:flex; align-items:center; gap:14px;">
       <button type="button" id="lang-toggle" class="nav-cta" style="cursor:pointer; font-family:'JetBrains Mono',monospace;" onclick="toggleLang()">EN</button>
-      <a class="nav-cta" href="#carte" id="nav-cta-link">Voir la carte →</a>
     </div>
   </div>
 </nav>
@@ -1009,61 +1129,70 @@
 <section class="map-section" id="carte" style="padding-top:32px;">
   <div class="wrap wrap-wide">
     <div class="section-head">
-      <div class="eyebrow" id="map-eyebrow">Tu prépares un trip ?</div>
-      <h2 id="map-title">Trouve le bon spot en quelques minutes</h2>
+      <div class="eyebrow" id="map-eyebrow">Surf · Kite · Wind · Wingfoil</div>
+      <h1 id="map-title">Le bon spot.<br>Sans y passer des heures.</h1>
+      <p id="map-sub">Accès, hébergement, écoles et bons plans de chaque spot. Landes et Pays Basque.</p>
     </div>
 
-    <div class="trust-legend-wrap">
-      <button type="button" class="trust-legend-toggle" id="trust-legend-toggle">ℹ️ <span id="trust-legend-toggle-label">Comment lire les badges ?</span></button>
-      <div class="trust-legend" id="trust-legend">
-        <span class="trust-legend-item"><span class="badge badge-ia" id="legend-badge-ia">IA</span> <span id="legend-text-ia">Info générée automatiquement, à vérifier</span></span>
-        <span class="trust-legend-item"><span class="badge badge-communaute" id="legend-badge-communaute">✓ Communauté</span> <span id="legend-text-communaute">Confirmée par des riders qui y sont allés</span></span>
-        <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
-      </div>
+    <!-- Bouton principal : en ligne sous le titre sur ordinateur, collé en bas de l'écran sur smartphone -->
+    <div class="cta-bar" id="cta-bar">
+      <button type="button" class="btn-primary" id="cta-explore">Explorer la carte</button>
+      <button type="button" class="cta-secondary" id="cta-list">Voir la liste</button>
     </div>
 
-    <div class="filters-label" id="filters-label-zone">1. Destination</div>
-    <div class="zone-search-wrap">
-      <button type="button" class="wizard-cta" id="zone-cta-btn">
-        <span>📍</span> <span id="zone-cta-label">Landes · Pays Basque</span> <span class="app-search-caret">▾</span>
-      </button>
-      <div class="zone-dropdown" id="zone-dropdown">
-        <div class="zone-dropdown-label" id="zone-dropdown-label-active">Disponible maintenant</div>
-        <div class="zone-option active" data-zone="all">🏄 <span>Landes · Pays Basque</span></div>
-        <div class="zone-dropdown-label" id="zone-dropdown-label-soon">Bientôt disponible</div>
-        <div class="zone-option disabled">🌴 <span>Hawaii — Oahu</span><i class="soon-tag" id="soon-tag-1">Bientôt</i></div>
-        <div class="zone-option disabled">🏝️ <span>Bali — Uluwatu</span><i class="soon-tag" id="soon-tag-2">Bientôt</i></div>
-        <div class="zone-option disabled">🌊 <span>Maroc — Essaouira</span><i class="soon-tag" id="soon-tag-3">Bientôt</i></div>
-        <div class="zone-option disabled">🇵🇹 <span>Portugal — Peniche</span><i class="soon-tag" id="soon-tag-4">Bientôt</i></div>
-        <div class="zone-option disabled">🇦🇺 <span>Australie — Gold Coast</span><i class="soon-tag" id="soon-tag-5">Bientôt</i></div>
-        <div class="zone-option disabled">🇿🇦 <span>Afrique du Sud — Jeffreys Bay</span><i class="soon-tag" id="soon-tag-6">Bientôt</i></div>
-        <div class="zone-option disabled">🇧🇷 <span>Brésil — Jericoacoara</span><i class="soon-tag" id="soon-tag-7">Bientôt</i></div>
-        <div class="zone-option disabled">🇵🇭 <span>Philippines — Siargao</span><i class="soon-tag" id="soon-tag-8">Bientôt</i></div>
-        <div class="zone-option disabled">🇬🇷 <span>Grèce — Cyclades</span><i class="soon-tag" id="soon-tag-9">Bientôt</i></div>
-        <div class="zone-option disabled">🇪🇬 <span>Égypte — Dahab</span><i class="soon-tag" id="soon-tag-10">Bientôt</i></div>
-        <div class="zone-option disabled">🇪🇸 <span>Canaries — Fuerteventura</span><i class="soon-tag" id="soon-tag-11">Bientôt</i></div>
-        <div class="zone-option disabled">🇺🇸 <span>Californie — Santa Cruz</span><i class="soon-tag" id="soon-tag-12">Bientôt</i></div>
-        <div class="zone-option disabled">🇲🇽 <span>Mexique — Baja California</span><i class="soon-tag" id="soon-tag-13">Bientôt</i></div>
-        <div class="zone-option disabled">🇱🇰 <span>Sri Lanka — Arugam Bay</span><i class="soon-tag" id="soon-tag-14">Bientôt</i></div>
-      </div>
-    </div>
-
-    <div class="filters-label" id="filters-label">2. Sport</div>
     <div class="filters" id="filters"></div>
-    <div class="filters-label" id="filters-label-step3">3. Go</div>
-    <div class="view-toggle">
-      <button type="button" class="view-toggle-btn" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
-      <button type="button" class="view-toggle-btn active" id="view-btn-table">📋 <span id="view-label-table">Tableau</span></button>
+
+    <div class="controls-row">
+      <div class="zone-search-wrap">
+        <button type="button" class="zone-pill" id="zone-cta-btn">
+          <span>📍</span> <span id="zone-cta-label">Landes · Pays Basque</span> <span class="app-search-caret">▾</span>
+        </button>
+        <div class="zone-dropdown" id="zone-dropdown">
+          <div class="zone-dropdown-label" id="zone-dropdown-label-active">Disponible maintenant</div>
+          <div class="zone-option active" data-zone="all">🏄 <span>Landes · Pays Basque</span></div>
+          <div class="zone-dropdown-label" id="zone-dropdown-label-soon">Bientôt</div>
+          <div class="soon-box">
+            <p id="soon-text">D'autres destinations arrivent. Laisse ton email pour être prévenu de la prochaine ouverture.</p>
+            <form class="soon-form" id="soon-form" novalidate>
+              <input type="email" id="soon-email" autocomplete="email" inputmode="email" placeholder="ton@email.com" maxlength="120" required>
+              <input type="text" id="soon-wish" placeholder="Destination souhaitée (optionnel)" maxlength="80">
+              <!-- Champ piège invisible : seuls les robots le remplissent -->
+              <input type="text" id="soon-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+              <button type="submit" id="soon-btn">Être prévenu</button>
+              <div class="soon-consent" id="soon-consent">Ton email sert uniquement à te prévenir de l'ouverture de nouvelles destinations.</div>
+              <div class="soon-msg" id="soon-msg" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="view-toggle">
+        <button type="button" class="view-toggle-btn active" id="view-btn-map">🗺️ <span id="view-label-map">Carte</span></button>
+        <button type="button" class="view-toggle-btn" id="view-btn-table">📋 <span id="view-label-table">Liste</span></button>
+      </div>
     </div>
+
     <div class="map-layout">
-      <div id="map" style="display:none;"></div>
-      <div id="table-view"></div>
+      <div id="map"></div>
+      <div id="table-view" style="display:none;"></div>
       <aside id="spot-panel" class="spot-panel">
         <div class="panel-placeholder">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#d8d0ba" stroke-width="1.5" stroke-dasharray="3 5"/><circle cx="20" cy="20" r="3" fill="#d8d0ba"/></svg>
-          <p id="panel-placeholder-text">Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.</p>
+          <p id="panel-placeholder-text">Choisis un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.</p>
         </div>
       </aside>
+    </div>
+
+    <!-- Légende des badges : sous la carte, repliée par défaut -->
+    <div class="trust-row">
+      <span class="trust-row-text" id="trust-row-text">Chaque info porte un badge : IA, Communauté ou Ambassadeur.</span>
+      <div class="trust-legend-wrap">
+        <button type="button" class="trust-legend-toggle" id="trust-legend-toggle">ℹ️ <span id="trust-legend-toggle-label">Comment lire les badges ?</span></button>
+        <div class="trust-legend" id="trust-legend">
+          <span class="trust-legend-item"><span class="badge badge-ia" id="legend-badge-ia">IA</span> <span id="legend-text-ia">Info générée automatiquement, à vérifier</span></span>
+          <span class="trust-legend-item"><span class="badge badge-communaute" id="legend-badge-communaute">✓ Communauté</span> <span id="legend-text-communaute">Confirmée par des riders qui y sont allés</span></span>
+          <span class="trust-legend-item"><span class="badge badge-ambassadeur" id="legend-badge-ambassadeur">🛡️ Ambassadeur</span> <span id="legend-text-ambassadeur">Certifiée par un ambassadeur WildSpots</span></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1076,8 +1205,8 @@
       <a class="btn-primary" href="#carte" id="footer-cta">Revoir la carte ↑</a>
     </div>
     <div class="footer-bottom">
-      <span id="footer-tag1">WILDSPOTS // DÉMO NO-CODE</span>
-      <span id="footer-tag2">DONNÉES ILLUSTRATIVES — LANDES / PAYS BASQUE</span>
+      <span id="footer-tag1">WILDSPOTS // PILOTE</span>
+      <span id="footer-tag2">25 SPOTS · INFOS IA À VÉRIFIER · LANDES / PAYS BASQUE</span>
     </div>
   </div>
 </footer>
@@ -1100,12 +1229,21 @@
       appShortcutsTitle: "Pour toi",
       bannerEyebrow: "Trip à préparer ?", bannerTitle: "Choisis ton spot à l'avance", bannerCta: "Explorer la carte →",
       featuredLabel: "Spot du moment", featuredCta: "Voir la fiche →",
-      mapEyebrow: "Tu prépares un trip ?", mapTitle: "Trouve le bon spot en quelques minutes",
+      mapEyebrow: "Surf · Kite · Wind · Wingfoil", mapTitle: 'Le bon spot.<br>Sans y passer des heures.',
+      mapSub: "Accès, hébergement, écoles et bons plans de chaque spot. Landes et Pays Basque.",
+      ctaExplore: "Explorer la carte", ctaList: "Voir la liste",
+      mapHint: "Touche un spot pour voir sa fiche",
+      trustRow: "Chaque info porte un badge : IA, Communauté ou Ambassadeur.",
+      soonText: "D'autres destinations arrivent. Laisse ton email pour être prévenu de la prochaine ouverture.",
+      soonEmailPh: "ton@email.com", soonWishPh: "Destination souhaitée (optionnel)", soonBtn: "Être prévenu",
+      soonConsent: "Ton email sert uniquement à te prévenir de l'ouverture de nouvelles destinations.",
+      soonInvalid: "Cet email n'a pas l'air valide.", soonThanks: "Merci ! On te prévient dès l'ouverture.",
+      soonError: "Oups, l'envoi n'a pas marché. Réessaie dans un instant.", soonDemo: "Mode démo : email non enregistré.",
       mapIntro: "Sport, niveau, hébergement, école, transport — filtre et compare pour trouver le spot qui te correspond, pas juste le plus proche sur la carte.",
-      panelPlaceholder: "Sélectionnez un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
+      panelPlaceholder: "Choisis un spot sur la carte pour afficher sa fiche complète : conditions, transport, hébergements, écoles et avis.",
       filterAll: "Tous", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Go", zoneAll: "Toutes les zones",
-      viewMap: "Carte", viewTable: "Tableau",
-      zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt disponible", soonTag: "Bientôt",
+      viewMap: "Carte", viewTable: "Liste",
+      zoneActiveLabel: "Landes · Pays Basque", zoneAvailableNow: "Disponible maintenant", zoneComingSoon: "Bientôt", soonTag: "Bientôt",
       processEyebrow: "Comment ça marche", processTitle: "De la carte au sac à dos",
       step1Title: "Explorer", step1Desc: "Filtrer les spots par sport, niveau et saison sur une carte unique du littoral.",
       step2Title: "Comparer", step2Desc: "Ouvrir une fiche par spot : conditions types, ambiance, accès, ce qu'il y a autour.",
@@ -1116,7 +1254,7 @@
       ficheLabel2: "Saison", ficheVal2: "Août — Novembre", ficheLabel3: "Houle",
       ficheLabel4: "Ambiance", ficheVal4: "Compétitive, très fréquenté",
       footerTitle: "WildSpots — projet en cours de validation.", footerCta: "Revoir la carte ↑",
-      footerTag1: "WILDSPOTS // DÉMO NO-CODE", footerTag2: "DONNÉES ILLUSTRATIVES — LANDES / PAYS BASQUE",
+      footerTag1: "WILDSPOTS // PILOTE", footerTag2: n => `${n} SPOTS · INFOS IA À VÉRIFIER · LANDES / PAYS BASQUE`,
       // panneau dynamique
       secTechnique: "Fiche technique", secTransport: "Transport", secBonPlan: "Bon plan", secBudget: "Budget hébergement",
       rowBudgetMin: "Budget min (par nuit)", rowBudgetMoyen: "Budget moyen (par nuit)",
@@ -1166,11 +1304,20 @@
       appShortcutsTitle: "For you",
       bannerEyebrow: "Trip to plan?", bannerTitle: "Pick your spot ahead of time", bannerCta: "Explore the map →",
       featuredLabel: "Featured spot", featuredCta: "See full profile →",
-      mapEyebrow: "Planning a trip?", mapTitle: "Find the right spot in minutes",
+      mapEyebrow: "Surf · Kite · Wind · Wingfoil", mapTitle: 'The right spot.<br>Without hours of searching.',
+      mapSub: "Access, stays, schools and local tips for every spot. Landes and Basque Country.",
+      ctaExplore: "Explore the map", ctaList: "See the list",
+      mapHint: "Tap a spot to see its profile",
+      trustRow: "Every piece of info carries a badge: AI, Community or Ambassador.",
+      soonText: "More destinations are coming. Leave your email to hear about the next opening.",
+      soonEmailPh: "you@email.com", soonWishPh: "Destination you'd like (optional)", soonBtn: "Notify me",
+      soonConsent: "Your email is only used to tell you when new destinations open.",
+      soonInvalid: "That email doesn't look valid.", soonThanks: "Thanks! We'll let you know when it opens.",
+      soonError: "Oops, sending failed. Please try again in a moment.", soonDemo: "Demo mode: email not saved.",
       mapIntro: "Sport, level, accommodation, school, transport — filter and compare to find the spot that fits you, not just the closest one on the map.",
-      panelPlaceholder: "Select a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
+      panelPlaceholder: "Pick a spot on the map to see its full profile: conditions, transport, accommodation, schools and reviews.",
       filterAll: "All", filtersLabel: "2. Sport", filtersLabelZone: "1. Destination", filtersLabelStep3: "3. Go", zoneAll: "All areas",
-      viewMap: "Map", viewTable: "Table",
+      viewMap: "Map", viewTable: "List",
       zoneActiveLabel: "Landes · Basque Country", zoneAvailableNow: "Available now", zoneComingSoon: "Coming soon", soonTag: "Soon",
       processEyebrow: "How it works", processTitle: "From the map to your backpack",
       step1Title: "Explore", step1Desc: "Filter spots by sport, level and season on a single coastal map.",
@@ -1182,7 +1329,7 @@
       ficheLabel2: "Season", ficheVal2: "August — November", ficheLabel3: "Swell",
       ficheLabel4: "Vibe", ficheVal4: "Competitive, very busy",
       footerTitle: "WildSpots — project in validation phase.", footerCta: "Back to the map ↑",
-      footerTag1: "WILDSPOTS // NO-CODE DEMO", footerTag2: "SAMPLE DATA — LANDES / BASQUE COUNTRY",
+      footerTag1: "WILDSPOTS // PILOT", footerTag2: n => `${n} SPOTS · AI INFO TO CHECK · LANDES / BASQUE COUNTRY`,
       secTechnique: "Spot profile", secTransport: "Transport", secBonPlan: "Tip", secBudget: "Accommodation budget",
       rowBudgetMin: "Min budget (per night)", rowBudgetMoyen: "Average budget (per night)",
       budgetNote: "AI estimate for 2 people, accommodation only — check the official site for exact rates.",
@@ -1230,44 +1377,68 @@
   }
 
   function applyStaticTranslations(){
-    document.getElementById('nav-tagline').textContent = t('navTagline');
-    document.getElementById('nav-cta-link').textContent = t('navCta');
-    document.getElementById('lang-toggle').textContent = lang === 'fr' ? 'EN' : 'FR';
-    document.getElementById('map-eyebrow').textContent = t('mapEyebrow');
-    document.getElementById('map-title').textContent = t('mapTitle');
-    document.getElementById('panel-placeholder-text').textContent = t('panelPlaceholder');
-    document.getElementById('footer-title').textContent = t('footerTitle');
-    document.getElementById('footer-cta').textContent = t('footerCta');
-    document.getElementById('footer-tag1').textContent = t('footerTag1');
-    document.getElementById('footer-tag2').textContent = t('footerTag2');
+    // Petits utilitaires : un élément absent ne fait plus planter toute la traduction
+    const setText = (id, key, ...args) => { const el = document.getElementById(id); if (el) el.textContent = t(key, ...args); };
+    const setHTML = (id, key) => { const el = document.getElementById(id); if (el) el.innerHTML = t(key); };
+    const setPlaceholder = (id, key) => { const el = document.getElementById(id); if (el) el.placeholder = t(key); };
+
+    document.documentElement.lang = lang;
+
+    // Barre du haut
+    setText('nav-tagline', 'navTagline');
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) langBtn.textContent = lang === 'fr' ? 'EN' : 'FR';
+
+    // En-tête (titre sur deux lignes : on utilise innerHTML pour garder le <br>)
+    setText('map-eyebrow', 'mapEyebrow');
+    setHTML('map-title', 'mapTitle');
+    setText('map-sub', 'mapSub');
+    setText('cta-explore', 'ctaExplore');
+    setText('cta-list', 'ctaList');
+    setText('map-hint', 'mapHint');
+
+    // Boutons de sport, destination et bascule Carte / Liste
     const filterAllLabel = document.getElementById('filter-label-all');
-    if (filterAllLabel) filterAllLabel.textContent = t('filterAll');
-    document.getElementById('filters-label').textContent = t('filtersLabel');
-    const filtersLabelStep3El = document.getElementById('filters-label-step3');
-    if (filtersLabelStep3El) filtersLabelStep3El.textContent = t('filtersLabelStep3');
-    document.getElementById('legend-badge-ia').textContent = t('badgeIA');
-    document.getElementById('legend-text-ia').textContent = t('legendIA');
-    document.getElementById('legend-badge-communaute').textContent = `✓ ${lang === 'fr' ? 'Communauté' : 'Community'}`;
-    document.getElementById('legend-text-communaute').textContent = t('legendCommunaute');
-    document.getElementById('legend-badge-ambassadeur').textContent = `🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}`;
-    document.getElementById('legend-text-ambassadeur').textContent = t('legendAmbassadeur');
-    document.getElementById('trust-legend-toggle-label').textContent = t('trustLegendToggle');
-    const viewLabelMap = document.getElementById('view-label-map');
-    if (viewLabelMap) viewLabelMap.textContent = t('viewMap');
-    const viewLabelTable = document.getElementById('view-label-table');
-    if (viewLabelTable) viewLabelTable.textContent = t('viewTable');
-    const filtersLabelZoneEl = document.getElementById('filters-label-zone');
-    if (filtersLabelZoneEl) filtersLabelZoneEl.textContent = t('filtersLabelZone');
-    const zoneActiveLabelEl = document.getElementById('zone-dropdown-label-active');
-    if (zoneActiveLabelEl) zoneActiveLabelEl.textContent = t('zoneAvailableNow');
-    const zoneSoonLabelEl = document.getElementById('zone-dropdown-label-soon');
-    if (zoneSoonLabelEl) zoneSoonLabelEl.textContent = t('zoneComingSoon');
-    ['soon-tag-1','soon-tag-2','soon-tag-3','soon-tag-4','soon-tag-5','soon-tag-6','soon-tag-7','soon-tag-8','soon-tag-9','soon-tag-10','soon-tag-11','soon-tag-12','soon-tag-13','soon-tag-14'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = t('soonTag');
-    });
-    const zoneCtaLabelEl = document.getElementById('zone-cta-label');
-    if (zoneCtaLabelEl) zoneCtaLabelEl.textContent = t('zoneActiveLabel');
+    if (filterAllLabel) {
+      filterAllLabel.textContent = t('filterAll');
+      const allPill = filterAllLabel.closest('.filter-pill');
+      if (allPill) { allPill.title = t('filterAll'); allPill.setAttribute('aria-label', t('filterAll')); }
+    }
+    setText('zone-cta-label', 'zoneActiveLabel');
+    setText('zone-dropdown-label-active', 'zoneAvailableNow');
+    setText('zone-dropdown-label-soon', 'zoneComingSoon');
+    const zoneOptionLabel = document.querySelector('.zone-option[data-zone="all"] span');
+    if (zoneOptionLabel) zoneOptionLabel.textContent = t('zoneActiveLabel');
+    setText('view-label-map', 'viewMap');
+    setText('view-label-table', 'viewTable');
+
+    // Encart « Bientôt » (formulaire d'email)
+    setText('soon-text', 'soonText');
+    setPlaceholder('soon-email', 'soonEmailPh');
+    setPlaceholder('soon-wish', 'soonWishPh');
+    setText('soon-btn', 'soonBtn');
+    setText('soon-consent', 'soonConsent');
+    const soonMsgEl = document.getElementById('soon-msg');
+    if (soonMsgEl && soonMsgEl.dataset.key) soonMsgEl.textContent = t(soonMsgEl.dataset.key);
+
+    // Fiche (texte d'attente) et légende des badges
+    setText('panel-placeholder-text', 'panelPlaceholder');
+    setText('trust-row-text', 'trustRow');
+    setText('legend-badge-ia', 'badgeIA');
+    setText('legend-text-ia', 'legendIA');
+    const legendCommunaute = document.getElementById('legend-badge-communaute');
+    if (legendCommunaute) legendCommunaute.textContent = `✓ ${lang === 'fr' ? 'Communauté' : 'Community'}`;
+    setText('legend-text-communaute', 'legendCommunaute');
+    const legendAmbassadeur = document.getElementById('legend-badge-ambassadeur');
+    if (legendAmbassadeur) legendAmbassadeur.textContent = `🛡️ ${lang === 'fr' ? 'Ambassadeur' : 'Ambassador'}`;
+    setText('legend-text-ambassadeur', 'legendAmbassadeur');
+    setText('trust-legend-toggle-label', 'trustLegendToggle');
+
+    // Pied de page
+    setText('footer-title', 'footerTitle');
+    setText('footer-cta', 'footerCta');
+    setText('footer-tag1', 'footerTag1');
+    setText('footer-tag2', 'footerTag2', spots.length);
   }
 
   window.toggleLang = function(){
@@ -1727,6 +1898,39 @@
     panelEl.scrollTop = 0;
   }
 
+  // ── Indice sur la carte : « Touche un spot pour voir sa fiche » ──
+  // Affiché tant que le visiteur n'a touché aucun spot ; une fois vu, il ne revient plus (mémorisé dans le navigateur).
+  const HINT_KEY = 'wildspots_hint_done';
+  function hintAlreadyDone(){
+    try { return localStorage.getItem(HINT_KEY) === '1'; } catch (e) { return false; }
+  }
+  function dismissMapHint(){
+    const hint = document.getElementById('map-hint');
+    if (hint) {
+      hint.classList.add('gone');
+      setTimeout(() => hint.remove(), 400);
+    }
+    try { localStorage.setItem(HINT_KEY, '1'); } catch (e) { /* navigation privée : pas grave */ }
+  }
+  if (!hintAlreadyDone()) {
+    const hint = document.createElement('div');
+    hint.className = 'map-hint';
+    hint.id = 'map-hint';
+    hint.setAttribute('aria-hidden', 'true'); // simple aide visuelle ; les pins ont déjà leur nom
+    hint.textContent = t('mapHint');
+    document.getElementById('map').appendChild(hint);
+  }
+
+  // Quand le visiteur touche un spot (pin ou ligne de la liste) : on ouvre la fiche,
+  // et sur smartphone on fait défiler la page jusqu'à elle (sinon elle reste cachée sous la carte).
+  function selectSpot(idx){
+    openSpot(idx);
+    dismissMapHint();
+    if (window.matchMedia('(max-width: 860px)').matches) {
+      panelEl.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  }
+
   window.toggleAccordion = function(bodyId, headerBtn){
     const body = document.getElementById(bodyId);
     if (!body) return;
@@ -1784,14 +1988,14 @@
     });
 
     marker.bindTooltip(spot.name, { direction:"top", offset:[0,-6] });
-    marker.on('click', () => openSpot(idx));
+    marker.on('click', () => selectSpot(idx));
     marker.spotSports = spot.sports;
     marker.addTo(map);
     return marker;
   });
 
   let activeSport = "all";
-  let currentView = "table";
+  let currentView = "map"; // la carte est la vue affichée par défaut (comme dans le HTML)
 
   function updateMarkerVisibility(){
     markers.forEach((m, idx) => {
@@ -1827,10 +2031,13 @@
     btn.title = f.key === 'all' ? t('filterAll') : f.label;
     btn.setAttribute('aria-label', btn.title);
     btn.style.borderColor = f.color;
-    btn.innerHTML = `<span${f.key === 'all' ? ' id="filter-label-all"' : ''}>${f.key === 'all' ? t('filterAll') : f.label}</span>`;
+    btn.setAttribute('aria-pressed', f.key === 'all' ? 'true' : 'false');
+    // Icône du sport (couleur du sport) + libellé
+    btn.innerHTML = `<span class="pill-icon" aria-hidden="true" style="color:${f.color}">${f.icon}</span><span${f.key === 'all' ? ' id="filter-label-all"' : ''}>${f.key === 'all' ? t('filterAll') : f.label}</span>`;
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#filters .filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#filters .filter-pill').forEach(p => { p.classList.remove('active'); p.setAttribute('aria-pressed', 'false'); });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       activeSport = f.key;
       updateMarkerVisibility();
     });
@@ -1846,6 +2053,10 @@
   zoneCtaBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     zoneDropdown.classList.toggle('open');
+    // Smartphone : on remonte le menu en haut de l'écran pour qu'il soit entièrement visible (formulaire compris)
+    if (zoneDropdown.classList.contains('open') && window.matchMedia('(max-width: 860px)').matches) {
+      document.querySelector('.zone-search-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+    }
   });
   document.querySelector('.zone-option[data-zone="all"]').addEventListener('click', () => {
     zoneCtaLabel.textContent = t('zoneActiveLabel');
@@ -1864,6 +2075,59 @@
   });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.trust-legend-wrap')) trustLegend.classList.remove('open');
+  });
+
+  // ── Boutons principaux : « Explorer la carte » et « Voir la liste » ──
+  document.getElementById('cta-explore').addEventListener('click', () => {
+    document.getElementById('view-btn-map').click();
+    document.getElementById('map').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+  document.getElementById('cta-list').addEventListener('click', () => {
+    document.getElementById('view-btn-table').click();
+    document.getElementById('table-view').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  // ── « Bientôt » : prévenir l'utilisateur quand une nouvelle destination ouvre ──
+  // Les emails vont dans la table Supabase « waitlist » (voir README.md : le script SQL à lancer une fois).
+  const soonForm = document.getElementById('soon-form');
+  const soonEmail = document.getElementById('soon-email');
+  const soonWish = document.getElementById('soon-wish');
+  const soonBtn = document.getElementById('soon-btn');
+  const soonMsg = document.getElementById('soon-msg');
+
+  function showSoonMsg(key, ok){
+    soonMsg.dataset.key = key;            // gardé pour retraduire si on change de langue
+    soonMsg.textContent = t(key);
+    soonMsg.className = 'soon-msg ' + (ok ? 'ok' : 'err');
+  }
+
+  soonForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = soonEmail.value.trim();
+    const wish = soonWish.value.trim();
+
+    // Champ piège rempli = robot : on fait semblant que tout va bien, sans rien enregistrer
+    if (document.getElementById('soon-website').value) { showSoonMsg('soonThanks', true); soonForm.reset(); return; }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showSoonMsg('soonInvalid', false);
+      soonEmail.focus();
+      return;
+    }
+    if (!supabaseClient) { showSoonMsg('soonDemo', false); return; }
+
+    soonBtn.disabled = true;
+    try {
+      const { error } = await supabaseClient.from('waitlist').insert({ email, wish: wish || null, lang });
+      if (error) throw error;
+      showSoonMsg('soonThanks', true);
+      soonForm.reset();
+    } catch (err) {
+      console.warn("Supabase (waitlist) :", (err && err.message) || err);
+      showSoonMsg('soonError', false);
+    } finally {
+      soonBtn.disabled = false;
+    }
   });
 
   // ── Vue tableau : liste scrollable des spots, alternative à la carte pour mobile ──
@@ -1905,7 +2169,7 @@
     }).join("");
 
     tableEl.querySelectorAll('.spot-row').forEach(row => {
-      row.addEventListener('click', () => openSpot(parseInt(row.dataset.idx, 10)));
+      row.addEventListener('click', () => selectSpot(parseInt(row.dataset.idx, 10)));
     });
     const resetBtn = document.getElementById('wizard-reset-btn');
     if (resetBtn) resetBtn.addEventListener('click', () => { wizardResults = null; renderTableView(); });

@@ -647,6 +647,15 @@
   .source-note{ font-size:0.75rem; color:#6b7a84; margin:10px 0 0; line-height:1.4; }
   .source-note a{ color:var(--teal); }
   .school-address{ font-size:0.82rem; color:#3f5460; margin:8px 0 0; }
+  .stays-note{ font-size:0.8rem; color:#6b7a84; margin:0 0 10px; }
+  .stays-list{ display:flex; flex-direction:column; gap:10px; }
+  .stay-item{ background:#fff; border:1.5px solid var(--border, #e8e2d0); border-radius:14px; padding:12px 14px; }
+  .stay-top{ display:flex; flex-direction:column; gap:2px; }
+  .stay-name{ font-size:1rem; color:var(--navy); }
+  .stay-type{ font-size:0.82rem; color:#3f5460; }
+  .stay-tags{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }
+  .stay-tag{ font-size:0.72rem; font-weight:700; padding:3px 9px; border-radius:999px; background:#eef3f1; color:#14574a; }
+  .stay-where{ font-size:0.8rem; color:var(--teal); font-weight:600; }
   .contact-row{ display:flex; flex-wrap:wrap; gap:8px; }
   .call-btn{ display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:12px 16px; min-height:44px; border-radius:999px; border:1.5px solid var(--teal); color:var(--teal); font-weight:700; font-size:0.9rem; text-decoration:none; }
   .call-btn:hover{ background:var(--teal); color:#fff; }
@@ -1282,7 +1291,7 @@
       linkVerifie: "Lien vérifié web", linkEcole: "École / location", linkHebergement: "Hébergement",
       linkSiteOfficiel: "Voir le site officiel →", linkTarifs: "Voir tarifs & disponibilités →",
       estimationIA: "· estimation, à confirmer",
-      cardAcces: "Accès", secAcces: "Accès & services", callBtn: "Appeler", routeBtn: "Itinéraire", verifiedOn: "Vérifié le", srcLabel: "Sources", rowParking: "Parking", rowServices: "Services", rowSurveillance: "Surveillance", rowChiens: "Chiens", rowAccessibilite: "Accessibilité", rowAdresse: "Adresse", badgeOfficiel: "Sources officielles",
+      cardAcces: "Accès", secAcces: "Accès & services", callBtn: "Appeler", routeBtn: "Itinéraire", staysNote: "Sélection WildSpots pour les pratiquants, à confirmer.", viewContact: "Voir / contacter", tagSolo: "Solo", tagAmis: "Amis", tagFamille: "Famille", tagCouple: "Couple", tagBudget: "Petit budget", verifiedOn: "Vérifié le", srcLabel: "Sources", rowParking: "Parking", rowServices: "Services", rowSurveillance: "Surveillance", rowChiens: "Chiens", rowAccessibilite: "Accessibilité", rowAdresse: "Adresse", badgeOfficiel: "Sources officielles",
       badgeIA: "IA", badgeCommunaute: c => `✓ Communauté · ${c}`, badgeAmbassadeur: "🛡️ Validé ambassadeur",
       legendIA: "Info générée automatiquement, à vérifier",
       legendCommunaute: "Confirmée par des riders qui y sont allés",
@@ -1357,7 +1366,7 @@
       linkVerifie: "Web-verified link", linkEcole: "School / rental", linkHebergement: "Accommodation",
       linkSiteOfficiel: "See official site →", linkTarifs: "See rates & availability →",
       estimationIA: "· estimate, to be confirmed",
-      cardAcces: "Access", secAcces: "Access & facilities", callBtn: "Call", routeBtn: "Directions", verifiedOn: "Checked on", srcLabel: "Sources", rowParking: "Parking", rowServices: "Facilities", rowSurveillance: "Lifeguard", rowChiens: "Dogs", rowAccessibilite: "Accessibility", rowAdresse: "Address", badgeOfficiel: "Official sources",
+      cardAcces: "Access", secAcces: "Access & facilities", callBtn: "Call", routeBtn: "Directions", staysNote: "WildSpots selection for riders, to be confirmed.", viewContact: "View / contact", tagSolo: "Solo", tagAmis: "Friends", tagFamille: "Family", tagCouple: "Couple", tagBudget: "Budget", verifiedOn: "Checked on", srcLabel: "Sources", rowParking: "Parking", rowServices: "Facilities", rowSurveillance: "Lifeguard", rowChiens: "Dogs", rowAccessibilite: "Accessibility", rowAdresse: "Address", badgeOfficiel: "Official sources",
       badgeIA: "AI", badgeCommunaute: c => `✓ Community · ${c}`, badgeAmbassadeur: "🛡️ Ambassador verified",
       legendIA: "Auto-generated info, worth double-checking",
       legendCommunaute: "Confirmed by riders who've been there",
@@ -1480,7 +1489,7 @@
       en:{level:"Intermediate", season:"Sept–May", conditions:"Hollow NW swell, demanding peak", access:"Parking + 5 min dune path", ambiance:"Local crowd, can get busy in good conditions", around:"Few shops on-site, Seignosse village nearby", desc:"Hollow beach-break between the dunes, works only on certain tide windows.", transport:"Dax or Bayonne train station ~25 min; Biarritz airport ~30 min; Vélodyssée bike path on-site.", tip:"Check the tide before heading out — this spot only works in certain windows."}},
     {name:"Seignosse — Le Penon", commune:"Seignosse, Landes", lat:43.7047, lng:-1.4263, sports:["surf"], level:"Tous niveaux", season:"Sept–Mai", conditions:"Houle NW/W, plusieurs pics", access:"Parking direct, plage surveillée", ambiance:"Central, bien équipé", around:"Écoles de surf, restaurants, location matériel", desc:"Spot central de Seignosse, très bien équipé.", score:7.9, school:{name:"École L'Agréou", url:"https://www.lagreou-surf-seignosse.com/"}, stay:{name:"Natural Surf Lodge (surf camp)", url:"https://www.naturalsurfschool.com/surf-hebergement/", distance:"~10-15 min en voiture"}, transport:"Gare de Dax ou Bayonne à ~25 min ; aéroport de Biarritz à ~30 min ; Vélodyssée sur place.", tip:"Spot polyvalent, bon plan B si les Bourdaines sont trop chargées.",
       en:{level:"All levels", season:"Sept–May", conditions:"NW/W swell, several peaks", access:"Direct parking, lifeguarded beach", ambiance:"Central, well-equipped", around:"Surf schools, restaurants, gear rental", desc:"Seignosse's central spot, very well equipped.", transport:"Dax or Bayonne train station ~25 min; Biarritz airport ~30 min; Vélodyssée bike path on-site.", tip:"Versatile spot, a good backup if Les Bourdaines is too crowded."}},
-    {name:"Hossegor — La Gravière", commune:"Hossegor, Landes", lat:43.6647, lng:-1.4406, sports:["surf"], level:"Confirmé / Expert", season:"Août–Nov", conditions:"Houle NW puissante, reef de sable creux", access:"Parking + accès direct plage", ambiance:"Compétitive, spot mondialement suivi", around:"Shapers, surf shops, restaurants haut de gamme", desc:"Vague de reef mondialement connue, très puissante.", score:9.1, school:{name:"Darrigood Surf School (ESCF Hossegor)", url:"https://ecoledesurf.com/ecoles/surf-hossegor/", phone:"06 84 15 21 20", address:"Boulevard du Front de Mer, Soorts-Hossegor"}, practical:{parking:"Gratuit (emplacement et capacité non précisés)", services:"Douches, toilettes, restaurant et bar à proximité", surveillance:"Surveillée en été, dates et horaires à confirmer", verified:"2026-11-10", sources:[{label:"plages-landes.info", url:"https://plages-landes.info/en/beaches/plage-de-la-graviere-ocean-2"},{label:"Acceslibre", url:"https://acceslibre.beta.gouv.fr/app/40-soorts-hossegor/a/sports-nautiques/erp/escf-hossegor-darrigood-surf-school/"}]}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/", distance:"~10 min à pied du spot"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Éviter juillet-août pour la Gravière : viser septembre pour moins de monde.",
+    {name:"Hossegor — La Gravière", commune:"Hossegor, Landes", lat:43.6647, lng:-1.4406, sports:["surf"], level:"Confirmé / Expert", season:"Août–Nov", conditions:"Houle NW puissante, reef de sable creux", access:"Parking + accès direct plage", ambiance:"Compétitive, spot mondialement suivi", around:"Shapers, surf shops, restaurants haut de gamme", desc:"Vague de reef mondialement connue, très puissante.", score:9.1, school:{name:"Darrigood Surf School (ESCF Hossegor)", url:"https://ecoledesurf.com/ecoles/surf-hossegor/", phone:"06 84 15 21 20", address:"Boulevard du Front de Mer, Soorts-Hossegor"}, stays:[ {name:"Hôtel de La Plage", city:"Hossegor", type:{fr:"Hôtel avec école de surf", en:"Hotel with surf school"}, tags:["couple","famille"], where:{fr:"Sur le front de mer, face aux spots", en:"On the seafront, facing the breaks"}}, {name:"JO&JOE Hossegor", city:"Hossegor", type:{fr:"Auberge, dortoirs avec casier", en:"Hostel, dorms with lockers"}, tags:["solo","amis","budget"], where:{fr:"Partenaire de l'école de La Gravière · ~1 km du centre", en:"Partner of the La Gravière school · ~1 km from the centre"}}, {name:"Koala Surf House", city:"Hossegor", type:{fr:"Surf camp, dortoirs", en:"Surf camp, dorms"}, tags:["solo","amis","budget"], where:{fr:"Près des beach breaks · ~1,2 km du centre", en:"Near the beach breaks · ~1.2 km from the centre"}}, {name:"Southwest Surfhouse", city:"Hossegor", type:{fr:"Petit surf lodge", en:"Small surf lodge"}, tags:["solo","amis","couple"], where:{fr:"À ~500 m des plages nord", en:"~500 m from the north beaches"}}, {name:"Hôtel Les Fougères", city:"Hossegor", type:{fr:"Hôtel", en:"Hotel"}, tags:["famille","couple"], where:{fr:"Près du lac", en:"Near the lake"}} ], practical:{parking:"Gratuit (emplacement et capacité non précisés)", services:"Douches, toilettes, restaurant et bar à proximité", surveillance:"Surveillée en été, dates et horaires à confirmer", verified:"2026-11-10", sources:[{label:"plages-landes.info", url:"https://plages-landes.info/en/beaches/plage-de-la-graviere-ocean-2"},{label:"Acceslibre", url:"https://acceslibre.beta.gouv.fr/app/40-soorts-hossegor/a/sports-nautiques/erp/escf-hossegor-darrigood-surf-school/"}]}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/", distance:"~10 min à pied du spot"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Éviter juillet-août pour la Gravière : viser septembre pour moins de monde.",
       en:{practical:{parking:"Free (location and capacity not specified)", services:"Showers, toilets, restaurant and bar nearby", surveillance:"Lifeguarded in summer, dates and hours to be confirmed"}, level:"Advanced / Expert", season:"Aug–Nov", conditions:"Powerful NW swell, hollow sand-bottom wave", access:"Parking + direct beach access", ambiance:"Competitive, world-renowned spot", around:"Shapers, surf shops, upscale restaurants", desc:"World-famous, very powerful sand-bottom wave.", transport:"Bayonne train station ~25 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"Avoid July-August at La Gravière — aim for September for smaller crowds."}},
     {name:"Hossegor — La Nord", commune:"Hossegor, Landes", lat:43.6715, lng:-1.4419, sports:["surf"], level:"Intermédiaire à confirmé", season:"Sept–Mai", conditions:"Houle NW, pics plus accessibles", access:"Parking centre-ville, 5 min à pied", ambiance:"Animée, bon compromis niveau", around:"Commerces, écoles de surf, bars", desc:"Alternative à la Gravière, pics plus abordables.", score:8.2, school:{name:"Watermansport Surfschool", url:"https://watermansport-surfschool.com/"}, stay:{name:"Hôtel Les Fougères", url:"https://ecoledesurf.com/ecoles/surf-hossegor/hebergement/", distance:"~5 min à pied du spot"}, transport:"Gare de Bayonne à ~25 min ; aéroport de Biarritz à ~25 min ; Vélodyssée sur place.", tip:"Alternative moins courue quand la Gravière est pleine.",
       en:{level:"Intermediate to advanced", season:"Sept–May", conditions:"NW swell, more manageable peaks", access:"Town-centre parking, 5 min walk", ambiance:"Lively, good level trade-off", around:"Shops, surf schools, bars", desc:"Alternative to La Gravière, more approachable peaks.", transport:"Bayonne train station ~25 min; Biarritz airport ~25 min; Vélodyssée bike path on-site.", tip:"A quieter alternative when La Gravière is packed."}},
@@ -1801,7 +1810,20 @@
 
     const transportBody = `<p class="popup-transport">${d.transport || "—"}</p><div id="controls-${idx}-transport">${sectionControls(idx, "transport")}</div>`;
 
-    const hebergementBody = spot.stay ? `
+    const staysHtml = (spot.stays && spot.stays.length) ? `
+      <p class="stays-note">${t('staysNote')}</p>
+      <div class="stays-list">
+        ${spot.stays.map(h => `
+          <div class="stay-item">
+            <div class="stay-top"><b class="stay-name">${h.name}</b><span class="stay-type">${h.type[lang] || h.type.fr}</span></div>
+            <div class="stay-tags">${h.tags.map(g => `<span class="stay-tag">${t('tag' + g.charAt(0).toUpperCase() + g.slice(1))}</span>`).join("")}</div>
+            <div class="stay-where">${h.where[lang] || h.where.fr}</div>
+            <a class="call-btn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.name + ', ' + (h.city || spot.commune))}" target="_blank" rel="noopener">🔎 ${t('viewContact')}</a>
+          </div>`).join("")}
+      </div>
+      <div id="controls-${idx}-hebergement">${sectionControls(idx, "hebergement")}</div>` : "";
+
+    const hebergementBody = staysHtml || (spot.stay ? `
       <div class="popup-links">
         <a class="link-card link-card-primary" href="${spot.stay.url}" target="_blank" rel="noopener">
           <span class="link-kind">${t('linkVerifie')}</span>
@@ -1812,7 +1834,7 @@
           <span class="link-cta">${t('linkTarifs')}</span>
         </a>
       </div>
-      <div id="controls-${idx}-hebergement">${sectionControls(idx, "hebergement")}</div>` : "";
+      <div id="controls-${idx}-hebergement">${sectionControls(idx, "hebergement")}</div>` : "");
 
     const ecoleBody = spot.school ? `
       <div class="popup-links">
